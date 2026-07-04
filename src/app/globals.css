@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #15803d;
+  --color-primary-dark: #14532d;
+  --color-primary-light: #166534;
+  --color-accent: #d97706;
+  --color-accent-light: #f59e0b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar matching Nelmani-Fresh */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #15803d;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #166534;
+}
+
+/* Focus styles matching Nelmani-Fresh */
+*:focus-visible {
+  outline: 2px solid #15803d;
+  outline-offset: 2px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border: 2px solid #15803d !important;
+  box-shadow: none !important;
+}
+
+/* Selection color matching Nelmani-Fresh */
+::selection {
+  background-color: #bbf7d0;
+  color: #14532d;
 }

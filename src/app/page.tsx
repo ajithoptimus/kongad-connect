@@ -1,63 +1,726 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Phone, 
+  MapPin, 
+  Camera, 
+  Send, 
+  ChevronRight,
+  User,
+  ChevronDown
+} from 'lucide-react';
+import { emitTelemetry } from '@/utils/telemetry';
+import { 
+  MarketRate, 
+  Panchayat, 
+  EmergencyService, 
+  NewsItem, 
+  JobListing, 
+  ClassifiedListing,
+  UserRole
+} from '@/types';
+
+// Mock Data
+type Hospital = { id: string; name: string; location: string; phone: string; };
+const hospitals: Hospital[] = [
+  { id: 'chc', name: 'ഗവ. സി.എച്ച്.സി (Govt CHC Kongad)', location: 'Kongad Town', phone: 'tel:+910000000000' },
+  { id: 'mercy', name: 'മേഴ്സി ക്ലിനിക് (Mercy Clinic 24/7)', location: 'Near Bus Stand', phone: 'tel:+910000000000' },
+  { id: 'pharmacy', name: 'കോങ്ങാട് ഫാർമസി (Kongad Pharmacy)', location: 'Main Road', phone: 'tel:+910000000000' }
+];
+
+const PANCHAYATS: Panchayat[] = [
+  { id: 'all', name: 'All Kongad' },
+  { id: 'kongad', name: 'Kongad' },
+  { id: 'keralassery', name: 'Keralassery' },
+  { id: 'mankara', name: 'Mankara' },
+  { id: 'mannur', name: 'Mannur' },
+  { id: 'parali', name: 'Parali' },
+  { id: 'kanjirapuzha', name: 'Kanjirapuzha' },
+  { id: 'karimba', name: 'Karimba' },
+  { id: 'karakurussi', name: 'Karakurussi' },
+  { id: 'thachampara', name: 'Thachampara' }
+];
+
+const MARKET_RATES: MarketRate[] = [
+  { id: '1', commodity: 'നെല്ല് (മട്ട)', price: 28.5, unit: 'kg', trend: 'up', imgUrl: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=500&auto=format&fit=crop' },
+  { id: '2', commodity: 'റബ്ബർ (RSS4)', price: 180, unit: 'kg', trend: 'stable', imgUrl: 'https://images.unsplash.com/photo-162df94418652-32a76f2382bd?q=80&w=500&auto=format&fit=crop' },
+  { id: '3', commodity: 'അടയ്ക്ക', price: 320, unit: 'kg', trend: 'up', imgUrl: 'https://images.unsplash.com/photo-1634591745778-0e9b942e6da1?q=80&w=500&auto=format&fit=crop' },
+  { id: '4', commodity: 'നാളികേരം', price: 32, unit: 'kg', trend: 'down', imgUrl: 'https://images.unsplash.com/photo-1603594247831-29008bc0a26e?q=80&w=500&auto=format&fit=crop' },
+  { id: '5', commodity: 'കുരുമുളക്', price: 540, unit: 'kg', trend: 'up', imgUrl: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=500&auto=format&fit=crop' },
+  { id: '6', commodity: 'ഏലം', price: 1800, unit: 'kg', trend: 'stable', imgUrl: 'https://images.unsplash.com/photo-1615486171448-4fd18e268a64?q=80&w=500&auto=format&fit=crop' }
+];
+
+const EMERGENCY_SERVICES: EmergencyService[] = [
+  { id: '1', name: 'Government CHC Kongad', type: 'chc', location: 'Kongad Town', phone: '104' },
+  { id: '2', name: 'Mercy Clinic 24/7', type: 'clinic', location: 'Near Bus Stand', phone: '9876543210' },
+  { id: '3', name: 'Kongad Pharmacy', type: 'pharmacy', location: 'Main Road', phone: '9876543211' }
+];
+
+const NEWS_FEED: NewsItem[] = [
+  { id: '1', title: 'രോ​ഗങ്ങളും കീടങ്ങളും നിരവധി: മഴക്കാലത്ത് പയറിൽ ശ്രദ്ധിക്കാൻ', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=600&q=80', summary: 'ഏതു കാലാവസ്ഥയിലും നല്ല വിളവ് നൽകുമെങ്കിലും കീടങ്ങളും രോഗങ്ങളും...' },
+  { id: '2', title: 'തോരൻ വയ്ക്കാൻ ഉത്തമം; പരിചരണം കുറച്ചു മതി', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1586521995568-39abaa0c2311?auto=format&fit=crop&w=600&q=80', summary: 'പേരിൽ മാത്രം വഴുതനയോട് സാമ്യമുള്ള വള്ളിച്ചെടിയാണ്...' },
+  { id: '3', title: 'കൂർക്ക നടാം: ഗ്രോബാഗിലും നിലത്തും', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop', summary: 'ചൈനീസ് പൊട്ടറ്റോ എന്നറിയപ്പെടുന്ന കൂർക്ക കേരളീയർക്ക്...' },
+  { id: '4', title: 'ഓണത്തിന് ജൈവ പച്ചക്കറി; കോങ്ങാട് പഞ്ചായത്തിൽ വിതരണം തുടങ്ങി', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=600&q=80', summary: 'ഓണത്തിന് വിഷരഹിത പച്ചക്കറി എന്ന ലക്ഷ്യത്തോടെ...' },
+  { id: '5', title: 'തക്കാളി കൃഷിയിൽ നൂറുമേനി വിളവ്; കർഷകർക്ക് ആശ്വാസം', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1586521995568-39abaa0c2311?auto=format&fit=crop&w=600&q=80', summary: 'കാലാവസ്ഥ അനുകൂലമായതോടെ തക്കാളി കൃഷിയിൽ വൻ മുന്നേറ്റം...' },
+  { id: '6', title: 'കീടനാശിനി പ്രയോഗം കുറയ്ക്കാം; ജൈവവളം ഉപയോഗിക്കാം', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop', summary: 'രാസകീടനാശിനികൾക്ക് പകരം ജൈവവളങ്ങൾ ഉപയോഗിക്കുന്നതിന്റെ ഗുണങ്ങൾ...' }
+];
+
+const JOBS: JobListing[] = [
+  { id: '1', title: 'Farm Supervisor', employer: 'Green Valley Farms', location: 'Keralassery', isBoosted: true },
+  { id: '2', title: 'Retail Assistant', employer: 'Kongad Supermarket', location: 'Kongad Town', isBoosted: false },
+  { id: '3', title: 'Delivery Executive', employer: 'Nelmani Fresh', location: 'Parali', isBoosted: false }
+];
+
+const CLASSIFIEDS: ClassifiedListing[] = [
+  { id: '1', item: 'Used Tractor', price: '₹2.5 Lakhs', seller: 'Ramanan', location: 'Parali', isBoosted: true },
+  { id: '2', item: 'Organic Compost', price: '₹500', seller: 'Haritha Sangam', location: 'Mannur', isBoosted: false },
+  { id: '3', item: 'Milking Cow', price: '₹45,000', seller: 'Suresh', location: 'Mankara', isBoosted: false }
+];
+
+const SectionHeader = ({ title }: { title: string }) => (
+  <div className="flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 mb-6">
+    <div className="flex items-center">
+      <div className="w-1.5 h-6 bg-primary mr-3" />
+      <h2 className="text-[15px] font-bold text-slate-800 uppercase tracking-wide">{title}</h2>
+    </div>
+    <a href="#" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">View All</a>
+  </div>
+);
 
 export default function Home() {
+  const [activePanchayat, setActivePanchayat] = useState<string>('all');
+  const [krishiRole, setKrishiRole] = useState<UserRole>('farmer');
+  const [isKrishiExpanded, setIsKrishiExpanded] = useState(false);
+  const [isNewsExpanded, setIsNewsExpanded] = useState(false);
+  const [isTipsExpanded, setIsTipsExpanded] = useState(false);
+  const [isCivicExpanded, setIsCivicExpanded] = useState(false);
+  const [isMarketExpanded, setIsMarketExpanded] = useState(false);
+  const [selectedHospital, setSelectedHospital] = useState<string>(hospitals[0].phone);
+  
+  const [reportCategory, setReportCategory] = useState<string>('');
+  const [reportLandmark, setReportLandmark] = useState<string>('');
+
+  const handlePanchayatClick = (id: string) => {
+    setActivePanchayat(id);
+    emitTelemetry('filter_panchayat', { panchayatId: id });
+  };
+
+  const handleKrishiToggle = (role: UserRole) => {
+    setKrishiRole(role);
+    emitTelemetry('toggle_krishi_role', { role });
+  };
+
+  const handleKrishiSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    emitTelemetry('submit_krishi_form', { role: krishiRole });
+    alert('Request submitted successfully to Nelmani-Fresh!');
+  };
+
+  const handleCivicSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    emitTelemetry('submit_civic_report', { category: reportCategory, landmark: reportLandmark });
+    alert('Report submitted to HydroLeaf Sentinel Layer!');
+    setReportCategory('');
+    setReportLandmark('');
+  };
+
+  const handleEmergencyCall = (serviceId: string) => {
+    emitTelemetry('click_emergency_call', { serviceId });
+  };
+
+  const scrollMotionProps = {
+    initial: { opacity: 0, y: 15 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.4 }
+  };
+
+  const cardClass = "bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col";
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="bg-[#F4F7F5] min-h-screen font-sans text-slate-900 pb-24">
+      
+      {/* 1. EDGE-TO-EDGE NELMANI-FRESH STYLE HERO */}
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-green-950">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/dam.png"
+            alt="Kanjirapuzha Dam in Kongad"
+            className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-green-950 via-green-900/60 to-green-900/40" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Grain texture overlay */}
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
+
+        {/* Kongad Assembly Watermark (Inline SVG) */}
+        <div className="absolute right-[2%] lg:right-[10%] top-1/2 -translate-y-1/2 opacity-30 mix-blend-overlay pointer-events-none z-0">
+          <svg width="400" height="550" viewBox="0 0 400 550" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M150,20 L250,20 L240,60 L280,70 L350,120 L300,160 L280,220 L330,280 L250,300 L260,350 L200,400 L220,460 L250,520 L180,550 L100,520 L60,480 L120,440 L80,380 L100,320 L60,250 L120,200 L150,100 Z" fill="white" />
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 relative z-10 pt-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Text Content */}
+            <div className="text-white">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 text-sm font-medium px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+                  </span>
+                  Welcome to Kongad Connect
+                </span>
+              </motion.div>
+
+              <motion.h1
+                className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-2 whitespace-nowrap"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+              >
+                നമ്മുടെ കോങ്ങാട്
+              </motion.h1>
+              
+              <motion.p
+                className="text-sm lg:text-base text-amber-400 font-bold tracking-widest uppercase mb-6 max-w-lg"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                Kongad Assembly Constituency
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <p className="mt-6 text-lg text-[#FDFCF8]/90 max-w-2xl leading-relaxed mb-8">കോങ്ങാടിന്റെ വികസനത്തിനും ജനങ്ങളുടെ ക്ഷേമത്തിനുമായി ഒരു ഡിജിറ്റൽ ജനകീയ വേദി. നിങ്ങളുടെ പരാതികളും ആവശ്യങ്ങളും നേരിട്ട് എം.എൽ.എ യെ അറിയിക്കാം.</p>
+              </motion.div>
+
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <a 
+                  href="#civic-reporter" 
+                  className="bg-[#B58500] text-white px-8 py-3 rounded-full font-bold hover:bg-[#966e00] transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  📝 എം.എൽ.എ യെ അറിയിക്കാൻ
+                </a>
+                <a 
+                  href="#krishi-hub" 
+                  className="border-2 border-[#FDFCF8]/30 text-[#FDFCF8] px-8 py-3 rounded-full font-bold hover:bg-[#FDFCF8]/10 transition-colors flex items-center justify-center gap-2 backdrop-blur-sm"
+                >
+                  🌾 കാർഷിക ഇടം
+                </a>
+              </motion.div>
+
+              {/* Trust badges */}
+              <motion.div
+                className="mt-12 flex flex-wrap gap-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                {[
+                  { icon: "🌾", label: "കാർഷിക ഇടം" },
+                  { icon: "🏛️", label: "ജനകീയ റിപ്പോർട്ടർ" },
+                  { icon: "📰", label: "കോങ്ങാട് വാർത്തകൾ" },
+                  { icon: "💼", label: "തൊഴിൽ & നാട്ടുചന്ത" },
+                ].map((badge) => (
+                  <div key={badge.label} className="flex items-center gap-2 text-green-200">
+                    <span className="text-xl">{badge.icon}</span>
+                    <span className="text-sm font-medium">{badge.label}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Hero Visual - Glowing Interactive Element */}
+            <motion.div
+              className="relative hidden lg:block"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-3xl scale-110" />
+
+                {/* Main image container */}
+                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40 aspect-square max-w-lg mx-auto group">
+                  <div className="w-full h-full relative">
+                    <img
+                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
+                      alt="MLA Kongad"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-green-950/90 via-green-900/20 to-transparent" />
+                  </div>
+                </div>
+
+                {/* Floating cards */}
+                <motion.div
+                  className="absolute -left-12 top-1/4 backdrop-blur-md bg-white/10 text-white border border-white/20 rounded-2xl p-4 shadow-xl"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white border border-white/30">
+                      <User className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/70 font-bold uppercase tracking-wider">എം.എൽ.എ:</p>
+                      <p className="font-extrabold text-white text-[15px]">ശ്രീമതി കെ. എ. തുളസി ടീച്ചർ</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="absolute -right-8 bottom-1/4 bg-white rounded-2xl p-4 shadow-xl border border-amber-100"
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-xl">
+                      ⭐
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Kongad Portal</p>
+                      <p className="font-extrabold text-amber-700 text-[15px]">Live Services</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center gap-2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <span className="text-xs tracking-widest uppercase">Scroll</span>
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </motion.div>
+      </section>
+
+      {/* 2. ASYMMETRICAL 12-COLUMN STICKY DESKTOP GRID */}
+      <main className="w-full bg-[#FDFCF8] min-h-screen py-12">
+
+        {/* Horizontal Filter Chips — Full width above the grid */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mb-8">
+          <div className="flex overflow-x-auto hide-scrollbar space-x-3 pb-2 border-b border-gray-200">
+            {PANCHAYATS.map((p) => (
+              <button 
+                key={p.id}
+                onClick={() => handlePanchayatClick(p.id)}
+                className={`px-5 py-2.5 rounded-full whitespace-nowrap text-xs font-bold transition-all border ${
+                  activePanchayat === p.id 
+                    ? 'bg-primary text-white border-primary shadow-sm' 
+                    : 'bg-white text-slate-600 border-gray-200 hover:border-primary/40 hover:text-primary'
+                }`}
+              >
+                {p.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Master 12-Column Grid */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
+
+          {/* ═══════════════════════════════════════════════════════════════ */}
+          {/* LEFT COLUMN: Information Feed (Scrollable) — 8 columns       */}
+          {/* ═══════════════════════════════════════════════════════════════ */}
+          <div className="lg:col-span-8 flex flex-col gap-10">
+
+            {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
+            <section id="krishi-hub">
+              <div className="mb-6">
+                <button 
+                  onClick={() => setIsKrishiExpanded(!isKrishiExpanded)}
+                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                >
+                  <div className="flex items-center border-l-4 border-[#B58500] pl-3">
+                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">കാർഷിക ഇടം</h2>
+                  </div>
+                  <div className="flex items-center text-sm font-semibold text-slate-600">
+                    <span className="mr-1">View All</span>
+                    <ChevronDown className={`w-4 h-4 transform ${isKrishiExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isKrishiExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
+                        കോങ്ങാടിന്റെ കാർഷിക ഹൃദയത്തിലേക്ക് സ്വാഗതം. കർഷകർക്ക് ആവശ്യമായ ദൈനംദിന വിപണി വിലകൾ, കാലാവസ്ഥാ മുന്നറിയിപ്പുകൾ, മറ്റ് കാർഷിക വിവരങ്ങൾ എന്നിവ ഇവിടെ ഒറ്റനോട്ടത്തിൽ ലഭ്യമാണ്. ഇടനിലക്കാരില്ലാതെ കർഷകർക്കും വ്യാപാരികൾക്കും നേരിട്ട് വിനിമയം നടത്താനുള്ള സുതാര്യമായ വേദി കൂടിയാണിത്.
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {MARKET_RATES.slice(0, 6).map((rate) => (
+                  <motion.div {...scrollMotionProps} key={rate.id} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                    <div className="h-40 w-full object-cover rounded-t-2xl overflow-hidden">
+                      <img src={rate.imgUrl} className="w-full h-full object-cover" alt={rate.commodity} />
+                    </div>
+                    <div className="p-4 md:p-5">
+                      <p className="text-lg font-bold text-[#0A5C36] mb-1">{rate.commodity}</p>
+                      <div className="mt-1">
+                        <span className="text-2xl font-bold text-[#B58500]">₹{rate.price}</span> <span className="text-sm text-gray-500">/ {rate.unit.toUpperCase()}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
+            <section>
+              <div className="mb-6">
+                <button 
+                  onClick={() => setIsTipsExpanded(!isTipsExpanded)}
+                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                >
+                  <div className="flex items-center border-l-4 border-[#B58500] pl-3">
+                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">കാർഷിക അറിവുകൾ</h2>
+                  </div>
+                  <div className="flex items-center text-sm font-semibold text-slate-600">
+                    <span className="mr-1">View All</span>
+                    <ChevronDown className={`w-4 h-4 transform ${isTipsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isTipsExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
+                        പുതിയ കാർഷിക രീതികൾ, വിളപരിപാലനം, ജൈവവള പ്രയോഗം എന്നിവയെക്കുറിച്ചുള്ള വിദഗ്ധ ലേഖനങ്ങൾ. മികച്ച വിളവിനും ലാഭത്തിനും ഈ അറിവുകൾ പ്രയോജനപ്പെടുത്താം.
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {NEWS_FEED.slice(0, 6).map((news, idx) => (
+                  <motion.div {...scrollMotionProps} key={news.id} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                    <div className="h-[180px] w-full">
+                      <img src={news.thumbnailUrl} alt={news.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-5 flex flex-col flex-1">
+                      <h3 className="font-bold text-[16px] leading-snug mb-3 text-slate-900">{news.title}</h3>
+                      <p className="text-sm text-slate-500 leading-relaxed line-clamp-3">{news.summary}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
+            <section>
+              <div className="mb-6">
+                <button 
+                  onClick={() => setIsNewsExpanded(!isNewsExpanded)}
+                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                >
+                  <div className="flex items-center border-l-4 border-[#B58500] pl-3">
+                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">കോങ്ങാട് വാർത്തകൾ</h2>
+                  </div>
+                  <div className="flex items-center text-sm font-semibold text-slate-600">
+                    <span className="mr-1">View All</span>
+                    <ChevronDown className={`w-4 h-4 transform ${isNewsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isNewsExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
+                        നമ്മുടെ നാട്ടിലെ പ്രധാന വാർത്തകൾ, പഞ്ചായത്ത് അറിയിപ്പുകൾ, ഉത്സവ വിശേഷങ്ങൾ എന്നിവ അറിയാൻ ഈ ഇടം ഉപയോഗിക്കുക. കോങ്ങാടിന്റെ സ്പന്ദനങ്ങൾ ഇനി നിങ്ങളുടെ വിരൽത്തുമ്പിൽ.
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Local Jobs as news-style cards */}
+                {JOBS.map((job) => (
+                  <motion.div {...scrollMotionProps} key={`job-${job.id}`} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-5">
+                    <div className="flex justify-between items-start mb-3">
+                      <h4 className="font-bold text-[15px] text-slate-900">{job.title}</h4>
+                      {job.isBoosted && <span className="bg-amber-500 text-white text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-wider">Urgent</span>}
+                    </div>
+                    <p className="text-sm text-slate-600 mb-3">{job.employer}</p>
+                    <div className="flex items-center text-xs font-semibold text-slate-500">
+                      <MapPin className="w-3 h-3 mr-1" /> {job.location}
+                    </div>
+                  </motion.div>
+                ))}
+                {/* Classifieds as news-style cards */}
+                {CLASSIFIEDS.map((item) => (
+                  <motion.div {...scrollMotionProps} key={`class-${item.id}`} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-5">
+                    <div className="flex justify-between items-start mb-3">
+                      <h4 className="font-bold text-[15px] text-slate-900">{item.item}</h4>
+                      <span className="text-primary font-bold text-sm">{item.price}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-xs text-slate-500">
+                      <span>By {item.seller}</span>
+                      <span className="flex items-center"><MapPin className="w-3 h-3 mr-1" /> {item.location}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Civic Reporter */}
+            <section id="civic-reporter">
+              <div className="mb-6">
+                <button 
+                  onClick={() => setIsCivicExpanded(!isCivicExpanded)}
+                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                >
+                  <div className="flex items-center border-l-4 border-[#B58500] pl-3">
+                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">ജനകീയ റിപ്പോർട്ടർ</h2>
+                  </div>
+                  <div className="flex items-center text-sm font-semibold text-slate-600">
+                    <span className="mr-1">View All</span>
+                    <ChevronDown className={`w-4 h-4 transform ${isCivicExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isCivicExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
+                        നമ്മുടെ നാടിന്റെ അടിസ്ഥാന സൗകര്യങ്ങളിലെ പ്രശ്നങ്ങൾ, റോഡ് അറ്റകുറ്റപ്പണികൾ, കുടിവെള്ള പ്രശ്നങ്ങൾ എന്നിവ നേരിട്ട് ജനപ്രതിനിധികളെ അറിയിക്കാനുള്ള ജനകീയ വേദി. ഒരു ഫോട്ടോയിലൂടെ പ്രശ്നം റിപ്പോർട്ട് ചെയ്യാം.
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <motion.div {...scrollMotionProps} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6">
+                <form onSubmit={handleCivicSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2">Category</label>
+                    <select 
+                      required 
+                      value={reportCategory}
+                      onChange={(e) => setReportCategory(e.target.value)}
+                      className="w-full bg-[#FDFCF8] border border-gray-200 rounded-xl px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    >
+                      <option value="">Select Category...</option>
+                      <option value="Roads">Potholes / Road Damage</option>
+                      <option value="Water Leakage">Pipe Burst / Water Leakage</option>
+                      <option value="Power Grid">Fallen Tree / Power Line</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2">Landmark</label>
+                    <input 
+                      required 
+                      type="text" 
+                      placeholder="Nearest Landmark" 
+                      value={reportLandmark}
+                      onChange={(e) => setReportLandmark(e.target.value)}
+                      className="w-full bg-[#FDFCF8] border border-gray-200 rounded-xl px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" 
+                    />
+                  </div>
+                  <div className="flex space-x-3 pt-2">
+                    <button type="button" className="flex-1 bg-[#FDFCF8] border border-gray-200 text-slate-700 rounded-xl py-3 flex items-center justify-center font-bold text-sm hover:bg-white hover:shadow-sm transition-all">
+                      <Camera className="w-4 h-4 mr-2 text-slate-500" /> Photo
+                    </button>
+                    <button type="submit" className="flex-1 bg-primary text-white font-bold py-3 rounded-xl flex items-center justify-center hover:bg-primary-dark transition-colors text-sm shadow-sm">
+                      <Send className="w-4 h-4 mr-2" /> Submit
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            </section>
+
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════════════ */}
+          {/* RIGHT COLUMN: Immediate Services (Sticky Sidebar) — 4 columns */}
+          {/* ═══════════════════════════════════════════════════════════════ */}
+          <aside className="lg:col-span-4 sticky top-24 flex flex-col gap-6 h-fit">
+
+            {/* Widget 1: കാർഷിക വിപണന ശൃംഖല (Marketplace) */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6"
+            >
+              <button 
+                onClick={() => setIsMarketExpanded(!isMarketExpanded)}
+                className="w-full flex items-center justify-between text-left focus:outline-none mb-1 group"
+              >
+                <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0A5C36] transition-colors">കാർഷിക വിപണന ശൃംഖല</h3>
+                <ChevronDown className={`w-5 h-5 text-slate-500 transform ${isMarketExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+              </button>
+              <p className="text-xs text-slate-500 mb-5">നേരിട്ട് വാങ്ങാനും വിൽക്കാനും</p>
+
+              <AnimatePresence>
+                {isMarketExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed mb-6 border border-[#E2EBE5]">
+                      കർഷകർക്കും വ്യാപാരികൾക്കും ഇടനിലക്കാരില്ലാതെ നേരിട്ട് വിനിമയം നടത്താനുള്ള സുതാര്യമായ വേദി. നിങ്ങളുടെ വിളകൾ മികച്ച വിലയ്ക്ക് വിൽക്കാനും, ഗുണനിലവാരമുള്ള കാർഷികോൽപ്പന്നങ്ങൾ വാങ്ങാനും ഈ സംവിധാനം ഉപയോഗപ്പെടുത്താം.
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Farmer / Merchant Toggle */}
+              <div className="flex bg-gray-100 rounded-2xl p-1 mb-6">
+                <button
+                  onClick={() => handleKrishiToggle('farmer')}
+                  className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+                    krishiRole === 'farmer'
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <User className="w-4 h-4" />
+                  ഞാൻ ഒരു കർഷകൻ
+                </button>
+                <button
+                  onClick={() => handleKrishiToggle('merchant')}
+                  className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+                    krishiRole === 'merchant'
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <User className="w-4 h-4" />
+                  ഞാൻ ഒരു വ്യാപാരി
+                </button>
+              </div>
+
+              {/* Marketplace Form */}
+              <form onSubmit={handleKrishiSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2">
+                    {krishiRole === 'farmer' ? 'നിങ്ങൾ എന്താണ് വിൽക്കുന്നത്?' : 'നിങ്ങൾക്ക് എന്താണ് വേണ്ടത്?'}
+                  </label>
+                  <input 
+                    type="text" 
+                    placeholder={krishiRole === 'farmer' ? 'ഉദാ: 50kg മട്ട നെല്ല്' : 'ഉദാ: 100kg റബ്ബർ ഷീറ്റ്'} 
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                  />
+                </div>
+                <button type="submit" className="w-full bg-primary text-white font-bold py-3 rounded-xl flex items-center justify-center hover:bg-primary-dark transition-colors text-sm shadow-sm">
+                  <Send className="w-4 h-4 mr-2" />
+                  {krishiRole === 'farmer' ? 'വിൽപനയ്ക്കായി ചേർക്കുക' : 'ആവശ്യം ചേർക്കുക'}
+                </button>
+              </form>
+            </motion.div>
+
+            {/* Widget 2: അടിയന്തര സേവനങ്ങൾ (Emergency Services) */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6"
+            >
+              <h3 className="text-lg font-extrabold text-slate-900 mb-1">അടിയന്തര സേവനങ്ങൾ</h3>
+              <p className="text-xs text-slate-500 mb-5">അടിയന്തര സഹായത്തിന്</p>
+
+              <div className="space-y-3">
+                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
+                  <select 
+                    value={selectedHospital}
+                    onChange={(e) => setSelectedHospital(e.target.value)}
+                    className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-[#0A5C36] text-sm font-semibold text-slate-800 outline-none"
+                  >
+                    {hospitals.map(h => (
+                      <option key={h.id} value={h.phone}>{h.name}</option>
+                    ))}
+                  </select>
+                  <a 
+                    href={selectedHospital} 
+                    className="w-full flex items-center justify-center gap-2 bg-red-50 text-red-600 font-bold p-3 rounded-lg hover:bg-red-100 transition-colors"
+                  >
+                    📞 വിളിക്കുക (Call)
+                  </a>
+                </div>
+
+                {/* ജീവദായനി (Blood Bank) */}
+                <div className="flex items-center justify-between bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                  <div>
+                    <h4 className="font-bold text-sm text-slate-900">ജീവദായനി Blood Bank</h4>
+                    <div className="text-[11px] font-semibold text-slate-500 mt-1 uppercase tracking-wider">
+                      District Hospital
+                    </div>
+                  </div>
+                  <a 
+                    href="tel:1910" 
+                    onClick={() => handleEmergencyCall('blood-bank')}
+                    className="bg-red-50 text-red-600 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-red-100 hover:shadow-sm transition-all flex items-center"
+                  >
+                    <Phone className="w-3 h-3 mr-1.5 fill-current" /> Call
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+          </aside>
+
         </div>
       </main>
     </div>
