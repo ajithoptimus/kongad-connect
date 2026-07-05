@@ -384,6 +384,20 @@ export default function Home() {
           {/* ═══════════════════════════════════════════════════════════════ */}
           <div className="lg:col-span-8 flex flex-col gap-10 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
+            {/* Nelmani Fresh Ad Banner */}
+            <a 
+              href="https://nelmani-fresh-web.onrender.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="block w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.25)] transition-all duration-300 border-4 border-white"
+            >
+              <img 
+                src="/nelmani-ad.jpg" 
+                alt="Nelmani Fresh - Mill on Demand" 
+                className="w-full h-auto object-contain" 
+              />
+            </a>
+
             {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
             <section id="krishi-hub">
               <div className="mb-6">
