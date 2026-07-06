@@ -14,7 +14,6 @@ import {
 import Link from 'next/link';
 import { emitTelemetry } from '@/utils/telemetry';
 import { 
-  MarketRate, 
   Panchayat, 
   EmergencyService, 
   NewsItem, 
@@ -51,13 +50,14 @@ const PANCHAYATS: Panchayat[] = [
   { id: 'thachampara', name: 'Thachampara' }
 ];
 
-const MARKET_RATES: MarketRate[] = [
-  { id: '1', commodity: 'നെല്ല് (മട്ട)', price: 28.5, unit: 'kg', trend: 'up', imgUrl: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=500&auto=format&fit=crop' },
-  { id: '2', commodity: 'റബ്ബർ (RSS4)', price: 180, unit: 'kg', trend: 'stable', imgUrl: 'https://images.unsplash.com/photo-162df94418652-32a76f2382bd?q=80&w=500&auto=format&fit=crop' },
-  { id: '3', commodity: 'അടയ്ക്ക', price: 320, unit: 'kg', trend: 'up', imgUrl: 'https://images.unsplash.com/photo-1634591745778-0e9b942e6da1?q=80&w=500&auto=format&fit=crop' },
-  { id: '4', commodity: 'നാളികേരം', price: 32, unit: 'kg', trend: 'down', imgUrl: 'https://images.unsplash.com/photo-1603594247831-29008bc0a26e?q=80&w=500&auto=format&fit=crop' },
-  { id: '5', commodity: 'കുരുമുളക്', price: 540, unit: 'kg', trend: 'up', imgUrl: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=500&auto=format&fit=crop' },
-  { id: '6', commodity: 'ഏലം', price: 1800, unit: 'kg', trend: 'stable', imgUrl: 'https://images.unsplash.com/photo-1615486171448-4fd18e268a64?q=80&w=500&auto=format&fit=crop' }
+type MarketItem = { id: string; name: string; price: string; unit: string; trend: 'up' | 'down' | 'neutral'; };
+const marketItems: MarketItem[] = [
+  { id: 'paddy', name: 'നെല്ല് (മട്ട)', price: '₹28.5', unit: '/ KG', trend: 'up' },
+  { id: 'rubber', name: 'റബ്ബർ (RSS4)', price: '₹180', unit: '/ KG', trend: 'down' },
+  { id: 'coconut', name: 'നാളികേരം', price: '₹32', unit: '/ KG', trend: 'neutral' },
+  { id: 'arecanut', name: 'അടയ്ക്ക', price: '₹320', unit: '/ KG', trend: 'up' },
+  { id: 'pepper', name: 'കുരുമുളക്', price: '₹540', unit: '/ KG', trend: 'neutral' },
+  { id: 'cardamom', name: 'ഏലം', price: '₹1800', unit: '/ KG', trend: 'up' }
 ];
 
 const EMERGENCY_SERVICES: EmergencyService[] = [
@@ -435,18 +435,19 @@ export default function Home() {
                 initial="hidden" 
                 whileInView="show" 
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                className="grid grid-cols-2 md:grid-cols-3 gap-3"
               >
-                {MARKET_RATES.slice(0, 6).map((rate) => (
-                  <motion.div variants={staggerItem} whileHover={{ scale: 1.02 }} key={rate.id} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                    <div className="h-40 w-full object-cover rounded-t-2xl overflow-hidden">
-                      <img src={rate.imgUrl} className="w-full h-full object-cover" alt={rate.commodity} />
-                    </div>
-                    <div className="p-4 md:p-5">
-                      <p className="text-lg font-bold text-[#0A5C36] mb-1">{rate.commodity}</p>
-                      <div className="mt-1">
-                        <span className="text-2xl font-bold text-[#B58500]">₹{rate.price}</span> <span className="text-sm text-gray-500">/ {rate.unit.toUpperCase()}</span>
+                {marketItems.map((item) => (
+                  <motion.div variants={staggerItem} key={item.id} className="bg-white rounded-xl p-4 flex flex-col justify-center border-l-4 border-[#0A5C36] shadow-sm hover:shadow-md transition-shadow">
+                    <span className="text-sm font-bold text-gray-700">{item.name}</span>
+                    <div className="flex items-end justify-between mt-1">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-xl font-black text-[#B58500]">{item.price}</span>
+                        <span className="text-xs text-gray-500">{item.unit}</span>
                       </div>
+                      {item.trend === 'up' && <span className="text-xs text-green-600">▲</span>}
+                      {item.trend === 'down' && <span className="text-xs text-red-600">▼</span>}
+                      {item.trend === 'neutral' && <span className="text-xs text-gray-400">-</span>}
                     </div>
                   </motion.div>
                 ))}
