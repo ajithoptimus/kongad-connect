@@ -37,6 +37,14 @@ const institutions: Institution[] = [
   { id: 'polytechnic', name: 'പോളിടെക്നിക് കോളേജ് (Polytechnic)', type: 'Diploma', contact: 'tel:+910000000000' }
 ];
 
+type ServiceCategory = 'krishi' | 'ration' | 'maveli' | 'bank';
+type GovtInstitution = { id: string; category: ServiceCategory; panchayat: string; name: string; phone: string; };
+const govtInstitutions: GovtInstitution[] = [
+  { id: 'kb-kng', category: 'krishi', panchayat: 'Kongad', name: 'കൃഷിഭവൻ കോങ്ങാട് (Krishi Bhavan)', phone: 'tel:+910000000000' },
+  { id: 'kb-prl', category: 'krishi', panchayat: 'Parali', name: 'കൃഷിഭവൻ പറളി (Krishi Bhavan)', phone: 'tel:+910000000000' },
+  { id: 'rs-kng', category: 'ration', panchayat: 'Kongad', name: 'റേഷൻ കട - കോങ്ങാട് ടൗൺ', phone: 'tel:+910000000000' }
+];
+
 const PANCHAYATS: Panchayat[] = [
   { id: 'all', name: 'All Kongad' },
   { id: 'kongad', name: 'Kongad' },
@@ -108,6 +116,10 @@ export default function Home() {
   const [selectedHospital, setSelectedHospital] = useState<string>(hospitals[0].phone);
   const [isEduExpanded, setIsEduExpanded] = useState(false);
   const [selectedEdu, setSelectedEdu] = useState<string>(institutions[0].contact);
+  
+  const [isGovtExpanded, setIsGovtExpanded] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<ServiceCategory>('krishi');
+  const [selectedPanchayat, setSelectedPanchayat] = useState<string>('Kongad');
   
   const [reportCategory, setReportCategory] = useState<string>('');
   const [reportLandmark, setReportLandmark] = useState<string>('');
@@ -652,6 +664,90 @@ export default function Home() {
           {/* RIGHT COLUMN: Immediate Services (Independent Scroll) — 4 columns */}
           {/* ═══════════════════════════════════════════════════════════════ */}
           <aside className="lg:col-span-4 flex flex-col gap-6 lg:h-full lg:overflow-y-auto lg:pl-2 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+
+            {/* Widget 0: Panchayat-wise Govt Services */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] p-6"
+            >
+              <button 
+                onClick={() => setIsGovtExpanded(!isGovtExpanded)}
+                className="w-full flex items-center justify-between focus:outline-none"
+              >
+                <div className="flex items-center border-l-4 border-[#0A5C36] pl-3">
+                  <h3 className="text-lg font-extrabold text-[#0A5C36]">സർക്കാർ സേവനങ്ങൾ</h3>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isGovtExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+              </button>
+
+              <AnimatePresence>
+                {isGovtExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-xs text-gray-500 mt-3 mb-4 leading-relaxed">
+                      പഞ്ചായത്ത് അടിസ്ഥാനത്തിലുള്ള റേഷൻ കടകൾ, ബാങ്കുകൾ, മാവേലി സ്റ്റോറുകൾ, കൃഷിഭവനുകൾ എന്നിവയുടെ വിവരങ്ങൾ.
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Service Category</label>
+                        <select 
+                          value={selectedCategory} 
+                          onChange={(e) => setSelectedCategory(e.target.value as ServiceCategory)}
+                          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold focus:border-[#0A5C36] outline-none"
+                        >
+                          <option value="krishi">Krishi Bhavan</option>
+                          <option value="ration">Ration Shop</option>
+                          <option value="maveli">Maveli Store</option>
+                          <option value="bank">Bank</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Panchayat</label>
+                        <select 
+                          value={selectedPanchayat} 
+                          onChange={(e) => setSelectedPanchayat(e.target.value)}
+                          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold focus:border-[#0A5C36] outline-none"
+                        >
+                          {PANCHAYATS.filter(p => p.id !== 'all').map(p => (
+                            <option key={p.id} value={p.name}>{p.name}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="pt-2">
+                        {(() => {
+                          const result = govtInstitutions.find(i => i.category === selectedCategory && i.panchayat === selectedPanchayat);
+                          if (result) {
+                            return (
+                              <div className="mt-1">
+                                <p className="font-bold text-[#0A5C36] text-sm mb-1">{result.name}</p>
+                                <a href={result.phone} className="w-full flex items-center justify-center gap-2 bg-[#F3F7F4] text-[#0A5C36] font-bold p-3 rounded-lg hover:bg-[#E2EBE5] border border-[#0A5C36]/20 transition-colors mt-3">
+                                  📞 വിളിക്കുക (Call)
+                                </a>
+                              </div>
+                            );
+                          }
+                          return (
+                            <button disabled className="w-full bg-gray-100 text-gray-400 font-bold p-3 rounded-lg border border-gray-200 cursor-not-allowed mt-3">
+                              വിവരങ്ങൾ ലഭ്യമല്ല (Not Available)
+                            </button>
+                          );
+                        })()}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
 
             {/* Widget 1: കാർഷിക വിപണന ശൃംഖല (Marketplace) */}
             <motion.div
