@@ -394,7 +394,7 @@ export default function Home() {
           {/* ═══════════════════════════════════════════════════════════════ */}
           {/* LEFT COLUMN: Information Feed (Scrollable) — 8 columns       */}
           {/* ═══════════════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-8 flex flex-col gap-10 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="lg:col-span-8 flex flex-col gap-8 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide bg-gradient-to-br from-[#F4F7F5] via-[#FAFCFB] to-[#F0F5F2] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
             {/* Nelmani Fresh Ad Banner */}
             <a 
@@ -411,18 +411,17 @@ export default function Home() {
             </a>
 
             {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
-            <section id="krishi-hub">
-              <div className="mb-6">
+            <section id="krishi-hub" className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+              <div>
                 <button 
                   onClick={() => setIsKrishiExpanded(!isKrishiExpanded)}
-                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                  className="w-full flex items-center justify-between focus:outline-none"
                 >
                   <div className="flex items-center border-l-4 border-[#B58500] pl-3">
-                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">കാർഷിക ഇടം</h2>
+                    <h2 className="text-[17px] font-bold text-[#0A5C36] tracking-wide">🌾 കാർഷിക ഇടം</h2>
                   </div>
                   <div className="flex items-center text-sm font-semibold text-slate-600">
-                    <span className="mr-1">View All</span>
-                    <ChevronDown className={`w-4 h-4 transform ${isKrishiExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                    <ChevronDown className={`w-5 h-5 transform ${isKrishiExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
                   </div>
                 </button>
 
@@ -467,18 +466,17 @@ export default function Home() {
             </section>
 
             {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
-            <section>
-              <div className="mb-6">
+            <section className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+              <div>
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
-                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                  className="w-full flex items-center justify-between focus:outline-none"
                 >
                   <div className="flex items-center border-l-4 border-[#B58500] pl-3">
-                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">കാർഷിക അറിവുകൾ</h2>
+                    <h2 className="text-[17px] font-bold text-[#0A5C36] tracking-wide">🌱 കാർഷിക അറിവുകൾ</h2>
                   </div>
                   <div className="flex items-center text-sm font-semibold text-slate-600">
-                    <span className="mr-1">View All</span>
-                    <ChevronDown className={`w-4 h-4 transform ${isTipsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                    <ChevronDown className={`w-5 h-5 transform ${isTipsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
                   </div>
                 </button>
 
@@ -520,18 +518,17 @@ export default function Home() {
             </section>
 
             {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
-            <section>
-              <div className="mb-6">
+            <section className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+              <div>
                 <button 
                   onClick={() => setIsNewsExpanded(!isNewsExpanded)}
-                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                  className="w-full flex items-center justify-between focus:outline-none"
                 >
                   <div className="flex items-center border-l-4 border-[#B58500] pl-3">
-                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">കോങ്ങാട് വാർത്തകൾ</h2>
+                    <h2 className="text-[17px] font-bold text-[#0A5C36] tracking-wide">📰 കോങ്ങാട് വാർത്തകൾ</h2>
                   </div>
                   <div className="flex items-center text-sm font-semibold text-slate-600">
-                    <span className="mr-1">View All</span>
-                    <ChevronDown className={`w-4 h-4 transform ${isNewsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                    <ChevronDown className={`w-5 h-5 transform ${isNewsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
                   </div>
                 </button>
 
@@ -588,18 +585,17 @@ export default function Home() {
             </section>
 
             {/* Civic Reporter */}
-            <section id="civic-reporter">
-              <div className="mb-6">
+            <section id="civic-reporter" className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+              <div>
                 <button 
                   onClick={() => setIsCivicExpanded(!isCivicExpanded)}
-                  className="w-full flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 focus:outline-none hover:bg-slate-100 transition-colors"
+                  className="w-full flex items-center justify-between focus:outline-none"
                 >
                   <div className="flex items-center border-l-4 border-[#B58500] pl-3">
-                    <h2 className="text-[15px] font-bold text-[#0A5C36] tracking-wide">ജനകീയ റിപ്പോർട്ടർ</h2>
+                    <h2 className="text-[17px] font-bold text-[#0A5C36] tracking-wide">📢 ജനകീയ റിപ്പോർട്ടർ</h2>
                   </div>
                   <div className="flex items-center text-sm font-semibold text-slate-600">
-                    <span className="mr-1">View All</span>
-                    <ChevronDown className={`w-4 h-4 transform ${isCivicExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                    <ChevronDown className={`w-5 h-5 transform ${isCivicExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
                   </div>
                 </button>
 
