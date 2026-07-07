@@ -503,9 +503,9 @@ export default function Home() {
                 initial="hidden" 
                 whileInView="show" 
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                className="grid grid-cols-1 md:grid-cols-3 gap-6"
               >
-                {NEWS_FEED.slice(0, 6).map((news, idx) => (
+                {NEWS_FEED.slice(0, 3).map((news, idx) => (
                   <motion.div variants={staggerItem} whileHover={{ scale: 1.02 }} key={news.id} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                     <div className="h-[180px] w-full">
                       <img src={news.thumbnailUrl} alt={news.title} className="w-full h-full object-cover" />
