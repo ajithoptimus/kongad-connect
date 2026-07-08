@@ -175,7 +175,16 @@ export default function Home() {
   const cardClass = "bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col";
 
   return (
-    <div className="bg-[#F4F7F5] min-h-screen font-sans text-slate-900 pb-24">
+    <div className="relative min-h-screen font-sans text-slate-900 pb-24">
+      {/* Ambient Fixed Background Layer */}
+      <div className="fixed inset-0 z-[-1] bg-[#F4F7F5] overflow-hidden">
+        {/* Top Left Forest Green Glow */}
+        <div className="absolute top-[-15%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#0A5C36]/5 blur-[120px] pointer-events-none" />
+        {/* Bottom Right Golden Glow */}
+        <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-[#B58500]/5 blur-[120px] pointer-events-none" />
+        {/* Blueprint Dot Grid */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      </div>
       
       {/* 1. COMPACT HERO SECTION */}
       <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-green-950">
@@ -367,7 +376,7 @@ export default function Home() {
       </section>
 
       {/* 2. ASYMMETRICAL 12-COLUMN STICKY DESKTOP GRID */}
-      <main className="w-full bg-[#FDFCF8] min-h-screen py-12">
+      <main className="w-full min-h-screen py-12">
 
         {/* Horizontal Filter Chips — Full width above the grid */}
         <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mb-8">
@@ -394,7 +403,7 @@ export default function Home() {
           {/* ═══════════════════════════════════════════════════════════════ */}
           {/* LEFT COLUMN: Information Feed (Scrollable) — 8 columns       */}
           {/* ═══════════════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-8 flex flex-col gap-8 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide bg-gradient-to-br from-[#F4F7F5] via-[#FAFCFB] to-[#F0F5F2] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="lg:col-span-8 flex flex-col gap-8 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
             {/* Nelmani Fresh Ad Banner */}
             <a 
