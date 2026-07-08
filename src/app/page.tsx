@@ -450,18 +450,23 @@ export default function Home() {
               >
                 {marketItems.map((item) => (
                   <motion.div variants={staggerItem} key={item.id} className="bg-white rounded-xl p-4 flex flex-col justify-center border-l-4 border-[#0A5C36] shadow-sm hover:shadow-md transition-shadow">
-                    <sp                className="flex flex-col"
-              >
-                {NEWS_FEED.slice(0, 3).map((news, idx) => (
-                  <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
-                    <div className="flex-1 flex flex-col gap-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{news.title}</h3>
-                      <p className="text-slate-600 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
+                    <span className="text-sm font-bold text-gray-700">{item.name}</span>
+                    <div className="flex items-end justify-between mt-1">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-xl font-black text-[#B58500]">{item.price}</span>
+                        <span className="text-xs text-gray-500">{item.unit}</span>
+                      </div>
+                      {item.trend === 'up' && <span className="text-xs text-green-600">▲</span>}
+                      {item.trend === 'down' && <span className="text-xs text-red-600">▼</span>}
+                      {item.trend === 'neutral' && <span className="text-xs text-gray-400">-</span>}
                     </div>
-                    <img src={news.thumbnailUrl} className="w-full md:w-56 h-40 md:h-32 object-cover rounded-xl shrink-0" alt="" />
-                  </article>
+                  </motion.div>
                 ))}
-              </motion.div>6]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+              </motion.div>
+            </section>
+
+            {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
+            <section className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
               <div>
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
@@ -496,18 +501,16 @@ export default function Home() {
                 initial="hidden" 
                 whileInView="show" 
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                className="flex flex-col"
               >
                 {NEWS_FEED.slice(0, 3).map((news, idx) => (
-                  <motion.div variants={staggerItem} whileHover={{ scale: 1.02 }} key={news.id} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                    <div className="h-[180px] w-full">
-                      <img src={news.thumbnailUrl} alt={news.title} className="w-full h-full object-cover" />
+                  <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
+                    <div className="flex-1 flex flex-col gap-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{news.title}</h3>
+                      <p className="text-slate-600 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
                     </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-bold text-[16px] leading-snug mb-3 text-slate-900">{news.title}</h3>
-                      <p className="text-sm text-slate-500 leading-relaxed line-clamp-3">{news.summary}</p>
-                    </div>
-                  </motion.div>
+                    <img src={news.thumbnailUrl} className="w-full md:w-56 h-40 md:h-32 object-cover rounded-xl shrink-0" alt="" />
+                  </article>
                 ))}
               </motion.div>
             </section>
