@@ -450,23 +450,18 @@ export default function Home() {
               >
                 {marketItems.map((item) => (
                   <motion.div variants={staggerItem} key={item.id} className="bg-white rounded-xl p-4 flex flex-col justify-center border-l-4 border-[#0A5C36] shadow-sm hover:shadow-md transition-shadow">
-                    <span className="text-sm font-bold text-gray-700">{item.name}</span>
-                    <div className="flex items-end justify-between mt-1">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-xl font-black text-[#B58500]">{item.price}</span>
-                        <span className="text-xs text-gray-500">{item.unit}</span>
-                      </div>
-                      {item.trend === 'up' && <span className="text-xs text-green-600">▲</span>}
-                      {item.trend === 'down' && <span className="text-xs text-red-600">▼</span>}
-                      {item.trend === 'neutral' && <span className="text-xs text-gray-400">-</span>}
+                    <sp                className="flex flex-col"
+              >
+                {NEWS_FEED.slice(0, 3).map((news, idx) => (
+                  <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
+                    <div className="flex-1 flex flex-col gap-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{news.title}</h3>
+                      <p className="text-slate-600 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
                     </div>
-                  </motion.div>
+                    <img src={news.thumbnailUrl} className="w-full md:w-56 h-40 md:h-32 object-cover rounded-xl shrink-0" alt="" />
+                  </article>
                 ))}
-              </motion.div>
-            </section>
-
-            {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
-            <section className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+              </motion.div>6]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
               <div>
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
@@ -553,33 +548,37 @@ export default function Home() {
                 initial="hidden" 
                 whileInView="show" 
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                className="flex flex-col"
               >
-                {/* Local Jobs as news-style cards */}
+                {/* Local Jobs as news-style list */}
                 {JOBS.map((job) => (
-                  <motion.div variants={staggerItem} whileHover={{ scale: 1.02 }} key={`job-${job.id}`} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-5">
-                    <div className="flex justify-between items-start mb-3">
-                      <h4 className="font-bold text-[15px] text-slate-900">{job.title}</h4>
-                      {job.isBoosted && <span className="bg-amber-500 text-white text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-wider">Urgent</span>}
+                  <article key={`job-${job.id}`} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
+                    <div className="flex-1 flex flex-col gap-2 w-full">
+                      <div className="flex justify-between items-start gap-4">
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{job.title}</h3>
+                        {job.isBoosted && <span className="bg-amber-500 text-white text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-wider shrink-0 mt-1">Urgent</span>}
+                      </div>
+                      <p className="text-slate-600 text-sm md:text-base leading-relaxed">{job.employer}</p>
+                      <div className="flex items-center text-sm font-semibold text-slate-500 mt-1">
+                        <MapPin className="w-4 h-4 mr-1" /> {job.location}
+                      </div>
                     </div>
-                    <p className="text-sm text-slate-600 mb-3">{job.employer}</p>
-                    <div className="flex items-center text-xs font-semibold text-slate-500">
-                      <MapPin className="w-3 h-3 mr-1" /> {job.location}
-                    </div>
-                  </motion.div>
+                  </article>
                 ))}
-                {/* Classifieds as news-style cards */}
+                {/* Classifieds as news-style list */}
                 {CLASSIFIEDS.map((item) => (
-                  <motion.div variants={staggerItem} whileHover={{ scale: 1.02 }} key={`class-${item.id}`} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-5">
-                    <div className="flex justify-between items-start mb-3">
-                      <h4 className="font-bold text-[15px] text-slate-900">{item.item}</h4>
-                      <span className="text-primary font-bold text-sm">{item.price}</span>
+                  <article key={`class-${item.id}`} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
+                    <div className="flex-1 flex flex-col gap-2 w-full">
+                      <div className="flex justify-between items-start gap-4">
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{item.item}</h3>
+                        <span className="text-primary font-bold text-lg shrink-0 mt-1">{item.price}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm text-slate-500 mt-1">
+                        <span>By {item.seller}</span>
+                        <span className="flex items-center"><MapPin className="w-4 h-4 mr-1" /> {item.location}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center text-xs text-slate-500">
-                      <span>By {item.seller}</span>
-                      <span className="flex items-center"><MapPin className="w-3 h-3 mr-1" /> {item.location}</span>
-                    </div>
-                  </motion.div>
+                  </article>
                 ))}
               </motion.div>
             </section>
