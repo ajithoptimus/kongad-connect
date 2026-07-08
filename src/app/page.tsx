@@ -506,7 +506,7 @@ export default function Home() {
                 {NEWS_FEED.slice(0, 3).map((news, idx) => (
                   <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
                     <div className="flex-1 flex flex-col gap-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{news.title}</h3>
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{news.title}</h3>
                       <p className="text-slate-600 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
                     </div>
                     <img src={news.thumbnailUrl} className="w-full md:w-56 h-40 md:h-32 object-cover rounded-xl shrink-0" alt="" />
@@ -558,7 +558,7 @@ export default function Home() {
                   <article key={`job-${job.id}`} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
                     <div className="flex-1 flex flex-col gap-2 w-full">
                       <div className="flex justify-between items-start gap-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{job.title}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{job.title}</h3>
                         {job.isBoosted && <span className="bg-amber-500 text-white text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-wider shrink-0 mt-1">Urgent</span>}
                       </div>
                       <p className="text-slate-600 text-sm md:text-base leading-relaxed">{job.employer}</p>
@@ -573,7 +573,7 @@ export default function Home() {
                   <article key={`class-${item.id}`} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
                     <div className="flex-1 flex flex-col gap-2 w-full">
                       <div className="flex justify-between items-start gap-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{item.item}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{item.item}</h3>
                         <span className="text-primary font-bold text-lg shrink-0 mt-1">{item.price}</span>
                       </div>
                       <div className="flex justify-between items-center text-sm text-slate-500 mt-1">
