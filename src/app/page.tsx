@@ -668,7 +668,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] p-6"
+              className="bg-white rounded-[2rem] p-6 border border-[#0A5C36]/5 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.04)] mb-6"
             >
               <button 
                 onClick={() => setIsGovtExpanded(!isGovtExpanded)}
@@ -696,29 +696,35 @@ export default function Home() {
                     <div className="space-y-3">
                       <div>
                         <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Service Category</label>
-                        <select 
-                          value={selectedCategory} 
-                          onChange={(e) => setSelectedCategory(e.target.value as ServiceCategory)}
-                          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold focus:border-[#0A5C36] outline-none"
-                        >
-                          <option value="krishi">Krishi Bhavan</option>
-                          <option value="ration">Ration Shop</option>
-                          <option value="maveli">Maveli Store</option>
-                          <option value="bank">Bank</option>
-                        </select>
+                        <div className="relative">
+                          <select 
+                            value={selectedCategory} 
+                            onChange={(e) => setSelectedCategory(e.target.value as ServiceCategory)}
+                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                          >
+                            <option value="krishi">Krishi Bhavan</option>
+                            <option value="ration">Ration Shop</option>
+                            <option value="maveli">Maveli Store</option>
+                            <option value="bank">Bank</option>
+                          </select>
+                          <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                        </div>
                       </div>
 
                       <div>
                         <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Panchayat</label>
-                        <select 
-                          value={selectedPanchayat} 
-                          onChange={(e) => setSelectedPanchayat(e.target.value)}
-                          className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold focus:border-[#0A5C36] outline-none"
-                        >
-                          {PANCHAYATS.filter(p => p.id !== 'all').map(p => (
-                            <option key={p.id} value={p.name}>{p.name}</option>
-                          ))}
-                        </select>
+                        <div className="relative">
+                          <select 
+                            value={selectedPanchayat} 
+                            onChange={(e) => setSelectedPanchayat(e.target.value)}
+                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                          >
+                            {PANCHAYATS.filter(p => p.id !== 'all').map(p => (
+                              <option key={p.id} value={p.name}>{p.name}</option>
+                            ))}
+                          </select>
+                          <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                        </div>
                       </div>
 
                       <div className="pt-2">
@@ -753,7 +759,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6"
+              className="bg-white rounded-[2rem] p-6 border border-[#0A5C36]/5 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.04)] mb-6"
             >
               <button 
                 onClick={() => setIsMarketExpanded(!isMarketExpanded)}
@@ -781,28 +787,28 @@ export default function Home() {
               </AnimatePresence>
 
               {/* Farmer / Merchant Toggle */}
-              <div className="flex bg-gray-100 rounded-2xl p-1 mb-6">
+              <div className="flex bg-[#F4F7F5] p-1 rounded-xl w-full mb-5">
                 <button
+                  type="button"
                   onClick={() => handleKrishiToggle('farmer')}
-                  className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+                  className={`flex-1 font-bold py-2 rounded-lg text-sm transition-all ${
                     krishiRole === 'farmer'
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'text-slate-500 hover:text-slate-700'
+                      ? 'bg-white text-[#0A5C36] shadow-sm'
+                      : 'text-slate-500 font-medium hover:text-slate-700'
                   }`}
                 >
-                  <User className="w-4 h-4" />
-                  ഞാൻ ഒരു കർഷകൻ
+                  🧑🌾 ഞാൻ ഒരു കർഷകൻ
                 </button>
                 <button
+                  type="button"
                   onClick={() => handleKrishiToggle('merchant')}
-                  className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+                  className={`flex-1 font-bold py-2 rounded-lg text-sm transition-all ${
                     krishiRole === 'merchant'
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'text-slate-500 hover:text-slate-700'
+                      ? 'bg-white text-[#0A5C36] shadow-sm'
+                      : 'text-slate-500 font-medium hover:text-slate-700'
                   }`}
                 >
-                  <User className="w-4 h-4" />
-                  ഞാൻ ഒരു വ്യാപാരി
+                  🧑💼 ഞാൻ ഒരു വ്യാപാരി
                 </button>
               </div>
 
@@ -815,11 +821,11 @@ export default function Home() {
                   <input 
                     type="text" 
                     placeholder={krishiRole === 'farmer' ? 'ഉദാ: 50kg മട്ട നെല്ല്' : 'ഉദാ: 100kg റബ്ബർ ഷീറ്റ്'} 
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                   />
                 </div>
-                <button type="submit" className="w-full bg-primary text-white font-bold py-3 rounded-xl flex items-center justify-center hover:bg-primary-dark transition-colors text-sm shadow-sm">
-                  <Send className="w-4 h-4 mr-2" />
+                <button type="submit" className="w-full bg-gradient-to-r from-[#0A5C36] to-[#0d7a48] text-white font-bold rounded-xl px-5 py-3.5 mt-4 hover:shadow-lg hover:shadow-[#0A5C36]/20 transition-all flex items-center justify-center gap-2">
+                  <Send className="w-4 h-4" />
                   {krishiRole === 'farmer' ? 'വിൽപനയ്ക്കായി ചേർക്കുക' : 'ആവശ്യം ചേർക്കുക'}
                 </button>
               </form>
@@ -831,25 +837,28 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6"
+              className="bg-white rounded-[2rem] p-6 border border-[#0A5C36]/5 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.04)] mb-6"
             >
               <h3 className="text-lg font-extrabold text-slate-900 mb-1">അടിയന്തര സേവനങ്ങൾ</h3>
               <p className="text-xs text-slate-500 mb-5">അടിയന്തര സഹായത്തിന്</p>
 
               <div className="space-y-3">
                 <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
-                  <select 
-                    value={selectedHospital}
-                    onChange={(e) => setSelectedHospital(e.target.value)}
-                    className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-[#0A5C36] text-sm font-semibold text-slate-800 outline-none"
-                  >
-                    {hospitals.map(h => (
-                      <option key={h.id} value={h.phone}>{h.name}</option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select 
+                      value={selectedHospital}
+                      onChange={(e) => setSelectedHospital(e.target.value)}
+                      className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                    >
+                      {hospitals.map(h => (
+                        <option key={h.id} value={h.phone}>{h.name}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  </div>
                   <a 
                     href={selectedHospital} 
-                    className="w-full flex items-center justify-center gap-2 bg-red-50 text-red-600 font-bold p-3 rounded-lg hover:bg-red-100 transition-colors"
+                    className="w-full bg-red-50 text-red-600 font-bold rounded-xl px-5 py-3.5 mt-2 hover:bg-red-100 transition-all flex items-center justify-center gap-2 border border-red-100"
                   >
                     📞 വിളിക്കുക (Call)
                   </a>
@@ -880,7 +889,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6 mb-6"
+              className="bg-white rounded-[2rem] p-6 border border-[#0A5C36]/5 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.04)] mb-6"
             >
               <button 
                 onClick={() => setIsEduExpanded(!isEduExpanded)}
@@ -910,15 +919,18 @@ export default function Home() {
 
               <div className="space-y-3">
                 <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
-                  <select 
-                    value={selectedEdu}
-                    onChange={(e) => setSelectedEdu(e.target.value)}
-                    className="w-full p-3 rounded-lg border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-[#0A5C36] text-sm font-semibold text-slate-800 outline-none"
-                  >
-                    {institutions.map(inst => (
-                      <option key={inst.id} value={inst.contact}>{inst.name}</option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select 
+                      value={selectedEdu}
+                      onChange={(e) => setSelectedEdu(e.target.value)}
+                      className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                    >
+                      {institutions.map(inst => (
+                        <option key={inst.id} value={inst.contact}>{inst.name}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  </div>
                   <a 
                     href={selectedEdu} 
                     className="w-full flex items-center justify-center gap-2 bg-[#F3F7F4] text-[#0A5C36] font-bold p-3 rounded-lg hover:bg-[#E2EBE5] border border-[#0A5C36]/20 transition-colors"
