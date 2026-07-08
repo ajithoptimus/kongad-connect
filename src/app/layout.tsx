@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Malayalam } from "next/font/google";
+import { Manjari } from "next/font/google";
 import "./globals.css";
 
-const notoSansMalayalam = Noto_Sans_Malayalam({
-  variable: "--font-noto-malayalam",
-  weight: ["400", "500", "600", "700"],
+const manjari = Manjari({
   subsets: ["malayalam", "latin"],
+  weight: ["100", "400", "700"],
+  variable: "--font-manjari",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ml">
-      <body className={`${notoSansMalayalam.variable} font-sans antialiased bg-[#FDFCF8] text-[#0A5C36]`}>
+      <body className={`${manjari.variable} font-sans bg-[#F4F7F5] text-slate-800 antialiased`}>
         {children}
       </body>
     </html>

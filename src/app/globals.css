@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: var(--font-manjari), "system-ui", "sans-serif";
   --color-primary: #15803d;
   --color-primary-dark: #14532d;
   --color-primary-light: #166534;
