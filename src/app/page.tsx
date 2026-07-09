@@ -398,12 +398,12 @@ export default function Home() {
         </div>
 
         {/* Master 12-Column Grid */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-140px)] overflow-hidden">
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-140px)]">
 
           {/* ═══════════════════════════════════════════════════════════════ */}
           {/* LEFT COLUMN: Information Feed (Scrollable) — 8 columns       */}
           {/* ═══════════════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-8 flex flex-col gap-8 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="lg:col-span-8 flex flex-col gap-10 lg:h-full lg:overflow-y-auto lg:pr-4 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
             {/* Nelmani Fresh Ad Banner */}
             <a 
@@ -420,7 +420,7 @@ export default function Home() {
             </a>
 
             {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
-            <section id="krishi-hub" className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+            <section id="krishi-hub" className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
               <div>
                 <button 
                   onClick={() => setIsKrishiExpanded(!isKrishiExpanded)}
@@ -458,7 +458,7 @@ export default function Home() {
                 className="grid grid-cols-2 md:grid-cols-3 gap-3"
               >
                 {marketItems.map((item) => (
-                  <motion.div variants={staggerItem} key={item.id} className="bg-white rounded-xl p-4 flex flex-col justify-center border-l-4 border-[#0A5C36] shadow-sm hover:shadow-md transition-shadow">
+                  <motion.div variants={staggerItem} key={item.id} className="bg-white rounded-xl p-5 border-l-4 border-[#0A5C36] shadow-sm flex flex-col justify-center min-h-[90px]">
                     <span className="text-sm font-bold text-gray-700">{item.name}</span>
                     <div className="flex items-end justify-between mt-1">
                       <div className="flex items-baseline gap-1">
@@ -475,7 +475,7 @@ export default function Home() {
             </section>
 
             {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
-            <section className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+            <section className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
               <div>
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
@@ -513,19 +513,21 @@ export default function Home() {
                 className="flex flex-col"
               >
                 {NEWS_FEED.slice(0, 3).map((news, idx) => (
-                  <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
-                    <div className="flex-1 flex flex-col gap-2">
+                  <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
+                    <div className="w-full md:w-[60%] flex flex-col gap-3">
                       <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{news.title}</h3>
                       <p className="text-slate-600 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
                     </div>
-                    <img src={news.thumbnailUrl} className="w-full md:w-56 h-40 md:h-32 object-cover rounded-xl shrink-0" alt="" />
+                    <div className="w-full md:w-[40%] shrink-0">
+                      <img src={news.thumbnailUrl} className="w-full h-48 md:h-32 object-cover rounded-xl shadow-sm" alt="" />
+                    </div>
                   </article>
                 ))}
               </motion.div>
             </section>
 
             {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
-            <section className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+            <section className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
               <div>
                 <button 
                   onClick={() => setIsNewsExpanded(!isNewsExpanded)}
@@ -564,8 +566,8 @@ export default function Home() {
               >
                 {/* Local Jobs as news-style list */}
                 {JOBS.map((job) => (
-                  <article key={`job-${job.id}`} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
-                    <div className="flex-1 flex flex-col gap-2 w-full">
+                  <article key={`job-${job.id}`} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
+                    <div className="w-full flex flex-col gap-3">
                       <div className="flex justify-between items-start gap-4">
                         <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{job.title}</h3>
                         {job.isBoosted && <span className="bg-amber-500 text-white text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-wider shrink-0 mt-1">Urgent</span>}
@@ -579,8 +581,8 @@ export default function Home() {
                 ))}
                 {/* Classifieds as news-style list */}
                 {CLASSIFIEDS.map((item) => (
-                  <article key={`class-${item.id}`} className="flex flex-col-reverse md:flex-row gap-6 items-start py-6 border-b border-[#0A5C36]/10 last:border-0 bg-transparent shadow-none">
-                    <div className="flex-1 flex flex-col gap-2 w-full">
+                  <article key={`class-${item.id}`} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
+                    <div className="w-full flex flex-col gap-3">
                       <div className="flex justify-between items-start gap-4">
                         <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{item.item}</h3>
                         <span className="text-primary font-bold text-lg shrink-0 mt-1">{item.price}</span>
@@ -596,7 +598,7 @@ export default function Home() {
             </section>
 
             {/* Civic Reporter */}
-            <section id="civic-reporter" className="bg-white/60 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-[#0A5C36]/10 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.03)] flex flex-col gap-6 relative overflow-hidden">
+            <section id="civic-reporter" className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
               <div>
                 <button 
                   onClick={() => setIsCivicExpanded(!isCivicExpanded)}
@@ -796,7 +798,7 @@ export default function Home() {
               </AnimatePresence>
 
               {/* Farmer / Merchant Toggle */}
-              <div className="flex bg-[#F4F7F5] p-1 rounded-xl w-full mb-5">
+              <div className="flex bg-slate-100 p-1.5 rounded-xl w-full mb-5">
                 <button
                   type="button"
                   onClick={() => handleKrishiToggle('farmer')}
@@ -806,7 +808,7 @@ export default function Home() {
                       : 'text-slate-500 font-medium hover:text-slate-700'
                   }`}
                 >
-                  🧑🌾 ഞാൻ ഒരു കർഷകൻ
+                  ഞാൻ ഒരു കർഷകൻ
                 </button>
                 <button
                   type="button"
@@ -817,7 +819,7 @@ export default function Home() {
                       : 'text-slate-500 font-medium hover:text-slate-700'
                   }`}
                 >
-                  🧑💼 ഞാൻ ഒരു വ്യാപാരി
+                  ഞാൻ ഒരു വ്യാപാരി
                 </button>
               </div>
 
