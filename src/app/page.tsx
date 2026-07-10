@@ -9,7 +9,17 @@ import {
   Send, 
   ChevronRight,
   User,
-  ChevronDown
+  ChevronDown,
+  CloudRain,
+  CloudLightning,
+  ThermometerSun,
+  Bus,
+  Calendar,
+  Droplet,
+  Home as HomeIcon,
+  Briefcase,
+  Grid,
+  UserCircle
 } from 'lucide-react';
 import Link from 'next/link';
 import { emitTelemetry } from '@/utils/telemetry';
@@ -19,7 +29,10 @@ import {
   NewsItem, 
   JobListing, 
   ClassifiedListing,
-  UserRole
+  UserRole,
+  BusTiming,
+  LocalEvent,
+  BloodDonor
 } from '@/types';
 
 // Mock Data
@@ -95,6 +108,24 @@ const CLASSIFIEDS: ClassifiedListing[] = [
   { id: '3', item: 'Milking Cow', price: '₹45,000', seller: 'Suresh', location: 'Mankara', isBoosted: false }
 ];
 
+const BUS_TIMINGS: BusTiming[] = [
+  { id: '1', route: 'Palakkad - Cherpulassery', time: '08:30 AM', type: 'ksrtc', status: 'on-time' },
+  { id: '2', route: 'Kongad - Ottapalam', time: '09:15 AM', type: 'private', status: 'delayed' },
+  { id: '3', route: 'Palakkad - Kozhikode', time: '10:00 AM', type: 'ksrtc', status: 'on-time' },
+];
+
+const LOCAL_EVENTS: LocalEvent[] = [
+  { id: '1', title: 'കോങ്ങാട് പൂരം 2026', date: 'March 15, 2026', location: 'Thirumandhamkunnu Temple', category: 'festival', thumbnailUrl: 'https://images.unsplash.com/photo-1601004812833-28f44d18faee?auto=format&fit=crop&w=600&q=80' },
+  { id: '2', title: 'പഞ്ചായത്ത് ഗ്രാമസഭ', date: 'April 02, 2026', location: 'Kongad Panchayat Hall', category: 'meeting' },
+  { id: '3', title: 'സെവൻസ് ഫുട്ബോൾ ടൂർണമെന്റ്', date: 'April 10, 2026', location: 'Keralassery Ground', category: 'sports' }
+];
+
+const BLOOD_DONORS: BloodDonor[] = [
+  { id: '1', name: 'Rahul K', bloodGroup: 'O+', panchayat: 'Kongad', phone: '9876543210' },
+  { id: '2', name: 'Sajith P', bloodGroup: 'A-', panchayat: 'Parali', phone: '9876543211' },
+  { id: '3', name: 'Akhil Das', bloodGroup: 'B+', panchayat: 'Mankara', phone: '9876543212' }
+];
+
 const SectionHeader = ({ title }: { title: string }) => (
   <div className="flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 mb-6">
     <div className="flex items-center">
@@ -123,6 +154,13 @@ export default function Home() {
   
   const [reportCategory, setReportCategory] = useState<string>('');
   const [reportLandmark, setReportLandmark] = useState<string>('');
+  const [isWeatherExpanded, setIsWeatherExpanded] = useState(false);
+  const [isBusExpanded, setIsBusExpanded] = useState(false);
+  const [isEventsExpanded, setIsEventsExpanded] = useState(false);
+  const [isBloodExpanded, setIsBloodExpanded] = useState(false);
+  const [selectedBloodGroup, setSelectedBloodGroup] = useState<string>('O+');
+  const [busFrom, setBusFrom] = useState<string>('Kongad');
+  const [busTo, setBusTo] = useState<string>('Palakkad');
 
   const handlePanchayatClick = (id: string) => {
     setActivePanchayat(id);
@@ -526,6 +564,51 @@ export default function Home() {
               </motion.div>
             </section>
 
+            {/* Section: ഉത്സവങ്ങൾ (Local Events) */}
+            <section className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
+              <div>
+                <button onClick={() => setIsEventsExpanded(!isEventsExpanded)} className="w-full flex items-center justify-between focus:outline-none">
+                  <div className="flex items-center border-l-4 border-purple-600 pl-3">
+                    <h2 className="text-[17px] font-bold text-slate-900 tracking-wide">🎪 ഉത്സവങ്ങൾ & പരിപാടികൾ</h2>
+                  </div>
+                  <div className="flex items-center text-sm font-semibold text-slate-600">
+                    <ChevronDown className={`w-5 h-5 transform ${isEventsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {isEventsExpanded && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="bg-[#F8F5FF] text-purple-900 p-4 rounded-lg mt-3 text-sm leading-relaxed border border-purple-100">
+                        നാട്ടിലെ പ്രധാന ഉത്സവങ്ങൾ, കായിക മത്സരങ്ങൾ, പൊതുയോഗങ്ങൾ എന്നിവയുടെ വിവരങ്ങൾ. 
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              
+              <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                {LOCAL_EVENTS.map(event => (
+                  <div key={event.id} className="min-w-[280px] md:min-w-[320px] snap-center bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+                    {event.thumbnailUrl && <img src={event.thumbnailUrl} className="w-full h-32 object-cover" alt={event.title} />}
+                    <div className="p-4 flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${event.category === 'festival' ? 'bg-orange-100 text-orange-700' : event.category === 'sports' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
+                            {event.category}
+                          </span>
+                        </div>
+                        <h3 className="font-bold text-lg text-slate-900 leading-tight mb-2">{event.title}</h3>
+                      </div>
+                      <div className="space-y-1.5 mt-2 text-[13px] font-medium text-slate-500">
+                        <div className="flex items-center"><Calendar className="w-4 h-4 mr-2" /> {event.date}</div>
+                        <div className="flex items-center"><MapPin className="w-4 h-4 mr-2" /> {event.location}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
             {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
             <section className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
               <div>
@@ -674,6 +757,45 @@ export default function Home() {
           {/* ═══════════════════════════════════════════════════════════════ */}
           <aside className="lg:col-span-4 flex flex-col gap-6 lg:h-full lg:overflow-y-auto lg:pl-2 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
+            {/* Widget -1: കാലാവസ്ഥ (Weather) */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="bg-gradient-to-br from-[#0A5C36] to-[#0d7a48] rounded-[2rem] p-6 shadow-lg shadow-[#0A5C36]/20 text-white relative overflow-hidden">
+              <CloudRain className="absolute -top-4 -right-4 w-32 h-32 text-white opacity-10 pointer-events-none" />
+              <button onClick={() => setIsWeatherExpanded(!isWeatherExpanded)} className="w-full flex items-center justify-between focus:outline-none relative z-10">
+                <div className="flex items-center">
+                  <ThermometerSun className="w-5 h-5 mr-2 text-green-200" />
+                  <h3 className="text-lg font-extrabold text-white">കാലാവസ്ഥ</h3>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-green-200 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+              </button>
+              <div className="mt-5 flex items-center justify-between relative z-10">
+                <div>
+                  <div className="text-4xl font-black">28°C</div>
+                  <div className="text-sm font-medium text-green-100 mt-1">ഭാഗികമായി മേഘാവൃതം</div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center text-sm font-bold text-green-50 mb-1 justify-end">
+                    <Droplet className="w-3 h-3 mr-1" /> 78% മഴ
+                  </div>
+                  <div className="text-xs text-green-200">Kongad, Palakkad</div>
+                </div>
+              </div>
+              <AnimatePresence>
+                {isWeatherExpanded && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden relative z-10">
+                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 mt-4 border border-white/20">
+                      <div className="flex items-start gap-3">
+                        <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
+                        <div>
+                          <h4 className="font-bold text-sm text-white">മുന്നറിയിപ്പ് (Alert)</h4>
+                          <p className="text-xs text-green-50 mt-1 leading-relaxed">വരും മണിക്കൂറുകളിൽ ശക്തമായ മഴയ്ക്ക് സാധ്യത. റബ്ബർ ടാപ്പിംഗ് മാറ്റിവെക്കുന്നത് ഉചിതമായിരിക്കും.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
             {/* Widget 0: Panchayat-wise Govt Services */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -762,6 +884,63 @@ export default function Home() {
                   </motion.div>
                 )}
               </AnimatePresence>
+            </motion.div>
+
+            {/* Widget: യാത്രാ വിവരങ്ങൾ (Bus Timings) */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="bg-white rounded-[2rem] p-6 border border-[#0A5C36]/5 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.04)]">
+              <button onClick={() => setIsBusExpanded(!isBusExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <Bus className="w-4 h-4 text-orange-600" />
+                  </div>
+                  <h3 className="text-lg font-extrabold text-slate-900">യാത്രാ വിവരങ്ങൾ</h3>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isBusExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+              </button>
+              
+              <AnimatePresence>
+                {isBusExpanded && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                    <div className="flex gap-2 mb-4">
+                      <div className="flex-1">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 pl-1 mb-1 block">From</label>
+                        <select className="w-full bg-slate-50 border border-slate-100 rounded-lg p-2 text-sm font-semibold text-slate-700 outline-none focus:border-orange-300" value={busFrom} onChange={(e)=>setBusFrom(e.target.value)}>
+                          <option value="Kongad">Kongad</option>
+                          <option value="Palakkad">Palakkad</option>
+                        </select>
+                      </div>
+                      <div className="flex-1">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 pl-1 mb-1 block">To</label>
+                        <select className="w-full bg-slate-50 border border-slate-100 rounded-lg p-2 text-sm font-semibold text-slate-700 outline-none focus:border-orange-300" value={busTo} onChange={(e)=>setBusTo(e.target.value)}>
+                          <option value="Palakkad">Palakkad</option>
+                          <option value="Ottapalam">Ottapalam</option>
+                          <option value="Cherpulassery">Cherpulassery</option>
+                          <option value="Kozhikode">Kozhikode</option>
+                        </select>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              
+              <div className="space-y-3">
+                {BUS_TIMINGS.map(bus => (
+                  <div key={bus.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-orange-100 hover:bg-orange-50/30 transition-colors bg-white">
+                    <div className="flex flex-col">
+                      <span className="font-bold text-sm text-slate-800">{bus.time}</span>
+                      <span className="text-[11px] font-medium text-slate-500 mt-0.5">{bus.route}</span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${bus.type === 'ksrtc' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}`}>
+                        {bus.type}
+                      </span>
+                      <span className={`text-[10px] font-bold mt-1 ${bus.status === 'on-time' ? 'text-green-600' : 'text-amber-500'}`}>
+                        {bus.status === 'on-time' ? 'On Time' : 'Delayed'}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             {/* Widget 1: കാർഷിക വിപണന ശൃംഖല (Marketplace) */}
@@ -894,6 +1073,61 @@ export default function Home() {
               </div>
             </motion.div>
 
+            {/* Widget: രക്തദാന സേന (Blood Donor Network) */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.45 }} className="bg-white rounded-[2rem] p-6 border border-[#0A5C36]/5 shadow-[0_8px_30px_-4px_rgba(10,92,54,0.04)]">
+              <button onClick={() => setIsBloodExpanded(!isBloodExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <Droplet className="w-4 h-4 text-red-600" />
+                  </div>
+                  <h3 className="text-lg font-extrabold text-slate-900">രക്തദാന സേന</h3>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isBloodExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+              </button>
+
+              <AnimatePresence>
+                {isBloodExpanded && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                    <p className="text-xs text-slate-500 mb-4 leading-relaxed">അടിയന്തര സാഹചര്യങ്ങളിൽ രക്തം ആവശ്യമുള്ളവർക്ക് ഈ ലിസ്റ്റ് ഉപയോഗിക്കാവുന്നതാണ്.</p>
+                    <div className="flex gap-2 mb-4">
+                      <select className="flex-1 bg-slate-50 border border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-800 outline-none focus:border-red-200 focus:ring-2 focus:ring-red-100" value={selectedBloodGroup} onChange={(e)=>setSelectedBloodGroup(e.target.value)}>
+                        <option value="O+">O+ Positive</option>
+                        <option value="A+">A+ Positive</option>
+                        <option value="B+">B+ Positive</option>
+                        <option value="AB+">AB+ Positive</option>
+                        <option value="O-">O- Negative</option>
+                        <option value="A-">A- Negative</option>
+                      </select>
+                      <select className="flex-1 bg-slate-50 border border-slate-100 rounded-xl p-3 text-sm font-semibold text-slate-600 outline-none focus:border-red-200 focus:ring-2 focus:ring-red-100">
+                        <option value="All">All Areas</option>
+                        <option value="Kongad">Kongad</option>
+                        <option value="Parali">Parali</option>
+                      </select>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <div className="space-y-3">
+                {BLOOD_DONORS.map(donor => (
+                  <div key={donor.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-red-100 bg-white">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center font-black text-red-600 text-sm">
+                        {donor.bloodGroup}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-slate-800">{donor.name}</span>
+                        <span className="text-[11px] font-medium text-slate-500 flex items-center mt-0.5"><MapPin className="w-3 h-3 mr-0.5" /> {donor.panchayat}</span>
+                      </div>
+                    </div>
+                    <a href={`tel:${donor.phone}`} className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center hover:bg-red-50 hover:text-red-600 transition-colors text-slate-400">
+                      <Phone className="w-4 h-4 fill-current" />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
             {/* Widget 3: വിദ്യാഭ്യാസ സ്ഥാപനങ്ങൾ (Educational Institutions) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -956,6 +1190,25 @@ export default function Home() {
 
         </div>
       </main>
+      {/* 3. MOBILE BOTTOM NAVIGATION */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 flex justify-around items-center p-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
+        <button className="flex flex-col items-center gap-1 text-[#0A5C36]">
+          <HomeIcon className="w-5 h-5" />
+          <span className="text-[10px] font-bold">Home</span>
+        </button>
+        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-[#0A5C36] transition-colors">
+          <Briefcase className="w-5 h-5" />
+          <span className="text-[10px] font-bold">Market</span>
+        </button>
+        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-[#0A5C36] transition-colors">
+          <Grid className="w-5 h-5" />
+          <span className="text-[10px] font-bold">Services</span>
+        </button>
+        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-[#0A5C36] transition-colors">
+          <UserCircle className="w-5 h-5" />
+          <span className="text-[10px] font-bold">Profile</span>
+        </button>
+      </nav>
     </div>
   );
 }

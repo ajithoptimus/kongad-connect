@@ -66,3 +66,28 @@ export interface ClassifiedListing {
   location: string;
   isBoosted: boolean;
 }
+
+export interface BusTiming {
+  id: string;
+  route: string;
+  time: string;
+  type: 'ksrtc' | 'private';
+  status: 'on-time' | 'delayed';
+}
+
+export interface LocalEvent {
+  id: string;
+  title: string;
+  date: string;
+  location: string;
+  category: 'festival' | 'sports' | 'meeting' | 'culture';
+  thumbnailUrl?: string;
+}
+
+export interface BloodDonor {
+  id: string;
+  name: string;
+  bloodGroup: string;
+  panchayat: string;
+  phone: string;
+}
