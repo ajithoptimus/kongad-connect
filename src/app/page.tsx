@@ -225,25 +225,26 @@ export default function Home() {
       </div>
       
       {/* 1. COMPACT HERO SECTION */}
-      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-gradient-to-br from-[#2A9D4E] to-[#0E5C25]">
-        {/* Background image */}
-        <div className="absolute inset-0 z-0">
+      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-gradient-to-br from-[#32A350] via-[#1E8A3C] to-[#0A5420]">
+        
+        {/* Subtle Dam Image Overlay */}
+        <div className="absolute inset-0 z-0 opacity-10 mix-blend-luminosity">
           <motion.img
             src="/dam.png"
             alt="Kanjirapuzha Dam in Kongad"
-            className="w-full h-full object-cover opacity-15 mix-blend-overlay"
+            className="w-full h-full object-cover"
             initial={{ scale: 1 }}
             animate={{ scale: 1.05 }}
             transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#2A9D4E]/80 to-[#0E5C25]/95 mix-blend-multiply" />
         </div>
 
-        {/* Grain texture overlay */}
+        {/* Premium Grain Texture */}
         <div
-          className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
+          className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
           }}
         />
 
