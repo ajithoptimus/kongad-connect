@@ -225,26 +225,25 @@ export default function Home() {
       </div>
       
       {/* 1. COMPACT HERO SECTION */}
-      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-gradient-to-br from-[#32A350] via-[#1E8A3C] to-[#0A5420]">
-        
-        {/* Subtle Dam Image Overlay */}
-        <div className="absolute inset-0 z-0 opacity-10 mix-blend-luminosity">
+      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-green-950">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
           <motion.img
             src="/dam.png"
             alt="Kanjirapuzha Dam in Kongad"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
             initial={{ scale: 1 }}
             animate={{ scale: 1.05 }}
             transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-green-950 via-green-900/60 to-green-900/40" />
         </div>
 
-        {/* Premium Grain Texture */}
+        {/* Grain texture overlay */}
         <div
-          className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none"
+          className="absolute inset-0 opacity-5 pointer-events-none"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
         />
 
