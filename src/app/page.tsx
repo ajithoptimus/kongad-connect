@@ -340,61 +340,56 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Hero Visual - Glowing Interactive Element */}
+            {/* Hero Visual - Tech Scanner Element */}
             <motion.div
               className="relative hidden lg:block"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative">
+              <div className="relative mx-auto w-[280px] h-[340px]">
                 {/* Glow effect */}
-                <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-3xl scale-110" />
+                <div className="absolute inset-0 bg-green-400/20 rounded-3xl blur-3xl scale-110" />
 
                 {/* Main image container */}
-                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40 aspect-square max-w-[256px] mx-auto group">
-                  <div className="w-full h-full relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
-                      alt="MLA Kongad"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-green-950/90 via-green-900/20 to-transparent" />
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-black/50 group">
+                  <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
+                    alt="MLA Kongad"
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Subtle dark gradient for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-green-950/80 via-transparent to-transparent" />
+
+                  {/* Corner Brackets */}
+                  <div className="absolute top-5 left-5 w-6 h-6 border-t-[3px] border-l-[3px] border-white/60" />
+                  <div className="absolute top-5 right-5 w-6 h-6 border-t-[3px] border-r-[3px] border-white/60" />
+                  <div className="absolute bottom-5 left-5 w-6 h-6 border-b-[3px] border-l-[3px] border-white/60" />
+                  <div className="absolute bottom-5 right-5 w-6 h-6 border-b-[3px] border-r-[3px] border-white/60" />
+
+                  {/* Scanning Line Animation */}
+                  <motion.div
+                    className="absolute left-0 right-0 h-[2px] bg-green-400 shadow-[0_0_15px_rgba(74,222,128,1)] z-10"
+                    animate={{ top: ["15%", "85%", "15%"] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  />
+
+                  {/* Status Indicator Pill */}
+                  <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+                    </span>
+                    <span className="text-white text-[10px] uppercase font-bold tracking-widest">Live Services</span>
+                  </div>
+
+                  {/* Bottom Info */}
+                  <div className="absolute bottom-8 left-0 w-full text-center px-4">
+                     <p className="text-white text-xs opacity-70 uppercase tracking-widest font-bold mb-1">MLA Kongad</p>
+                     <p className="text-white text-sm font-extrabold tracking-wide">കെ. എ. തുളസി ടീച്ചർ</p>
                   </div>
                 </div>
-
-                {/* Floating cards */}
-                <motion.div
-                  className="absolute -left-12 top-1/4 backdrop-blur-md bg-white/10 text-white border border-white/20 rounded-2xl p-4 shadow-xl"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white border border-white/30">
-                      <User className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/70 font-bold uppercase tracking-wider">എം.എൽ.എ:</p>
-                      <p className="font-extrabold text-white text-[15px]">ശ്രീമതി കെ. എ. തുളസി ടീച്ചർ</p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="absolute -right-8 bottom-1/4 bg-white rounded-2xl p-4 shadow-xl border border-amber-100"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-xl">
-                      ⭐
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Kongad Portal</p>
-                      <p className="font-extrabold text-amber-700 text-[15px]">Live Services</p>
-                    </div>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
