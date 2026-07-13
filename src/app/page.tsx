@@ -82,48 +82,54 @@ const marketItems: MarketItem[] = [
 ];
 
 const EMERGENCY_SERVICES: EmergencyService[] = [
-  { id: '1', name: 'Government CHC Kongad', type: 'chc', location: 'Kongad Town', phone: '104' },
-  { id: '2', name: 'Mercy Clinic 24/7', type: 'clinic', location: 'Near Bus Stand', phone: '9876543210' },
-  { id: '3', name: 'Kongad Pharmacy', type: 'pharmacy', location: 'Main Road', phone: '9876543211' }
+  { id: '1', name: 'Government CHC Kongad', type: 'chc', location: 'Kongad Town', phone: '104', panchayatId: 'kongad' },
+  { id: '2', name: 'Mercy Clinic 24/7', type: 'clinic', location: 'Near Bus Stand', phone: '9876543210', panchayatId: 'kongad' },
+  { id: '3', name: 'Kongad Pharmacy', type: 'pharmacy', location: 'Main Road', phone: '9876543211', panchayatId: 'kongad' },
+  { id: '4', name: 'Parali Police Station', type: 'police', location: 'Parali', phone: '100', panchayatId: 'parali' },
+  { id: '5', name: 'Kongad Fire Station', type: 'fire', location: 'Kongad', phone: '101', panchayatId: 'kongad' },
+  { id: '6', name: 'Mankara Ambulance', type: 'ambulance', location: 'Mankara', phone: '108', panchayatId: 'mankara' },
+  { id: '7', name: 'KSEB Mannur', type: 'kseb', location: 'Mannur', phone: '1912', panchayatId: 'mannur' }
 ];
 
 const NEWS_FEED: NewsItem[] = [
-  { id: '1', title: 'രോ​ഗങ്ങളും കീടങ്ങളും നിരവധി: മഴക്കാലത്ത് പയറിൽ ശ്രദ്ധിക്കാൻ', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=600&q=80', summary: 'ഏതു കാലാവസ്ഥയിലും നല്ല വിളവ് നൽകുമെങ്കിലും കീടങ്ങളും രോഗങ്ങളും...' },
-  { id: '2', title: 'തോരൻ വയ്ക്കാൻ ഉത്തമം; പരിചരണം കുറച്ചു മതി', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1586521995568-39abaa0c2311?auto=format&fit=crop&w=600&q=80', summary: 'പേരിൽ മാത്രം വഴുതനയോട് സാമ്യമുള്ള വള്ളിച്ചെടിയാണ്...' },
-  { id: '3', title: 'കൂർക്ക നടാം: ഗ്രോബാഗിലും നിലത്തും', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop', summary: 'ചൈനീസ് പൊട്ടറ്റോ എന്നറിയപ്പെടുന്ന കൂർക്ക കേരളീയർക്ക്...' },
-  { id: '4', title: 'ഓണത്തിന് ജൈവ പച്ചക്കറി; കോങ്ങാട് പഞ്ചായത്തിൽ വിതരണം തുടങ്ങി', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=600&q=80', summary: 'ഓണത്തിന് വിഷരഹിത പച്ചക്കറി എന്ന ലക്ഷ്യത്തോടെ...' },
-  { id: '5', title: 'തക്കാളി കൃഷിയിൽ നൂറുമേനി വിളവ്; കർഷകർക്ക് ആശ്വാസം', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1586521995568-39abaa0c2311?auto=format&fit=crop&w=600&q=80', summary: 'കാലാവസ്ഥ അനുകൂലമായതോടെ തക്കാളി കൃഷിയിൽ വൻ മുന്നേറ്റം...' },
-  { id: '6', title: 'കീടനാശിനി പ്രയോഗം കുറയ്ക്കാം; ജൈവവളം ഉപയോഗിക്കാം', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop', summary: 'രാസകീടനാശിനികൾക്ക് പകരം ജൈവവളങ്ങൾ ഉപയോഗിക്കുന്നതിന്റെ ഗുണങ്ങൾ...' }
+  { id: '1', title: 'രോ​ഗങ്ങളും കീടങ്ങളും നിരവധി: മഴക്കാലത്ത് പയറിൽ ശ്രദ്ധിക്കാൻ', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=600&q=80', summary: 'ഏതു കാലാവസ്ഥയിലും നല്ല വിളവ് നൽകുമെങ്കിലും കീടങ്ങളും രോഗങ്ങളും...', panchayatId: 'kongad' },
+  { id: '2', title: 'തോരൻ വയ്ക്കാൻ ഉത്തമം; പരിചരണം കുറച്ചു മതി', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1586521995568-39abaa0c2311?auto=format&fit=crop&w=600&q=80', summary: 'പേരിൽ മാത്രം വഴുതനയോട് സാമ്യമുള്ള വള്ളിച്ചെടിയാണ്...', panchayatId: 'mankara' },
+  { id: '3', title: 'കൂർക്ക നടാം: ഗ്രോബാഗിലും നിലത്തും', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop', summary: 'ചൈനീസ് പൊട്ടറ്റോ എന്നറിയപ്പെടുന്ന കൂർക്ക കേരളീയർക്ക്...', panchayatId: 'mannur' },
+  { id: '4', title: 'ഓണത്തിന് ജൈവ പച്ചക്കറി; കോങ്ങാട് പഞ്ചായത്തിൽ വിതരണം തുടങ്ങി', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&w=600&q=80', summary: 'ഓണത്തിന് വിഷരഹിത പച്ചക്കറി എന്ന ലക്ഷ്യത്തോടെ...', panchayatId: 'kongad' },
+  { id: '5', title: 'തക്കാളി കൃഷിയിൽ നൂറുമേനി വിളവ്; കർഷകർക്ക് ആശ്വാസം', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1586521995568-39abaa0c2311?auto=format&fit=crop&w=600&q=80', summary: 'കാലാവസ്ഥ അനുകൂലമായതോടെ തക്കാളി കൃഷിയിൽ വൻ മുന്നേറ്റം...', panchayatId: 'keralassery' },
+  { id: '6', title: 'കീടനാശിനി പ്രയോഗം കുറയ്ക്കാം; ജൈവവളം ഉപയോഗിക്കാം', category: 'കാർഷിക അറിവുകൾ', thumbnailUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop', summary: 'രാസകീടനാശിനികൾക്ക് പകരം ജൈവവളങ്ങൾ ഉപയോഗിക്കുന്നതിന്റെ ഗുണങ്ങൾ...', panchayatId: 'parali' }
 ];
 
 const JOBS: JobListing[] = [
-  { id: '1', title: 'Farm Supervisor', employer: 'Green Valley Farms', location: 'Keralassery', isBoosted: true },
-  { id: '2', title: 'Retail Assistant', employer: 'Kongad Supermarket', location: 'Kongad Town', isBoosted: false },
-  { id: '3', title: 'Delivery Executive', employer: 'Nelmani Fresh', location: 'Parali', isBoosted: false }
+  { id: '1', title: 'Farm Supervisor', employer: 'Green Valley Farms', location: 'Keralassery', isBoosted: true, panchayatId: 'keralassery' },
+  { id: '2', title: 'Retail Assistant', employer: 'Kongad Supermarket', location: 'Kongad Town', isBoosted: false, panchayatId: 'kongad' },
+  { id: '3', title: 'Delivery Executive', employer: 'Nelmani Fresh', location: 'Parali', isBoosted: false, panchayatId: 'parali' }
 ];
 
 const CLASSIFIEDS: ClassifiedListing[] = [
-  { id: '1', item: 'Used Tractor', price: '₹2.5 Lakhs', seller: 'Ramanan', location: 'Parali', isBoosted: true },
-  { id: '2', item: 'Organic Compost', price: '₹500', seller: 'Haritha Sangam', location: 'Mannur', isBoosted: false },
-  { id: '3', item: 'Milking Cow', price: '₹45,000', seller: 'Suresh', location: 'Mankara', isBoosted: false }
+  { id: '1', item: 'Used Tractor', price: '₹2.5 Lakhs', seller: 'Ramanan', location: 'Parali', isBoosted: true, panchayatId: 'parali' },
+  { id: '2', item: 'Organic Compost', price: '₹500', seller: 'Haritha Sangam', location: 'Mannur', isBoosted: false, panchayatId: 'mannur' },
+  { id: '3', item: 'Milking Cow', price: '₹45,000', seller: 'Suresh', location: 'Mankara', isBoosted: false, panchayatId: 'mankara' }
 ];
 
 const BUS_TIMINGS: BusTiming[] = [
-  { id: '1', route: 'Palakkad - Cherpulassery', time: '08:30 AM', type: 'ksrtc', status: 'on-time' },
-  { id: '2', route: 'Kongad - Ottapalam', time: '09:15 AM', type: 'private', status: 'delayed' },
-  { id: '3', route: 'Palakkad - Kozhikode', time: '10:00 AM', type: 'ksrtc', status: 'on-time' },
+  { id: '1', route: 'Palakkad - Cherpulassery', time: '08:30 AM', type: 'ksrtc', status: 'on-time', panchayatId: 'kongad' },
+  { id: '2', route: 'Kongad - Ottapalam', time: '09:15 AM', type: 'private', status: 'delayed', panchayatId: 'kongad' },
+  { id: '3', route: 'Palakkad - Kozhikode', time: '10:00 AM', type: 'ksrtc', status: 'on-time', panchayatId: 'mannur' },
 ];
 
 const LOCAL_EVENTS: LocalEvent[] = [
-  { id: '1', title: 'കോങ്ങാട് പൂരം 2026', date: 'March 15, 2026', location: 'Thirumandhamkunnu Temple', category: 'festival', thumbnailUrl: 'https://images.unsplash.com/photo-1601004812833-28f44d18faee?auto=format&fit=crop&w=600&q=80' },
-  { id: '2', title: 'പഞ്ചായത്ത് ഗ്രാമസഭ', date: 'April 02, 2026', location: 'Kongad Panchayat Hall', category: 'meeting' },
-  { id: '3', title: 'സെവൻസ് ഫുട്ബോൾ ടൂർണമെന്റ്', date: 'April 10, 2026', location: 'Keralassery Ground', category: 'sports' }
+  { id: '1', title: 'കോങ്ങാട് പൂരം 2026', date: 'March 15, 2026', location: 'Thirumandhamkunnu Temple', category: 'festival', thumbnailUrl: 'https://images.unsplash.com/photo-1601004812833-28f44d18faee?auto=format&fit=crop&w=600&q=80', panchayatId: 'kongad' },
+  { id: '2', title: 'പഞ്ചായത്ത് ഗ്രാമസഭ', date: 'April 02, 2026', location: 'Kongad Panchayat Hall', category: 'meeting', panchayatId: 'kongad' },
+  { id: '3', title: 'സെവൻസ് ഫുട്ബോൾ ടൂർണമെന്റ്', date: 'April 10, 2026', location: 'Keralassery Ground', category: 'sports', panchayatId: 'keralassery' },
+  { id: '4', title: 'കാർഷിക സെമിനാർ', date: 'April 15, 2026', location: 'Mannur Krishi Bhavan', category: 'culture', panchayatId: 'mannur' },
+  { id: '5', title: 'സൗജന്യ നേത്ര പരിശോധന', date: 'May 01, 2026', location: 'Mankara PHC', category: 'meeting', panchayatId: 'mankara' }
 ];
 
 const BLOOD_DONORS: BloodDonor[] = [
-  { id: '1', name: 'Rahul K', bloodGroup: 'O+', panchayat: 'Kongad', phone: '9876543210' },
-  { id: '2', name: 'Sajith P', bloodGroup: 'A-', panchayat: 'Parali', phone: '9876543211' },
-  { id: '3', name: 'Akhil Das', bloodGroup: 'B+', panchayat: 'Mankara', phone: '9876543212' }
+  { id: '1', name: 'Rahul K', bloodGroup: 'O+', panchayat: 'Kongad', phone: '9876543210', panchayatId: 'kongad' },
+  { id: '2', name: 'Sajith P', bloodGroup: 'A-', panchayat: 'Parali', phone: '9876543211', panchayatId: 'parali' },
+  { id: '3', name: 'Akhil Das', bloodGroup: 'B+', panchayat: 'Mankara', phone: '9876543212', panchayatId: 'mankara' }
 ];
 
 const SectionHeader = ({ title }: { title: string }) => (
@@ -161,6 +167,31 @@ export default function Home() {
   const [selectedBloodGroup, setSelectedBloodGroup] = useState<string>('O+');
   const [busFrom, setBusFrom] = useState<string>('Kongad');
   const [busTo, setBusTo] = useState<string>('Palakkad');
+
+  // Filtering Logic
+  const filteredNews = React.useMemo(() => {
+    return activePanchayat === 'all' ? NEWS_FEED : NEWS_FEED.filter(item => item.panchayatId === activePanchayat);
+  }, [activePanchayat]);
+
+  const filteredEvents = React.useMemo(() => {
+    return activePanchayat === 'all' ? LOCAL_EVENTS : LOCAL_EVENTS.filter(item => item.panchayatId === activePanchayat);
+  }, [activePanchayat]);
+
+  const filteredJobs = React.useMemo(() => {
+    return activePanchayat === 'all' ? JOBS : JOBS.filter(item => item.panchayatId === activePanchayat);
+  }, [activePanchayat]);
+
+  const filteredClassifieds = React.useMemo(() => {
+    return activePanchayat === 'all' ? CLASSIFIEDS : CLASSIFIEDS.filter(item => item.panchayatId === activePanchayat);
+  }, [activePanchayat]);
+
+  const filteredBloodDonors = React.useMemo(() => {
+    return activePanchayat === 'all' ? BLOOD_DONORS : BLOOD_DONORS.filter(item => item.panchayatId === activePanchayat);
+  }, [activePanchayat]);
+
+  const filteredEmergencyServices = React.useMemo(() => {
+    return activePanchayat === 'all' ? EMERGENCY_SERVICES : EMERGENCY_SERVICES.filter(item => item.panchayatId === activePanchayat || !item.panchayatId);
+  }, [activePanchayat]);
 
   const handlePanchayatClick = (id: string) => {
     setActivePanchayat(id);
@@ -545,7 +576,7 @@ export default function Home() {
                 viewport={{ once: true, margin: "-50px" }}
                 className="flex flex-col"
               >
-                {NEWS_FEED.slice(0, 3).map((news, idx) => (
+                {filteredNews.slice(0, 3).map((news, idx) => (
                   <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
                     <div className="w-full md:w-[60%] flex flex-col gap-3">
                       <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{news.title}</h3>
@@ -559,7 +590,7 @@ export default function Home() {
               </motion.div>
             </section>
 
-            {/* Section: ഉത്സവങ്ങൾ (Local Events) */}
+            {/* Section: ഉത്സവങ്ങൾ (Local Events Timeline) */}
             <section className="bg-white/80 backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col gap-6">
               <div>
                 <button onClick={() => setIsEventsExpanded(!isEventsExpanded)} className="w-full flex items-center justify-between focus:outline-none">
@@ -581,26 +612,37 @@ export default function Home() {
                 </AnimatePresence>
               </div>
               
-              <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                {LOCAL_EVENTS.map(event => (
-                  <div key={event.id} className="min-w-[280px] md:min-w-[320px] snap-center bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
-                    {event.thumbnailUrl && <img src={event.thumbnailUrl} className="w-full h-32 object-cover" alt={event.title} />}
-                    <div className="p-4 flex-1 flex flex-col justify-between">
-                      <div>
+              <div className="relative pl-6 md:pl-8 border-l-2 border-purple-100 py-4 space-y-8">
+                {filteredEvents.map((event, idx) => (
+                  <div key={event.id} className="relative">
+                    {/* Glowing Node */}
+                    <div className="absolute -left-[33px] md:-left-[41px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.4)]" />
+                    
+                    <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col md:flex-row gap-4 p-4 md:p-5">
+                      {event.thumbnailUrl && (
+                        <div className="w-full md:w-32 h-32 md:h-24 shrink-0 rounded-xl overflow-hidden">
+                           <img src={event.thumbnailUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={event.title} />
+                        </div>
+                      )}
+                      <div className="flex-1 flex flex-col justify-center">
                         <div className="flex items-center gap-2 mb-2">
                           <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${event.category === 'festival' ? 'bg-orange-100 text-orange-700' : event.category === 'sports' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
                             {event.category}
                           </span>
+                          <span className="text-xs font-bold text-slate-400 flex items-center"><Calendar className="w-3 h-3 mr-1" /> {event.date}</span>
                         </div>
-                        <h3 className="font-bold text-lg text-slate-900 leading-tight mb-2">{event.title}</h3>
-                      </div>
-                      <div className="space-y-1.5 mt-2 text-[13px] font-medium text-slate-500">
-                        <div className="flex items-center"><Calendar className="w-4 h-4 mr-2" /> {event.date}</div>
-                        <div className="flex items-center"><MapPin className="w-4 h-4 mr-2" /> {event.location}</div>
+                        <h3 className="font-bold text-lg md:text-xl text-slate-900 leading-tight mb-2">{event.title}</h3>
+                        <div className="flex items-center text-sm font-medium text-slate-500">
+                          <MapPin className="w-4 h-4 mr-1 text-slate-400" /> {event.location}
+                        </div>
                       </div>
                     </div>
                   </div>
                 ))}
+                
+                {filteredEvents.length === 0 && (
+                   <p className="text-slate-500 text-sm font-medium">No upcoming events found for this location.</p>
+                )}
               </div>
             </section>
 
@@ -643,7 +685,7 @@ export default function Home() {
                 className="flex flex-col"
               >
                 {/* Local Jobs as news-style list */}
-                {JOBS.map((job) => (
+                {filteredJobs.map((job) => (
                   <article key={`job-${job.id}`} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
                     <div className="w-full flex flex-col gap-3">
                       <div className="flex justify-between items-start gap-4">
@@ -658,7 +700,7 @@ export default function Home() {
                   </article>
                 ))}
                 {/* Classifieds as news-style list */}
-                {CLASSIFIEDS.map((item) => (
+                {filteredClassifieds.map((item) => (
                   <article key={`class-${item.id}`} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
                     <div className="w-full flex flex-col gap-3">
                       <div className="flex justify-between items-start gap-4">
@@ -751,6 +793,37 @@ export default function Home() {
           {/* RIGHT COLUMN: Immediate Services (Independent Scroll) — 4 columns */}
           {/* ═══════════════════════════════════════════════════════════════ */}
           <aside className="lg:col-span-4 flex flex-col gap-6 lg:h-full lg:overflow-y-auto lg:pl-2 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+
+            {/* Emergency Services Hub */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-red-50/50 rounded-[2rem] p-6 border border-red-100 shadow-[0_8px_30px_-4px_rgba(239,68,68,0.08)] relative overflow-hidden">
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center border-l-4 border-red-500 pl-3">
+                  <h3 className="text-lg font-extrabold text-red-700 tracking-wide">അടിയന്തര സേവനങ്ങൾ</h3>
+                </div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-red-500 bg-red-100 px-2 py-1 rounded-md">Emergency</div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {filteredEmergencyServices.map(service => {
+                  let icon = '🏥';
+                  let colorClass = 'bg-red-500 text-white';
+                  let labelClass = 'text-red-900';
+                  
+                  if (service.type === 'police') { icon = '🚔'; colorClass = 'bg-blue-600 text-white'; labelClass = 'text-blue-900'; }
+                  else if (service.type === 'fire') { icon = '🚒'; colorClass = 'bg-orange-500 text-white'; labelClass = 'text-orange-900'; }
+                  else if (service.type === 'ambulance') { icon = '🚑'; colorClass = 'bg-red-500 text-white'; labelClass = 'text-red-900'; }
+                  else if (service.type === 'kseb') { icon = '⚡'; colorClass = 'bg-amber-400 text-amber-900'; labelClass = 'text-amber-900'; }
+
+                  return (
+                    <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-4 bg-white rounded-2xl border border-red-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 ${colorClass} group-hover:scale-110 transition-transform`}>
+                        {icon}
+                      </div>
+                      <span className={`text-xs font-bold ${labelClass} leading-tight`}>{service.name}</span>
+                    </a>
+                  )
+                })}
+              </div>
+            </motion.div>
 
             {/* Widget -1: കാലാവസ്ഥ (Weather) */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="bg-gradient-to-br from-[#0A5C36] to-[#0d7a48] rounded-[2rem] p-6 shadow-lg shadow-[#0A5C36]/20 text-white relative overflow-hidden">
@@ -1104,7 +1177,7 @@ export default function Home() {
               </AnimatePresence>
 
               <div className="space-y-3">
-                {BLOOD_DONORS.map(donor => (
+                {filteredBloodDonors.map(donor => (
                   <div key={donor.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-red-100 bg-white">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center font-black text-red-600 text-sm">

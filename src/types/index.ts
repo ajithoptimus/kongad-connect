@@ -31,9 +31,10 @@ export interface CropListingFormData {
 export interface EmergencyService {
   id: string;
   name: string;
-  type: 'chc' | 'clinic' | 'pharmacy' | 'ambulance';
+  type: 'chc' | 'clinic' | 'pharmacy' | 'ambulance' | 'police' | 'fire' | 'kseb';
   location: string;
   phone: string;
+  panchayatId?: string;
 }
 
 export interface CivicReportFormData {
@@ -48,6 +49,7 @@ export interface NewsItem {
   category: string;
   thumbnailUrl: string;
   summary: string;
+  panchayatId?: string;
 }
 
 export interface JobListing {
@@ -56,6 +58,7 @@ export interface JobListing {
   employer: string;
   location: string;
   isBoosted: boolean;
+  panchayatId?: string;
 }
 
 export interface ClassifiedListing {
@@ -65,6 +68,7 @@ export interface ClassifiedListing {
   seller: string;
   location: string;
   isBoosted: boolean;
+  panchayatId?: string;
 }
 
 export interface BusTiming {
@@ -73,6 +77,7 @@ export interface BusTiming {
   time: string;
   type: 'ksrtc' | 'private';
   status: 'on-time' | 'delayed';
+  panchayatId?: string;
 }
 
 export interface LocalEvent {
@@ -82,6 +87,7 @@ export interface LocalEvent {
   location: string;
   category: 'festival' | 'sports' | 'meeting' | 'culture';
   thumbnailUrl?: string;
+  panchayatId?: string;
 }
 
 export interface BloodDonor {
@@ -90,4 +96,5 @@ export interface BloodDonor {
   bloodGroup: string;
   panchayat: string;
   phone: string;
+  panchayatId?: string;
 }
