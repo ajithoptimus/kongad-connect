@@ -538,21 +538,11 @@ export default function Home() {
               </div>
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
-                <AnimatePresence>
-                  {isKrishiExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
-                        കോങ്ങാടിന്റെ കാർഷിക ഹൃദയത്തിലേക്ക് സ്വാഗതം. കർഷകർക്ക് ആവശ്യമായ ദൈനംദിന വിപണി വിലകൾ, കാലാവസ്ഥാ മുന്നറിയിപ്പുകൾ, മറ്റ് കാർഷിക വിവരങ്ങൾ എന്നിവ ഇവിടെ ഒറ്റനോട്ടത്തിൽ ലഭ്യമാണ്. ഇടനിലക്കാരില്ലാതെ കർഷകർക്കും വ്യാപാരികൾക്കും നേരിട്ട് വിനിമയം നടത്താനുള്ള സുതാര്യമായ വേദി കൂടിയാണിത്.
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isKrishiExpanded && (
+                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                    കോങ്ങാടിന്റെ കാർഷിക ഹൃദയത്തിലേക്ക് സ്വാഗതം. കർഷകർക്ക് ആവശ്യമായ ദൈനംദിന വിപണി വിലകൾ, കാലാവസ്ഥാ മുന്നറിയിപ്പുകൾ, മറ്റ് കാർഷിക വിവരങ്ങൾ എന്നിവ ഇവിടെ ഒറ്റനോട്ടത്തിൽ ലഭ്യമാണ്. ഇടനിലക്കാരില്ലാതെ കർഷകർക്കും വ്യാപാരികൾക്കും നേരിട്ട് വിനിമയം നടത്താനുള്ള സുതാര്യമായ വേദി കൂടിയാണിത്.
+                  </div>
+                )}
               <motion.div 
                 variants={staggerContainer} 
                 initial="hidden" 
@@ -591,21 +581,11 @@ export default function Home() {
               </div>
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
-                <AnimatePresence>
-                  {isTipsExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
-                        പുതിയ കാർഷിക രീതികൾ, വിളപരിപാലനം, ജൈവവള പ്രയോഗം എന്നിവയെക്കുറിച്ചുള്ള വിദഗ്ധ ലേഖനങ്ങൾ. മികച്ച വിളവിനും ലാഭത്തിനും ഈ അറിവുകൾ പ്രയോജനപ്പെടുത്താം.
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isTipsExpanded && (
+                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                    പുതിയ കാർഷിക രീതികൾ, വിളപരിപാലനം, ജൈവവള പ്രയോഗം എന്നിവയെക്കുറിച്ചുള്ള വിദഗ്ധ ലേഖനങ്ങൾ. മികച്ച വിളവിനും ലാഭത്തിനും ഈ അറിവുകൾ പ്രയോജനപ്പെടുത്താം.
+                  </div>
+                )}
               <motion.div 
                 variants={staggerContainer} 
                 initial="hidden" 
@@ -637,15 +617,11 @@ export default function Home() {
                 </button>
               </div>
               <div className="p-5 md:p-6 flex flex-col gap-5">
-                <AnimatePresence>
-                  {isEventsExpanded && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                      <div className="bg-[#F8F5FF] text-purple-900 p-4 rounded-lg text-sm leading-relaxed border border-purple-100">
-                        നാട്ടിലെ പ്രധാന ഉത്സവങ്ങൾ, കായിക മത്സരങ്ങൾ, പൊതുയോഗങ്ങൾ എന്നിവയുടെ വിവരങ്ങൾ. 
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isEventsExpanded && (
+                  <div className="bg-[#F8F5FF] text-purple-900 p-4 rounded-lg text-sm leading-relaxed border border-purple-100 mb-2">
+                    നാട്ടിലെ പ്രധാന ഉത്സവങ്ങൾ, കായിക മത്സരങ്ങൾ, പൊതുയോഗങ്ങൾ എന്നിവയുടെ വിവരങ്ങൾ. 
+                  </div>
+                )}
               
               <div className="relative pl-6 md:pl-8 border-l-2 border-purple-100 py-4 space-y-8">
                 {filteredEvents.map((event, idx) => (
@@ -695,21 +671,11 @@ export default function Home() {
               </div>
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
-                <AnimatePresence>
-                  {isNewsExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
-                        നമ്മുടെ നാട്ടിലെ പ്രധാന വാർത്തകൾ, പഞ്ചായത്ത് അറിയിപ്പുകൾ, ഉത്സവ വിശേഷങ്ങൾ എന്നിവ അറിയാൻ ഈ ഇടം ഉപയോഗിക്കുക. കോങ്ങാടിന്റെ സ്പന്ദനങ്ങൾ ഇനി നിങ്ങളുടെ വിരൽത്തുമ്പിൽ.
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isNewsExpanded && (
+                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                    നമ്മുടെ നാട്ടിലെ പ്രധാന വാർത്തകൾ, പഞ്ചായത്ത് അറിയിപ്പുകൾ, ഉത്സവ വിശേഷങ്ങൾ എന്നിവ അറിയാൻ ഈ ഇടം ഉപയോഗിക്കുക. കോങ്ങാടിന്റെ സ്പന്ദനങ്ങൾ ഇനി നിങ്ങളുടെ വിരൽത്തുമ്പിൽ.
+                  </div>
+                )}
               <motion.div 
                 variants={staggerContainer} 
                 initial="hidden" 
@@ -764,21 +730,11 @@ export default function Home() {
               </div>
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
-                <AnimatePresence>
-                  {isCivicExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed border border-[#E2EBE5]">
-                        നമ്മുടെ നാടിന്റെ അടിസ്ഥാന സൗകര്യങ്ങളിലെ പ്രശ്നങ്ങൾ, റോഡ് അറ്റകുറ്റപ്പണികൾ, കുടിവെള്ള പ്രശ്നങ്ങൾ എന്നിവ നേരിട്ട് ജനപ്രതിനിധികളെ അറിയിക്കാനുള്ള ജനകീയ വേദി. ഒരു ഫോട്ടോയിലൂടെ പ്രശ്നം റിപ്പോർട്ട് ചെയ്യാം.
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isCivicExpanded && (
+                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                    നമ്മുടെ നാടിന്റെ അടിസ്ഥാന സൗകര്യങ്ങളിലെ പ്രശ്നങ്ങൾ, റോഡ് അറ്റകുറ്റപ്പണികൾ, കുടിവെള്ള പ്രശ്നങ്ങൾ എന്നിവ നേരിട്ട് ജനപ്രതിനിധികളെ അറിയിക്കാനുള്ള ജനകീയ വേദി. ഒരു ഫോട്ടോയിലൂടെ പ്രശ്നം റിപ്പോർട്ട് ചെയ്യാം.
+                  </div>
+                )}
               <motion.div {...scrollMotionProps} whileHover={{ scale: 1.01 }} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6">
                 <form onSubmit={handleCivicSubmit} className="space-y-4">
                   <div>
