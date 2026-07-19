@@ -526,8 +526,8 @@ export default function Home() {
             {/* Nelmani Fresh Ad - will be added back when image asset is ready */}
 
             {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
-            <section id="krishi-hub" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-              <div className="bg-gradient-to-r from-primary to-primary-light p-5 md:p-6">
+            <section id="krishi-hub" className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+              <div className="bg-gradient-to-r from-primary to-primary-light p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsKrishiExpanded(!isKrishiExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
@@ -569,8 +569,8 @@ export default function Home() {
             </section>
 
             {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
-            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-              <div className="bg-gradient-to-r from-amber-500 to-amber-400 p-5 md:p-6">
+            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+              <div className="bg-gradient-to-r from-amber-500 to-amber-400 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
@@ -609,8 +609,8 @@ export default function Home() {
             </section>
 
             {/* Section: ഉത്സവങ്ങൾ (Local Events Timeline) */}
-            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-              <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-5 md:p-6">
+            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+              <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-5 md:p-6 rounded-t-2xl">
                 <button onClick={() => setIsEventsExpanded(!isEventsExpanded)} className="w-full flex items-center justify-between focus:outline-none">
                   <h2 className="text-lg md:text-xl font-extrabold text-white tracking-wide flex items-center gap-2">🎪 ഉത്സവങ്ങൾ & പരിപാടികൾ</h2>
                   <ChevronDown className={`w-5 h-5 text-white/70 transform ${isEventsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
@@ -659,8 +659,8 @@ export default function Home() {
             </section>
 
             {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
-            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-              <div className="bg-gradient-to-r from-accent to-amber-500 p-5 md:p-6">
+            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+              <div className="bg-gradient-to-r from-accent to-amber-500 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsNewsExpanded(!isNewsExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
@@ -718,8 +718,8 @@ export default function Home() {
             </section>
 
             {/* Civic Reporter */}
-            <section id="civic-reporter" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
-              <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-5 md:p-6">
+            <section id="civic-reporter" className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+              <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsCivicExpanded(!isCivicExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
