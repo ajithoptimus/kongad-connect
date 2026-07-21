@@ -173,6 +173,7 @@ export default function Home() {
   const [reportCategory, setReportCategory] = useState<string>('');
   const [reportLandmark, setReportLandmark] = useState<string>('');
   const [isWeatherExpanded, setIsWeatherExpanded] = useState(false);
+  const [isEmergencyExpanded, setIsEmergencyExpanded] = useState(false);
   const [isBusExpanded, setIsBusExpanded] = useState(true);
   const [isEventsExpanded, setIsEventsExpanded] = useState(false);
   const [isBloodExpanded, setIsBloodExpanded] = useState(false);
@@ -738,36 +739,7 @@ export default function Home() {
           {/* ═══════════════════════════════════════════════════════════════ */}
           <aside className="lg:col-span-4 flex flex-col gap-6 lg:h-full lg:overflow-y-auto lg:pl-2 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
-            {/* Emergency Services Hub */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-red-50/80 rounded-2xl p-6 border border-red-200 shadow-sm relative overflow-hidden">
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center border-l-4 border-red-500 pl-3">
-                  <h3 className="text-lg font-extrabold text-red-700 tracking-wide">അടിയന്തര സേവനങ്ങൾ</h3>
-                </div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-red-500 bg-red-100 px-2 py-1 rounded-md">Emergency</div>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {filteredEmergencyServices.map(service => {
-                  let icon = '🏥';
-                  let colorClass = 'bg-red-500 text-white';
-                  let labelClass = 'text-red-900';
-                  
-                  if (service.type === 'police') { icon = '🚔'; colorClass = 'bg-blue-600 text-white'; labelClass = 'text-blue-900'; }
-                  else if (service.type === 'fire') { icon = '🚒'; colorClass = 'bg-orange-500 text-white'; labelClass = 'text-orange-900'; }
-                  else if (service.type === 'ambulance') { icon = '🚑'; colorClass = 'bg-red-500 text-white'; labelClass = 'text-red-900'; }
-                  else if (service.type === 'kseb') { icon = '⚡'; colorClass = 'bg-amber-400 text-amber-900'; labelClass = 'text-amber-900'; }
 
-                  return (
-                    <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-4 bg-white rounded-2xl border border-red-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 ${colorClass} group-hover:scale-110 transition-transform`}>
-                        {icon}
-                      </div>
-                      <span className={`text-xs font-bold ${labelClass} leading-tight`}>{service.name}</span>
-                    </a>
-                  )
-                })}
-              </div>
-            </motion.div>
 
             {/* Widget 0: Panchayat-wise Govt Services */}
             <motion.div
@@ -1152,8 +1124,50 @@ export default function Home() {
       </footer>
 
       {/* NSWS Style Floating Climate Widget */}
-      <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-[60] flex flex-col items-end">
-        {/* Expanded content (appears above the button) */}
+      <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-[60] flex flex-col items-end gap-3">
+        {/* EMERGENCY FLOATING WIDGET */}
+        <div className="flex flex-col items-end">
+          {/* Expanded Emergency Content */}
+          <div className={`bg-red-50 rounded-[2rem] shadow-2xl border border-red-100 mb-3 transition-all duration-300 ease-in-out origin-bottom overflow-hidden ${isEmergencyExpanded ? 'max-h-[500px] opacity-100 scale-100 p-4' : 'max-h-0 opacity-0 scale-95 p-0 border-0'}`}>
+            <div className="grid grid-cols-2 gap-3 w-64 md:w-72">
+              {filteredEmergencyServices.map(service => {
+                let icon = '🏥';
+                let colorClass = 'bg-red-500 text-white';
+                let labelClass = 'text-red-900';
+                if (service.type === 'police') { icon = '🚔'; colorClass = 'bg-blue-600 text-white'; labelClass = 'text-blue-900'; }
+                else if (service.type === 'fire') { icon = '🚒'; colorClass = 'bg-orange-500 text-white'; labelClass = 'text-orange-900'; }
+                else if (service.type === 'ambulance') { icon = '🚑'; colorClass = 'bg-red-500 text-white'; labelClass = 'text-red-900'; }
+                else if (service.type === 'kseb') { icon = '⚡'; colorClass = 'bg-amber-400 text-amber-900'; labelClass = 'text-amber-900'; }
+                return (
+                  <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border border-red-50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg mb-2 ${colorClass} group-hover:scale-110 transition-transform`}>
+                      {icon}
+                    </div>
+                    <span className={`text-[10px] font-bold ${labelClass} leading-tight`}>{service.name}</span>
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+          
+          {/* Emergency Pill Button */}
+          <button 
+            onClick={() => setIsEmergencyExpanded(!isEmergencyExpanded)}
+            className="bg-red-50 hover:bg-red-100 transition-colors rounded-full px-5 py-3 shadow-xl relative flex flex-row items-center justify-between w-64 md:w-72 border border-red-200"
+          >
+            <div className="flex items-center">
+              <div className="w-1 h-5 bg-red-600 mr-3 rounded-full"></div>
+              <h3 className="text-base font-bold text-red-700 tracking-wide">അടിയന്തര സേവനങ്ങൾ</h3>
+            </div>
+            <div className="text-[10px] font-black uppercase tracking-widest text-red-600 bg-red-100 px-2 py-1 rounded-md">
+              Emergency
+            </div>
+          </button>
+        </div>
+
+        {/* CLIMATE FLOATING WIDGET */}
+        <div className="flex flex-col items-end">
+          {/* Expanded content (appears above the button) */}
         <div className={`bg-[#0d522a] rounded-[2rem] shadow-2xl text-white mb-3 transition-all duration-300 ease-in-out origin-bottom overflow-hidden ${isWeatherExpanded ? 'max-h-96 opacity-100 scale-100 p-5' : 'max-h-0 opacity-0 scale-95 p-0'}`}>
           <div className="flex items-center justify-between w-64 md:w-72">
             <div>
@@ -1192,7 +1206,7 @@ export default function Home() {
           <ChevronDown className={`w-5 h-5 text-white/80 relative z-10 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
         </button>
       </div>
-
+      </div>
       {/* 3. MOBILE BOTTOM NAVIGATION */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 flex justify-around items-center p-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
         <button className="flex flex-col items-center gap-1 text-primary">
