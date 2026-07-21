@@ -260,10 +260,16 @@ export default function Home() {
 
 
 
-      {/* Ambient Fixed Background Layer */}
-      <div className="fixed inset-0 z-[-1] bg-[#F4F7F5] overflow-hidden">
+      {/* Ambient Fixed Background Layer with State Emblem Watermark */}
+      <div className="fixed inset-0 z-[-1] bg-[#F4F7F5] overflow-hidden flex items-center justify-center">
         <div className="absolute top-[-15%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+        {/* Government of Kerala Emblem Watermark */}
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Seal_of_Kerala.svg" 
+          alt="Government of Kerala Watermark" 
+          className="w-[80vw] md:w-[50vw] max-w-[600px] opacity-[0.03] pointer-events-none grayscale"
+        />
       </div>
       
       {/* 1. HERO SECTION */}
