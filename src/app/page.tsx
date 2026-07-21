@@ -769,43 +769,53 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Widget -1: കാലാവസ്ഥ (Weather) */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="bg-gradient-to-br from-[#0A5C36] to-[#0d7a48] rounded-[2rem] p-6 shadow-lg shadow-[#0A5C36]/20 text-white relative overflow-hidden">
-              <CloudRain className="absolute -top-4 -right-4 w-32 h-32 text-white opacity-10 pointer-events-none" />
-              <button onClick={() => setIsWeatherExpanded(!isWeatherExpanded)} className="w-full flex items-center justify-between focus:outline-none relative z-10">
-                <div className="flex items-center">
-                  <ThermometerSun className="w-5 h-5 mr-2 text-green-200" />
-                  <h3 className="text-lg font-extrabold text-white">കാലാവസ്ഥ</h3>
+            {/* Widget -1: കാലാവസ്ഥ (Weather) - NSWS Pill Style */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.5 }} 
+              className="bg-[#126b3a] rounded-full px-6 py-3 shadow-md text-white relative overflow-hidden flex flex-col"
+            >
+              {/* Background Cloud Graphic matches NSWS style */}
+              <CloudRain className="absolute -bottom-4 -right-2 w-24 h-24 text-white opacity-[0.08] pointer-events-none" />
+              
+              <button 
+                onClick={() => setIsWeatherExpanded(!isWeatherExpanded)} 
+                className="w-full flex items-center justify-between focus:outline-none relative z-10"
+              >
+                <div className="flex items-center gap-2">
+                  <ThermometerSun className="w-5 h-5 text-white" />
+                  <h3 className="text-lg font-bold text-white tracking-wide">കാലാവസ്ഥ</h3>
                 </div>
-                <ChevronDown className={`w-5 h-5 text-green-200 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                <ChevronDown className={`w-5 h-5 text-white/80 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
               </button>
-              <div className="mt-5 flex items-center justify-between relative z-10">
-                <div>
-                  <div className="text-4xl font-black">28°C</div>
-                  <div className="text-sm font-medium text-green-100 mt-1">ഭാഗികമായി മേഘാവൃതം</div>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center text-sm font-bold text-green-50 mb-1 justify-end">
-                    <Droplet className="w-3 h-3 mr-1" /> 78% മഴ
+              
+              {/* Expanded content */}
+              <div className={`transition-all duration-300 ease-in-out origin-top ${isWeatherExpanded ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden mt-0'}`}>
+                <div className="flex items-center justify-between relative z-10 pt-2 border-t border-white/20">
+                  <div>
+                    <div className="text-3xl font-black">28°C</div>
+                    <div className="text-xs font-medium text-green-100 mt-1">ഭാഗികമായി മേഘാവൃതം</div>
                   </div>
-                  <div className="text-xs text-green-200">Kongad, Palakkad</div>
+                  <div className="text-right">
+                    <div className="flex items-center text-xs font-bold text-green-50 mb-1 justify-end">
+                      <Droplet className="w-3 h-3 mr-1" /> 78% മഴ
+                    </div>
+                    <div className="text-[10px] text-green-200">Kongad, Palakkad</div>
+                  </div>
+                </div>
+
+                {/* Alert Box inside expanded area */}
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 mt-3 border border-white/20">
+                  <div className="flex items-start gap-3">
+                    <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-bold text-sm text-white">മുന്നറിയിപ്പ് (Alert)</h4>
+                      <p className="text-[11px] text-green-50 mt-1 leading-relaxed">വരും മണിക്കൂറുകളിൽ ശക്തമായ മഴയ്ക്ക് സാധ്യത. റബ്ബർ ടാപ്പിംഗ് മാറ്റിവെക്കുന്നത് ഉചിതമായിരിക്കും.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <AnimatePresence>
-                {isWeatherExpanded && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden relative z-10">
-                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 mt-4 border border-white/20">
-                      <div className="flex items-start gap-3">
-                        <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
-                        <div>
-                          <h4 className="font-bold text-sm text-white">മുന്നറിയിപ്പ് (Alert)</h4>
-                          <p className="text-xs text-green-50 mt-1 leading-relaxed">വരും മണിക്കൂറുകളിൽ ശക്തമായ മഴയ്ക്ക് സാധ്യത. റബ്ബർ ടാപ്പിംഗ് മാറ്റിവെക്കുന്നത് ഉചിതമായിരിക്കും.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </motion.div>
 
             {/* Widget 0: Panchayat-wise Govt Services */}
