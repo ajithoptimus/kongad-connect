@@ -769,55 +769,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Widget -1: കാലാവസ്ഥ (Weather) - NSWS Pill Style */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5 }} 
-              className="bg-[#126b3a] rounded-full px-6 py-3 shadow-md text-white relative overflow-hidden flex flex-col"
-            >
-              {/* Background Cloud Graphic matches NSWS style */}
-              <CloudRain className="absolute -bottom-4 -right-2 w-24 h-24 text-white opacity-[0.08] pointer-events-none" />
-              
-              <button 
-                onClick={() => setIsWeatherExpanded(!isWeatherExpanded)} 
-                className="w-full flex items-center justify-between focus:outline-none relative z-10"
-              >
-                <div className="flex items-center gap-2">
-                  <ThermometerSun className="w-5 h-5 text-white" />
-                  <h3 className="text-lg font-bold text-white tracking-wide">കാലാവസ്ഥ</h3>
-                </div>
-                <ChevronDown className={`w-5 h-5 text-white/80 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
-              </button>
-              
-              {/* Expanded content */}
-              <div className={`transition-all duration-300 ease-in-out origin-top ${isWeatherExpanded ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden mt-0'}`}>
-                <div className="flex items-center justify-between relative z-10 pt-2 border-t border-white/20">
-                  <div>
-                    <div className="text-3xl font-black">28°C</div>
-                    <div className="text-xs font-medium text-green-100 mt-1">ഭാഗികമായി മേഘാവൃതം</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center text-xs font-bold text-green-50 mb-1 justify-end">
-                      <Droplet className="w-3 h-3 mr-1" /> 78% മഴ
-                    </div>
-                    <div className="text-[10px] text-green-200">Kongad, Palakkad</div>
-                  </div>
-                </div>
-
-                {/* Alert Box inside expanded area */}
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 mt-3 border border-white/20">
-                  <div className="flex items-start gap-3">
-                    <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-bold text-sm text-white">മുന്നറിയിപ്പ് (Alert)</h4>
-                      <p className="text-[11px] text-green-50 mt-1 leading-relaxed">വരും മണിക്കൂറുകളിൽ ശക്തമായ മഴയ്ക്ക് സാധ്യത. റബ്ബർ ടാപ്പിംഗ് മാറ്റിവെക്കുന്നത് ഉചിതമായിരിക്കും.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
             {/* Widget 0: Panchayat-wise Govt Services */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -1199,6 +1150,48 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* NSWS Style Floating Climate Widget */}
+      <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-[60] flex flex-col items-end">
+        {/* Expanded content (appears above the button) */}
+        <div className={`bg-[#0d522a] rounded-[2rem] shadow-2xl text-white mb-3 transition-all duration-300 ease-in-out origin-bottom overflow-hidden ${isWeatherExpanded ? 'max-h-96 opacity-100 scale-100 p-5' : 'max-h-0 opacity-0 scale-95 p-0'}`}>
+          <div className="flex items-center justify-between w-64 md:w-72">
+            <div>
+              <div className="text-3xl font-black">28°C</div>
+              <div className="text-xs font-medium text-green-100 mt-1">ഭാഗികമായി മേഘാവൃതം</div>
+            </div>
+            <div className="text-right">
+              <div className="flex items-center text-xs font-bold text-green-50 mb-1 justify-end">
+                <Droplet className="w-3 h-3 mr-1" /> 78% മഴ
+              </div>
+              <div className="text-[10px] text-green-200">Kongad, Palakkad</div>
+            </div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 mt-4 border border-white/20">
+            <div className="flex items-start gap-3">
+              <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-bold text-sm text-white">മുന്നറിയിപ്പ് (Alert)</h4>
+                <p className="text-[11px] text-green-50 mt-1 leading-relaxed">വരും മണിക്കൂറുകളിൽ ശക്തമായ മഴയ്ക്ക് സാധ്യത. റബ്ബർ ടാപ്പിംഗ് മാറ്റിവെക്കുന്നത് ഉചിതമായിരിക്കും.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Pill Button */}
+        <button 
+          onClick={() => setIsWeatherExpanded(!isWeatherExpanded)}
+          className="bg-[#126b3a] hover:bg-[#0d522a] transition-colors rounded-full px-5 py-3 shadow-xl text-white relative overflow-hidden flex flex-row items-center justify-between gap-4 w-48 border border-white/10"
+        >
+          <CloudRain className="absolute -bottom-4 -right-2 w-24 h-24 text-white opacity-10 pointer-events-none" />
+          <div className="flex items-center gap-2 relative z-10">
+            <ThermometerSun className="w-5 h-5 text-white" />
+            <h3 className="text-base font-bold text-white tracking-wide">കാലാവസ്ഥ</h3>
+          </div>
+          <ChevronDown className={`w-5 h-5 text-white/80 relative z-10 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+        </button>
+      </div>
 
       {/* 3. MOBILE BOTTOM NAVIGATION */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 flex justify-around items-center p-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
