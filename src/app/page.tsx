@@ -418,12 +418,10 @@ export default function Home() {
                   />
 
                   {/* Status Indicator Pill */}
-                  <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+                  <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 w-max max-w-[90%]">
+                    <span className="text-white text-[10px] uppercase font-bold tracking-widest text-center leading-tight">
+                      MLA Kongad, Hon. Minister, K A Thulasi Teacher
                     </span>
-                    <span className="text-white text-[10px] uppercase font-bold tracking-widest">Live Services</span>
                   </div>
 
                   {/* Bottom Info */}
