@@ -417,17 +417,10 @@ export default function Home() {
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                   />
 
-                  {/* Status Indicator Pill */}
-                  <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 w-max max-w-[90%]">
-                    <span className="text-white text-[10px] uppercase font-bold tracking-widest text-center leading-tight">
-                      MLA Kongad, Hon. Minister, K A Thulasi Teacher
-                    </span>
-                  </div>
-
                   {/* Bottom Info */}
-                  <div className="absolute bottom-8 left-0 w-full text-center px-4">
-                     <p className="text-white text-xs opacity-70 uppercase tracking-widest font-bold mb-1">MLA Kongad</p>
-                     <p className="text-white text-sm font-extrabold tracking-wide">കെ. എ. തുളസി ടീച്ചർ</p>
+                  <div className="absolute bottom-8 left-0 w-full text-center px-4 drop-shadow-lg">
+                     <p className="text-white text-[10px] opacity-90 uppercase tracking-widest font-bold mb-1">MLA Kongad, Hon. Minister</p>
+                     <p className="text-white text-sm font-extrabold tracking-wide uppercase">K A Thulasi Teacher</p>
                   </div>
                 </div>
               </div>
