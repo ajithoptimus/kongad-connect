@@ -396,8 +396,8 @@ export default function Home() {
                 {/* Main image container */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-black/50 group">
                   <img
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
-                    alt="MLA Kongad"
+                    src="/mla-thulasi.jpg"
+                    alt="K. Santhakumari - MLA Kongad"
                     className="w-full h-full object-cover"
                   />
                   
