@@ -822,68 +822,11 @@ export default function Home() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Widget: യാത്രാ വിവരങ്ങൾ (Bus Timings) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-              <button onClick={() => setIsBusExpanded(!isBusExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
-                    <Bus className="w-4 h-4 text-orange-600" />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-slate-900">യാത്രാ വിവരങ്ങൾ</h3>
-                </div>
-                <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isBusExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
-              </button>
-              
-              <AnimatePresence>
-                {isBusExpanded && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                    <div className="flex gap-2 mb-4">
-                      <div className="flex-1">
-                        <label className="text-[10px] uppercase font-bold text-slate-400 pl-1 mb-1 block">From</label>
-                        <select className="w-full bg-slate-50 border border-slate-100 rounded-lg p-2 text-sm font-semibold text-slate-700 outline-none focus:border-orange-300" value={busFrom} onChange={(e)=>setBusFrom(e.target.value)}>
-                          <option value="Kongad">Kongad</option>
-                          <option value="Palakkad">Palakkad</option>
-                        </select>
-                      </div>
-                      <div className="flex-1">
-                        <label className="text-[10px] uppercase font-bold text-slate-400 pl-1 mb-1 block">To</label>
-                        <select className="w-full bg-slate-50 border border-slate-100 rounded-lg p-2 text-sm font-semibold text-slate-700 outline-none focus:border-orange-300" value={busTo} onChange={(e)=>setBusTo(e.target.value)}>
-                          <option value="Palakkad">Palakkad</option>
-                          <option value="Ottapalam">Ottapalam</option>
-                          <option value="Cherpulassery">Cherpulassery</option>
-                          <option value="Kozhikode">Kozhikode</option>
-                        </select>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              
-              <div className="space-y-3">
-                {BUS_TIMINGS.map(bus => (
-                  <div key={bus.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-orange-100 hover:bg-orange-50/30 transition-colors bg-white">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-sm text-slate-800">{bus.time}</span>
-                      <span className="text-[11px] font-medium text-slate-500 mt-0.5">{bus.route}</span>
-                    </div>
-                    <div className="flex flex-col items-end">
-                      <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${bus.type === 'ksrtc' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}`}>
-                        {bus.type}
-                      </span>
-                      <span className={`text-[10px] font-bold mt-1 ${bus.status === 'on-time' ? 'text-green-600' : 'text-amber-500'}`}>
-                        {bus.status === 'on-time' ? 'On Time' : 'Delayed'}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Widget 1: കാർഷിക വിപണന ശൃംഖല (Marketplace) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
               whileHover={{ scale: 1.01 }}
               className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
             >
@@ -955,6 +898,63 @@ export default function Home() {
                   {krishiRole === 'farmer' ? 'വിൽപനയ്ക്കായി ചേർക്കുക' : 'ആവശ്യം ചേർക്കുക'}
                 </button>
               </form>
+            </motion.div>
+
+            {/* Widget: യാത്രാ വിവരങ്ങൾ (Bus Timings) */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+              <button onClick={() => setIsBusExpanded(!isBusExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                    <Bus className="w-4 h-4 text-orange-600" />
+                  </div>
+                  <h3 className="text-lg font-extrabold text-slate-900">യാത്രാ വിവരങ്ങൾ</h3>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isBusExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+              </button>
+              
+              <AnimatePresence>
+                {isBusExpanded && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                    <div className="flex gap-2 mb-4">
+                      <div className="flex-1">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 pl-1 mb-1 block">From</label>
+                        <select className="w-full bg-slate-50 border border-slate-100 rounded-lg p-2 text-sm font-semibold text-slate-700 outline-none focus:border-orange-300" value={busFrom} onChange={(e)=>setBusFrom(e.target.value)}>
+                          <option value="Kongad">Kongad</option>
+                          <option value="Palakkad">Palakkad</option>
+                        </select>
+                      </div>
+                      <div className="flex-1">
+                        <label className="text-[10px] uppercase font-bold text-slate-400 pl-1 mb-1 block">To</label>
+                        <select className="w-full bg-slate-50 border border-slate-100 rounded-lg p-2 text-sm font-semibold text-slate-700 outline-none focus:border-orange-300" value={busTo} onChange={(e)=>setBusTo(e.target.value)}>
+                          <option value="Palakkad">Palakkad</option>
+                          <option value="Ottapalam">Ottapalam</option>
+                          <option value="Cherpulassery">Cherpulassery</option>
+                          <option value="Kozhikode">Kozhikode</option>
+                        </select>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              
+              <div className="space-y-3">
+                {BUS_TIMINGS.map(bus => (
+                  <div key={bus.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-orange-100 hover:bg-orange-50/30 transition-colors bg-white">
+                    <div className="flex flex-col">
+                      <span className="font-bold text-sm text-slate-800">{bus.time}</span>
+                      <span className="text-[11px] font-medium text-slate-500 mt-0.5">{bus.route}</span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${bus.type === 'ksrtc' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}`}>
+                        {bus.type}
+                      </span>
+                      <span className={`text-[10px] font-bold mt-1 ${bus.status === 'on-time' ? 'text-green-600' : 'text-amber-500'}`}>
+                        {bus.status === 'on-time' ? 'On Time' : 'Delayed'}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             {/* Widget: രക്തദാന സേന (Blood Donor Network) */}
