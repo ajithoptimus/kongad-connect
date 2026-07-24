@@ -26,6 +26,10 @@ import {
   Leaf
 } from 'lucide-react';
 import Link from 'next/link';
+import { useTheme } from './components/ThemeProvider';
+import { useLanguage } from './components/LanguageProvider';
+import KongadMap from './components/KongadMap';
+import { Moon, Sun, Globe, Plus, MessageCircle, AlertTriangle } from 'lucide-react';
 import { emitTelemetry } from '@/utils/telemetry';
 import { 
   Panchayat, 
@@ -137,12 +141,12 @@ const BLOOD_DONORS: BloodDonor[] = [
 ];
 
 const SectionHeader = ({ title }: { title: string }) => (
-  <div className="flex items-center justify-between bg-slate-50 border-y border-gray-200 px-4 py-3 mb-6">
+  <div className="flex items-center justify-between bg-slate-50 dark:bg-[#0f1a14] dark:border-green-900/50 border-y border-gray-200 px-4 py-3 mb-6">
     <div className="flex items-center">
       <div className="w-1.5 h-6 bg-primary mr-3" />
-      <h2 className="text-[15px] font-bold text-slate-800 uppercase tracking-wide">{title}</h2>
+      <h2 className="text-[15px] font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">{title}</h2>
     </div>
-    <a href="#" className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors">View All</a>
+    <a href="#" className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">View All</a>
   </div>
 );
 
@@ -180,6 +184,9 @@ export default function Home() {
   const [selectedBloodGroup, setSelectedBloodGroup] = useState<string>('O+');
   const [busFrom, setBusFrom] = useState<string>('Kongad');
   const [busTo, setBusTo] = useState<string>('Palakkad');
+  const { theme, toggleTheme, isDark } = useTheme();
+  const { language, toggleLanguage, t } = useLanguage();
+  const [isFabOpen, setIsFabOpen] = useState(false);
 
   // Filtering Logic
   const filteredNews = React.useMemo(() => {
@@ -257,12 +264,12 @@ export default function Home() {
   const cardClass = "bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col";
 
   return (
-    <div className="relative min-h-screen font-sans text-slate-900 pb-24">
+    <div className="relative min-h-screen font-sans text-slate-900 dark:text-slate-100 pb-24">
 
 
 
       {/* Ambient Fixed Background Layer with State Emblem Watermark */}
-      <div className="fixed inset-0 z-[-1] bg-[#F4F7F5] overflow-hidden flex items-center justify-center">
+      <div className="fixed inset-0 z-[-1] bg-[#F4F7F5] dark:bg-[#0a1510] overflow-hidden flex items-center justify-center">
         <div className="absolute top-[-15%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
         {/* Government of Kerala Emblem Watermark */}
@@ -301,6 +308,26 @@ export default function Home() {
             
             {/* Text Content */}
             <div className="text-white">
+              {/* Theme & Language Controls */}
+              <div className="flex items-center gap-2 mb-6">
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
+                  aria-label="Toggle dark mode"
+                >
+                  {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  {isDark ? 'Light' : 'Dark'}
+                </button>
+                <button
+                  onClick={toggleLanguage}
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
+                  aria-label="Toggle language"
+                >
+                  <Globe className="w-4 h-4" />
+                  {language === 'ml' ? 'EN' : 'മല'}
+                </button>
+              </div>
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -321,7 +348,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
-                നമ്മുടെ കോങ്ങാട്
+                {t('heroTitle')}
               </motion.h1>
               
               <motion.p
@@ -330,7 +357,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                Kongad Assembly Constituency
+                {t('heroSubtitle')}
               </motion.p>
 
               <motion.div
@@ -338,7 +365,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <p className="mt-3 text-base lg:text-lg text-white/80 max-w-2xl leading-relaxed mb-8">കോങ്ങാടിന്റെ വികസനത്തിനും ജനങ്ങളുടെ ക്ഷേമത്തിനുമായി ഒരു ഡിജിറ്റൽ ജനകീയ വേദി. നിങ്ങളുടെ പരാതികളും ആവശ്യങ്ങളും നേരിട്ട് എം.എൽ.എ യെ അറിയിക്കാം.</p>
+                <p className="mt-3 text-base lg:text-lg text-white/80 max-w-2xl leading-relaxed mb-8">{t('heroDescription')}</p>
               </motion.div>
 
               <motion.div
@@ -351,13 +378,13 @@ export default function Home() {
                   href="/mla-connect" 
                   className="bg-accent text-white px-7 py-3 rounded-full font-bold hover:bg-accent-light transition-all flex items-center gap-2 w-fit shadow-lg shadow-accent/30 hover:shadow-xl hover:-translate-y-0.5 text-base"
                 >
-                  📝 എം.എൽ.എ യെ അറിയിക്കാൻ
+                  {t('heroButton1')}
                 </Link>
                 <a 
                   href="#krishi-hub" 
                   className="border-2 border-white/30 text-white px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm text-base"
                 >
-                  🌾 കാർഷിക ഇടം
+                  {t('heroButton2')}
                 </a>
               </motion.div>
 
@@ -434,7 +461,7 @@ export default function Home() {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <span className="text-xs tracking-widest uppercase">Scroll</span>
+          <span className="text-xs tracking-widest uppercase">{t('scroll')}</span>
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
@@ -443,6 +470,11 @@ export default function Home() {
 
       {/* 2. ASYMMETRICAL 12-COLUMN STICKY DESKTOP GRID */}
       <main className="w-full min-h-screen py-12">
+
+        {/* Interactive Constituency Map */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mb-6">
+          <KongadMap activePanchayat={activePanchayat} onPanchayatClick={handlePanchayatClick} />
+        </div>
 
         {/* Horizontal Filter Chips — Full width above the grid */}
         <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mb-8">
@@ -454,7 +486,7 @@ export default function Home() {
                 className={`px-6 py-3 rounded-full whitespace-nowrap text-sm font-bold transition-all border ${
                   activePanchayat === p.id 
                     ? 'bg-gradient-to-r from-primary to-primary-light text-white border-primary shadow-md shadow-primary/20' 
-                    : 'bg-white text-slate-600 border-gray-200 hover:border-primary/40 hover:text-primary hover:shadow-sm'
+                    : 'bg-white text-slate-600 dark:text-slate-400 border-gray-200 hover:border-primary/40 hover:text-primary hover:shadow-sm'
                 }`}
               >
                 {p.name}
@@ -474,7 +506,7 @@ export default function Home() {
             {/* Nelmani Fresh Ad - will be added back when image asset is ready */}
 
             {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
-            <section id="krishi-hub" className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+            <section id="krishi-hub" className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
               <div className="bg-gradient-to-r from-primary to-primary-light p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsKrishiExpanded(!isKrishiExpanded)}
@@ -517,7 +549,7 @@ export default function Home() {
             </section>
 
             {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
-            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+            <section className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
               <div className="bg-gradient-to-r from-amber-500 to-amber-400 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
@@ -544,8 +576,8 @@ export default function Home() {
                 {filteredNews.slice(0, 3).map((news, idx) => (
                   <article key={news.id} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
                     <div className="w-full md:w-[60%] flex flex-col gap-3">
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{news.title}</h3>
-                      <p className="text-slate-600 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 leading-snug tracking-tight">{news.title}</h3>
+                      <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed line-clamp-2">{news.summary}</p>
                     </div>
                     <div className="w-full md:w-[40%] shrink-0">
                       <img src={news.thumbnailUrl} className="w-full h-48 md:h-32 object-cover rounded-xl shadow-sm" alt="" />
@@ -557,7 +589,7 @@ export default function Home() {
             </section>
 
             {/* Section: ഉത്സവങ്ങൾ (Local Events Timeline) */}
-            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+            <section className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
               <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-5 md:p-6 rounded-t-2xl">
                 <button onClick={() => setIsEventsExpanded(!isEventsExpanded)} className="w-full flex items-center justify-between focus:outline-none">
                   <h2 className="text-lg md:text-xl font-extrabold text-white tracking-wide flex items-center gap-2">🎪 ഉത്സവങ്ങൾ & പരിപാടികൾ</h2>
@@ -590,8 +622,8 @@ export default function Home() {
                           </span>
                           <span className="text-xs font-bold text-slate-400 flex items-center"><Calendar className="w-3 h-3 mr-1" /> {event.date}</span>
                         </div>
-                        <h3 className="font-bold text-lg md:text-xl text-slate-900 leading-tight mb-2">{event.title}</h3>
-                        <div className="flex items-center text-sm font-medium text-slate-500">
+                        <h3 className="font-bold text-lg md:text-xl text-slate-900 dark:text-slate-100 leading-tight mb-2">{event.title}</h3>
+                        <div className="flex items-center text-sm font-medium text-slate-500 dark:text-slate-400">
                           <MapPin className="w-4 h-4 mr-1 text-slate-400" /> {event.location}
                         </div>
                       </div>
@@ -600,14 +632,14 @@ export default function Home() {
                 ))}
                 
                 {filteredEvents.length === 0 && (
-                   <p className="text-slate-500 text-sm font-medium">No upcoming events found for this location.</p>
+                   <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">No upcoming events found for this location.</p>
                 )}
               </div>
               </div>
             </section>
 
             {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
-            <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+            <section className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
               <div className="bg-gradient-to-r from-accent to-amber-500 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsNewsExpanded(!isNewsExpanded)}
@@ -636,11 +668,11 @@ export default function Home() {
                   <article key={`job-${job.id}`} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
                     <div className="w-full flex flex-col gap-3">
                       <div className="flex justify-between items-start gap-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{job.title}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 leading-snug tracking-tight">{job.title}</h3>
                         {job.isBoosted && <span className="bg-amber-500 text-white text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-wider shrink-0 mt-1">Urgent</span>}
                       </div>
-                      <p className="text-slate-600 text-sm md:text-base leading-relaxed">{job.employer}</p>
-                      <div className="flex items-center text-sm font-semibold text-slate-500 mt-1">
+                      <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">{job.employer}</p>
+                      <div className="flex items-center text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">
                         <MapPin className="w-4 h-4 mr-1" /> {job.location}
                       </div>
                     </div>
@@ -651,10 +683,10 @@ export default function Home() {
                   <article key={`class-${item.id}`} className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 items-center md:items-start py-6 border-b border-slate-100 last:border-0">
                     <div className="w-full flex flex-col gap-3">
                       <div className="flex justify-between items-start gap-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug tracking-tight">{item.item}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 leading-snug tracking-tight">{item.item}</h3>
                         <span className="text-primary font-bold text-lg shrink-0 mt-1">{item.price}</span>
                       </div>
-                      <div className="flex justify-between items-center text-sm text-slate-500 mt-1">
+                      <div className="flex justify-between items-center text-sm text-slate-500 dark:text-slate-400 mt-1">
                         <span>By {item.seller}</span>
                         <span className="flex items-center"><MapPin className="w-4 h-4 mr-1" /> {item.location}</span>
                       </div>
@@ -666,7 +698,7 @@ export default function Home() {
             </section>
 
             {/* Civic Reporter */}
-            <section id="civic-reporter" className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+            <section id="civic-reporter" className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
               <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsCivicExpanded(!isCivicExpanded)}
@@ -683,10 +715,10 @@ export default function Home() {
                     നമ്മുടെ നാടിന്റെ അടിസ്ഥാന സൗകര്യങ്ങളിലെ പ്രശ്നങ്ങൾ, റോഡ് അറ്റകുറ്റപ്പണികൾ, കുടിവെള്ള പ്രശ്നങ്ങൾ എന്നിവ നേരിട്ട് ജനപ്രതിനിധികളെ അറിയിക്കാനുള്ള ജനകീയ വേദി. ഒരു ഫോട്ടോയിലൂടെ പ്രശ്നം റിപ്പോർട്ട് ചെയ്യാം.
                   </div>
                 )}
-              <motion.div {...scrollMotionProps} whileHover={{ scale: 1.01 }} className="bg-white rounded-2xl border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6">
+              <motion.div {...scrollMotionProps} whileHover={{ scale: 1.01 }} className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6">
                 <form onSubmit={handleCivicSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2">Category</label>
+                    <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 dark:text-slate-400 mb-2">Category</label>
                     <select 
                       required 
                       value={reportCategory}
@@ -700,7 +732,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2">Landmark</label>
+                    <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 dark:text-slate-400 mb-2">Landmark</label>
                     <input 
                       required 
                       type="text" 
@@ -712,7 +744,7 @@ export default function Home() {
                   </div>
                   <div className="flex space-x-3 pt-2">
                     <button type="button" className="flex-1 bg-[#FDFCF8] border border-gray-200 text-slate-700 rounded-xl py-3 flex items-center justify-center font-bold text-sm hover:bg-white hover:shadow-sm transition-all">
-                      <Camera className="w-4 h-4 mr-2 text-slate-500" /> Photo
+                      <Camera className="w-4 h-4 mr-2 text-slate-500 dark:text-slate-400" /> Photo
                     </button>
                     <button type="submit" className="flex-1 bg-primary text-white font-bold py-3 rounded-xl flex items-center justify-center hover:bg-primary-dark transition-colors text-sm shadow-sm">
                       <Send className="w-4 h-4 mr-2" /> Submit
@@ -737,7 +769,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
             >
               <button 
                 onClick={() => setIsGovtExpanded(!isGovtExpanded)}
@@ -769,7 +801,7 @@ export default function Home() {
                           <select 
                             value={selectedCategory} 
                             onChange={(e) => setSelectedCategory(e.target.value as ServiceCategory)}
-                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                           >
                             <option value="krishi">Krishi Bhavan</option>
                             <option value="ration">Ration Shop</option>
@@ -786,7 +818,7 @@ export default function Home() {
                           <select 
                             value={selectedPanchayat} 
                             onChange={(e) => setSelectedPanchayat(e.target.value)}
-                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                           >
                             {PANCHAYATS.filter(p => p.id !== 'all').map(p => (
                               <option key={p.id} value={p.name}>{p.name}</option>
@@ -828,16 +860,16 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
             >
               <button 
                 onClick={() => setIsMarketExpanded(!isMarketExpanded)}
                 className="w-full flex items-center justify-between text-left focus:outline-none mb-1 group"
               >
-                <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0A5C36] transition-colors">കാർഷിക വിപണന ശൃംഖല</h3>
-                <ChevronDown className={`w-5 h-5 text-slate-500 transform ${isMarketExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 group-hover:text-[#0A5C36] transition-colors">കാർഷിക വിപണന ശൃംഖല</h3>
+                <ChevronDown className={`w-5 h-5 text-slate-500 dark:text-slate-400 transform ${isMarketExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
               </button>
-              <p className="text-xs text-slate-500 mb-5">നേരിട്ട് വാങ്ങാനും വിൽക്കാനും</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-5">നേരിട്ട് വാങ്ങാനും വിൽക്കാനും</p>
 
               <AnimatePresence>
                 {isMarketExpanded && (
@@ -863,7 +895,7 @@ export default function Home() {
                   className={`flex-1 font-bold py-2 rounded-lg text-sm transition-all ${
                     krishiRole === 'farmer'
                       ? 'bg-white text-[#0A5C36] shadow-sm'
-                      : 'text-slate-500 font-medium hover:text-slate-700'
+                      : 'text-slate-500 dark:text-slate-400 font-medium hover:text-slate-700'
                   }`}
                 >
                   ഞാൻ ഒരു കർഷകൻ
@@ -874,7 +906,7 @@ export default function Home() {
                   className={`flex-1 font-bold py-2 rounded-lg text-sm transition-all ${
                     krishiRole === 'merchant'
                       ? 'bg-white text-[#0A5C36] shadow-sm'
-                      : 'text-slate-500 font-medium hover:text-slate-700'
+                      : 'text-slate-500 dark:text-slate-400 font-medium hover:text-slate-700'
                   }`}
                 >
                   ഞാൻ ഒരു വ്യാപാരി
@@ -884,13 +916,13 @@ export default function Home() {
               {/* Marketplace Form */}
               <form onSubmit={handleKrishiSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 mb-2">
+                  <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 dark:text-slate-400 mb-2">
                     {krishiRole === 'farmer' ? 'നിങ്ങൾ എന്താണ് വിൽക്കുന്നത്?' : 'നിങ്ങൾക്ക് എന്താണ് വേണ്ടത്?'}
                   </label>
                   <input 
                     type="text" 
                     placeholder={krishiRole === 'farmer' ? 'ഉദാ: 50kg മട്ട നെല്ല്' : 'ഉദാ: 100kg റബ്ബർ ഷീറ്റ്'} 
-                    className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                    className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                   />
                 </div>
                 <button type="submit" className="w-full bg-gradient-to-r from-[#0A5C36] to-[#0d7a48] text-white font-bold rounded-xl px-5 py-3.5 mt-4 hover:shadow-lg hover:shadow-[#0A5C36]/20 transition-all flex items-center justify-center gap-2">
@@ -901,13 +933,13 @@ export default function Home() {
             </motion.div>
 
             {/* Widget: യാത്രാ വിവരങ്ങൾ (Bus Timings) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.2 }} className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm">
               <button onClick={() => setIsBusExpanded(!isBusExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
                 <div className="flex items-center">
                   <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                     <Bus className="w-4 h-4 text-orange-600" />
                   </div>
-                  <h3 className="text-lg font-extrabold text-slate-900">യാത്രാ വിവരങ്ങൾ</h3>
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100">യാത്രാ വിവരങ്ങൾ</h3>
                 </div>
                 <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isBusExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
               </button>
@@ -941,8 +973,8 @@ export default function Home() {
                 {BUS_TIMINGS.map(bus => (
                   <div key={bus.id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-orange-100 hover:bg-orange-50/30 transition-colors bg-white">
                     <div className="flex flex-col">
-                      <span className="font-bold text-sm text-slate-800">{bus.time}</span>
-                      <span className="text-[11px] font-medium text-slate-500 mt-0.5">{bus.route}</span>
+                      <span className="font-bold text-sm text-slate-800 dark:text-slate-100">{bus.time}</span>
+                      <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">{bus.route}</span>
                     </div>
                     <div className="flex flex-col items-end">
                       <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${bus.type === 'ksrtc' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}`}>
@@ -958,13 +990,13 @@ export default function Home() {
             </motion.div>
 
             {/* Widget: രക്തദാന സേന (Blood Donor Network) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.45 }} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.45 }} className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm">
               <button onClick={() => setIsBloodExpanded(!isBloodExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
                 <div className="flex items-center">
                   <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                     <Droplet className="w-4 h-4 text-red-600" />
                   </div>
-                  <h3 className="text-lg font-extrabold text-slate-900">രക്തദാന സേന</h3>
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100">രക്തദാന സേന</h3>
                 </div>
                 <ChevronDown className={`w-5 h-5 text-gray-500 transform ${isBloodExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
               </button>
@@ -972,9 +1004,9 @@ export default function Home() {
               <AnimatePresence>
                 {isBloodExpanded && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                    <p className="text-xs text-slate-500 mb-4 leading-relaxed">അടിയന്തര സാഹചര്യങ്ങളിൽ രക്തം ആവശ്യമുള്ളവർക്ക് ഈ ലിസ്റ്റ് ഉപയോഗിക്കാവുന്നതാണ്.</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">അടിയന്തര സാഹചര്യങ്ങളിൽ രക്തം ആവശ്യമുള്ളവർക്ക് ഈ ലിസ്റ്റ് ഉപയോഗിക്കാവുന്നതാണ്.</p>
                     <div className="flex gap-2 mb-4">
-                      <select className="flex-1 bg-slate-50 border border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-800 outline-none focus:border-red-200 focus:ring-2 focus:ring-red-100" value={selectedBloodGroup} onChange={(e)=>setSelectedBloodGroup(e.target.value)}>
+                      <select className="flex-1 bg-slate-50 border border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-800 dark:text-slate-100 outline-none focus:border-red-200 focus:ring-2 focus:ring-red-100" value={selectedBloodGroup} onChange={(e)=>setSelectedBloodGroup(e.target.value)}>
                         <option value="O+">O+ Positive</option>
                         <option value="A+">A+ Positive</option>
                         <option value="B+">B+ Positive</option>
@@ -982,7 +1014,7 @@ export default function Home() {
                         <option value="O-">O- Negative</option>
                         <option value="A-">A- Negative</option>
                       </select>
-                      <select className="flex-1 bg-slate-50 border border-slate-100 rounded-xl p-3 text-sm font-semibold text-slate-600 outline-none focus:border-red-200 focus:ring-2 focus:ring-red-100">
+                      <select className="flex-1 bg-slate-50 border border-slate-100 rounded-xl p-3 text-sm font-semibold text-slate-600 dark:text-slate-400 outline-none focus:border-red-200 focus:ring-2 focus:ring-red-100">
                         <option value="All">All Areas</option>
                         <option value="Kongad">Kongad</option>
                         <option value="Parali">Parali</option>
@@ -1000,8 +1032,8 @@ export default function Home() {
                         {donor.bloodGroup}
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-bold text-sm text-slate-800">{donor.name}</span>
-                        <span className="text-[11px] font-medium text-slate-500 flex items-center mt-0.5"><MapPin className="w-3 h-3 mr-0.5" /> {donor.panchayat}</span>
+                        <span className="font-bold text-sm text-slate-800 dark:text-slate-100">{donor.name}</span>
+                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 flex items-center mt-0.5"><MapPin className="w-3 h-3 mr-0.5" /> {donor.panchayat}</span>
                       </div>
                     </div>
                     <a href={`tel:${donor.phone}`} className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center hover:bg-red-50 hover:text-red-600 transition-colors text-slate-400">
@@ -1018,14 +1050,14 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
             >
               <button 
                 onClick={() => setIsEduExpanded(!isEduExpanded)}
                 className="w-full flex items-center justify-between text-left focus:outline-none mb-1 group"
               >
-                <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0A5C36] transition-colors">വിദ്യാഭ്യാസ സ്ഥാപനങ്ങൾ</h3>
-                <ChevronDown className={`w-5 h-5 text-slate-500 transform ${isEduExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 group-hover:text-[#0A5C36] transition-colors">വിദ്യാഭ്യാസ സ്ഥാപനങ്ങൾ</h3>
+                <ChevronDown className={`w-5 h-5 text-slate-500 dark:text-slate-400 transform ${isEduExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
               </button>
 
               <AnimatePresence>
@@ -1044,15 +1076,15 @@ export default function Home() {
                 )}
               </AnimatePresence>
 
-              {!isEduExpanded && <p className="text-xs text-slate-500 mb-5">വിദ്യാഭ്യാസ വിവരങ്ങൾ</p>}
+              {!isEduExpanded && <p className="text-xs text-slate-500 dark:text-slate-400 mb-5">വിദ്യാഭ്യാസ വിവരങ്ങൾ</p>}
 
               <div className="space-y-3">
-                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
+                <div className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
                   <div className="relative">
                     <select 
                       value={selectedEdu}
                       onChange={(e) => setSelectedEdu(e.target.value)}
-                      className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                      className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                     >
                       {institutions.map(inst => (
                         <option key={inst.id} value={inst.contact}>{inst.name}</option>
@@ -1108,113 +1140,205 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-slate-500">© 2026 Kongad Connect. Built with ❤️ for കോങ്ങാട്</p>
-            <p className="text-xs text-slate-600">Powered by Nelmani Digital</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">© 2026 Kongad Connect. Built with ❤️ for കോങ്ങാട്</p>
+            <p className="text-xs text-slate-600 dark:text-slate-400">Powered by Nelmani Digital</p>
           </div>
         </div>
       </footer>
 
-      {/* NSWS Style Floating Climate Widget */}
-      <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-[60] flex flex-col items-end gap-3">
-        {/* EMERGENCY FLOATING WIDGET */}
-        <div className="flex flex-col items-end">
-          {/* Expanded Emergency Content */}
-          <div className={`bg-red-50 rounded-[2rem] shadow-2xl border border-red-100 mb-3 transition-all duration-300 ease-in-out origin-bottom overflow-hidden ${isEmergencyExpanded ? 'max-h-[500px] opacity-100 scale-100 p-4' : 'max-h-0 opacity-0 scale-95 p-0 border-0'}`}>
-            <div className="grid grid-cols-2 gap-3 w-64 md:w-72">
-              {filteredEmergencyServices.map(service => {
-                let icon = '🏥';
-                let colorClass = 'bg-red-500 text-white';
-                let labelClass = 'text-red-900';
-                if (service.type === 'police') { icon = '🚔'; colorClass = 'bg-blue-600 text-white'; labelClass = 'text-blue-900'; }
-                else if (service.type === 'fire') { icon = '🚒'; colorClass = 'bg-orange-500 text-white'; labelClass = 'text-orange-900'; }
-                else if (service.type === 'ambulance') { icon = '🚑'; colorClass = 'bg-red-500 text-white'; labelClass = 'text-red-900'; }
-                else if (service.type === 'kseb') { icon = '⚡'; colorClass = 'bg-amber-400 text-amber-900'; labelClass = 'text-amber-900'; }
-                return (
-                  <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-3 bg-white rounded-2xl border border-red-50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg mb-2 ${colorClass} group-hover:scale-110 transition-transform`}>
-                      {icon}
-                    </div>
-                    <span className={`text-[10px] font-bold ${labelClass} leading-tight`}>{service.name}</span>
-                  </a>
-                )
-              })}
-            </div>
-          </div>
-          
-          {/* Emergency Pill Button */}
-          <button 
-            onClick={() => setIsEmergencyExpanded(!isEmergencyExpanded)}
-            className="bg-red-50 hover:bg-red-100 transition-colors rounded-full px-5 py-3 shadow-xl relative flex flex-row items-center justify-between w-64 md:w-72 border border-red-200"
-          >
-            <div className="flex items-center">
-              <div className="w-1 h-5 bg-red-600 mr-3 rounded-full"></div>
-              <h3 className="text-base font-bold text-red-700 tracking-wide">അടിയന്തര സേവനങ്ങൾ</h3>
-            </div>
-            <div className="text-[10px] font-black uppercase tracking-widest text-red-600 bg-red-100 px-2 py-1 rounded-md">
-              Emergency
-            </div>
-          </button>
-        </div>
+      {/* Quick Action FAB Menu */}
+      <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-[60] flex flex-col items-end">
+        {/* Backdrop */}
+        <AnimatePresence>
+          {isFabOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-[59]"
+              onClick={() => setIsFabOpen(false)}
+            />
+          )}
+        </AnimatePresence>
 
-        {/* CLIMATE FLOATING WIDGET */}
-        <div className="flex flex-col items-end">
-          {/* Expanded content (appears above the button) */}
-        <div className={`bg-[#0d522a] rounded-[2rem] shadow-2xl text-white mb-3 transition-all duration-300 ease-in-out origin-bottom overflow-hidden ${isWeatherExpanded ? 'max-h-96 opacity-100 scale-100 p-5' : 'max-h-0 opacity-0 scale-95 p-0'}`}>
-          <div className="flex items-center justify-between w-64 md:w-72">
-            <div>
-              <div className="text-3xl font-black">28°C</div>
-              <div className="text-xs font-medium text-green-100 mt-1">ഭാഗികമായി മേഘാവൃതം</div>
-            </div>
-            <div className="text-right">
-              <div className="flex items-center text-xs font-bold text-green-50 mb-1 justify-end">
-                <Droplet className="w-3 h-3 mr-1" /> 78% മഴ
+        {/* Expanded Actions */}
+        <AnimatePresence>
+          {isFabOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="flex flex-col gap-3 mb-4 items-end"
+            >
+              {/* Emergency */}
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05 }}
+                onClick={() => { setIsEmergencyExpanded(!isEmergencyExpanded); setIsFabOpen(false); }}
+                className="flex items-center gap-3 bg-red-50 dark:bg-red-950/80 hover:bg-red-100 dark:hover:bg-red-900/60 border border-red-200 dark:border-red-800 rounded-full pl-4 pr-5 py-2.5 shadow-lg transition-all"
+              >
+                <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white">
+                  <AlertTriangle className="w-4 h-4" />
+                </div>
+                <span className="text-sm font-bold text-red-700 dark:text-red-300 whitespace-nowrap">{t('fabEmergency')}</span>
+              </motion.button>
+
+              {/* Climate */}
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 }}
+                onClick={() => { setIsWeatherExpanded(!isWeatherExpanded); setIsFabOpen(false); }}
+                className="flex items-center gap-3 bg-green-50 dark:bg-green-950/80 hover:bg-green-100 dark:hover:bg-green-900/60 border border-green-200 dark:border-green-800 rounded-full pl-4 pr-5 py-2.5 shadow-lg transition-all"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#126b3a] flex items-center justify-center text-white">
+                  <ThermometerSun className="w-4 h-4" />
+                </div>
+                <span className="text-sm font-bold text-green-700 dark:text-green-300 whitespace-nowrap">{t('fabClimate')}</span>
+              </motion.button>
+
+              {/* MLA Office Call */}
+              <motion.a
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.15 }}
+                href="tel:+910000000000"
+                className="flex items-center gap-3 bg-blue-50 dark:bg-blue-950/80 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200 dark:border-blue-800 rounded-full pl-4 pr-5 py-2.5 shadow-lg transition-all"
+              >
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <span className="text-sm font-bold text-blue-700 dark:text-blue-300 whitespace-nowrap">{t('fabMlaCall')}</span>
+              </motion.a>
+
+              {/* Report Issue */}
+              <motion.a
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                href="#civic-reporter"
+                onClick={() => setIsFabOpen(false)}
+                className="flex items-center gap-3 bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 dark:hover:bg-amber-900/60 border border-amber-200 dark:border-amber-800 rounded-full pl-4 pr-5 py-2.5 shadow-lg transition-all"
+              >
+                <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white">
+                  <Camera className="w-4 h-4" />
+                </div>
+                <span className="text-sm font-bold text-amber-700 dark:text-amber-300 whitespace-nowrap">{t('fabReport')}</span>
+              </motion.a>
+
+              {/* WhatsApp */}
+              <motion.a
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.25 }}
+                href="https://wa.me/910000000000"
+                target="_blank"
+                className="flex items-center gap-3 bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800 rounded-full pl-4 pr-5 py-2.5 shadow-lg transition-all"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center text-white">
+                  <MessageCircle className="w-4 h-4" />
+                </div>
+                <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300 whitespace-nowrap">{t('fabWhatsapp')}</span>
+              </motion.a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Emergency Expanded Panel (shown when triggered from FAB) */}
+        <AnimatePresence>
+          {isEmergencyExpanded && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 10 }}
+              className="bg-red-50 dark:bg-red-950/90 rounded-[2rem] shadow-2xl border border-red-100 dark:border-red-800 mb-3 p-4"
+            >
+              <div className="grid grid-cols-2 gap-3 w-64 md:w-72">
+                {filteredEmergencyServices.map(service => {
+                  let icon = '🏥';
+                  let colorClass = 'bg-red-500 text-white';
+                  let labelClass = 'text-red-900 dark:text-red-200';
+                  if (service.type === 'police') { icon = '🚔'; colorClass = 'bg-blue-600 text-white'; labelClass = 'text-blue-900 dark:text-blue-200'; }
+                  else if (service.type === 'fire') { icon = '🚒'; colorClass = 'bg-orange-500 text-white'; labelClass = 'text-orange-900 dark:text-orange-200'; }
+                  else if (service.type === 'ambulance') { icon = '🚑'; colorClass = 'bg-red-500 text-white'; labelClass = 'text-red-900 dark:text-red-200'; }
+                  else if (service.type === 'kseb') { icon = '⚡'; colorClass = 'bg-amber-400 text-amber-900'; labelClass = 'text-amber-900 dark:text-amber-200'; }
+                  return (
+                    <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-3 bg-white dark:bg-[#1a2b22] rounded-2xl border border-red-50 dark:border-red-900/40 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg mb-2 ${colorClass} group-hover:scale-110 transition-transform`}>
+                        {icon}
+                      </div>
+                      <span className={`text-[10px] font-bold ${labelClass} leading-tight`}>{service.name}</span>
+                    </a>
+                  )
+                })}
               </div>
-              <div className="text-[10px] text-green-200">Kongad, Palakkad</div>
-            </div>
-          </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 mt-4 border border-white/20">
-            <div className="flex items-start gap-3">
-              <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-sm text-white">മുന്നറിയിപ്പ് (Alert)</h4>
-                <p className="text-[11px] text-green-50 mt-1 leading-relaxed">വരും മണിക്കൂറുകളിൽ ശക്തമായ മഴയ്ക്ക് സാധ്യത. റബ്ബർ ടാപ്പിംഗ് മാറ്റിവെക്കുന്നത് ഉചിതമായിരിക്കും.</p>
+        {/* Climate Expanded Panel (shown when triggered from FAB) */}
+        <AnimatePresence>
+          {isWeatherExpanded && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 10 }}
+              className="bg-[#0d522a] rounded-[2rem] shadow-2xl text-white mb-3 p-5"
+            >
+              <div className="flex items-center justify-between w-64 md:w-72">
+                <div>
+                  <div className="text-3xl font-black">28°C</div>
+                  <div className="text-xs font-medium text-green-100 mt-1">{t('weatherPartlyCloudy')}</div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center text-xs font-bold text-green-50 mb-1 justify-end">
+                    <Droplet className="w-3 h-3 mr-1" /> 78% {t('weatherRain')}
+                  </div>
+                  <div className="text-[10px] text-green-200">Kongad, Palakkad</div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 mt-4 border border-white/20">
+                <div className="flex items-start gap-3">
+                  <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-sm text-white">{t('weatherAlert')}</h4>
+                    <p className="text-[11px] text-green-50 mt-1 leading-relaxed">{t('weatherAlertDesc')}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* Floating Pill Button */}
-        <button 
-          onClick={() => setIsWeatherExpanded(!isWeatherExpanded)}
-          className="bg-[#126b3a] hover:bg-[#0d522a] transition-colors rounded-full px-5 py-3 shadow-xl text-white relative overflow-hidden flex flex-row items-center justify-between gap-4 w-48 border border-white/10"
+        {/* Main FAB Button */}
+        <motion.button
+          onClick={() => { setIsFabOpen(!isFabOpen); if (isEmergencyExpanded) setIsEmergencyExpanded(false); if (isWeatherExpanded) setIsWeatherExpanded(false); }}
+          className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-light text-white shadow-xl shadow-primary/30 flex items-center justify-center hover:shadow-2xl hover:scale-105 transition-all border-2 border-white/20 relative z-[61]"
+          animate={{ rotate: isFabOpen ? 45 : 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <CloudRain className="absolute -bottom-4 -right-2 w-24 h-24 text-white opacity-10 pointer-events-none" />
-          <div className="flex items-center gap-2 relative z-10">
-            <ThermometerSun className="w-5 h-5 text-white" />
-            <h3 className="text-base font-bold text-white tracking-wide">കാലാവസ്ഥ</h3>
-          </div>
-          <ChevronDown className={`w-5 h-5 text-white/80 relative z-10 transform ${isWeatherExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
-        </button>
-      </div>
+          <Plus className="w-7 h-7" />
+        </motion.button>
       </div>
       {/* 3. MOBILE BOTTOM NAVIGATION */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 flex justify-around items-center p-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-[#0f1a14]/95 dark:border-slate-700 backdrop-blur-xl border-t border-slate-200 flex justify-around items-center p-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
         <button className="flex flex-col items-center gap-1 text-primary">
           <HomeIcon className="w-5 h-5" />
-          <span className="text-[10px] font-bold">ഹോം</span>
+          <span className="text-[10px] font-bold">{t('navHome')}</span>
         </button>
         <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
           <Briefcase className="w-5 h-5" />
-          <span className="text-[10px] font-bold">വിപണി</span>
+          <span className="text-[10px] font-bold">{t('navMarket')}</span>
         </button>
         <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
           <Grid className="w-5 h-5" />
-          <span className="text-[10px] font-bold">സേവനങ്ങൾ</span>
+          <span className="text-[10px] font-bold">{t('navServices')}</span>
         </button>
         <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
           <UserCircle className="w-5 h-5" />
-          <span className="text-[10px] font-bold">പ്രൊഫൈൽ</span>
+          <span className="text-[10px] font-bold">{t('navProfile')}</span>
         </button>
       </nav>
     </div>

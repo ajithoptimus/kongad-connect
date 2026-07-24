@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Noto_Sans_Malayalam } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { LanguageProvider } from "./components/LanguageProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,9 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ml">
-      <body className={`${inter.variable} ${notoSansMalayalam.variable} font-sans antialiased text-slate-800 bg-[#F4F7F5]`}>
-        {children}
+    <html lang="ml" suppressHydrationWarning>
+      <body className={`${inter.variable} ${notoSansMalayalam.variable} font-sans antialiased text-slate-800 dark:text-slate-100 bg-[#F4F7F5] dark:bg-[#0a1510]`}>
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
