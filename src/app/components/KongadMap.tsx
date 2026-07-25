@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 
 interface KongadMapProps {
   activePanchayat: string;
@@ -9,22 +10,16 @@ interface KongadMapProps {
 }
 
 const PANCHAYAT_DATA = [
-  { id: 'kongad', name: 'Kongad', nameML: 'കോങ്ങാട്', x: 48, y: 45, size: 'lg' },
-  { id: 'keralassery', name: 'Keralassery', nameML: 'കേരളശ്ശേരി', x: 30, y: 25, size: 'md' },
-  { id: 'mankara', name: 'Mankara', nameML: 'മങ്കര', x: 70, y: 30, size: 'md' },
-  { id: 'mannur', name: 'Mannur', nameML: 'മണ്ണൂർ', x: 20, y: 55, size: 'sm' },
-  { id: 'parali', name: 'Parali', nameML: 'പറളി', x: 75, y: 60, size: 'md' },
-  { id: 'kanjirapuzha', name: 'Kanjirapuzha', nameML: 'കഞ്ഞിരപ്പുഴ', x: 15, y: 75, size: 'md' },
-  { id: 'karimba', name: 'Karimba', nameML: 'കരിമ്പ', x: 55, y: 72, size: 'sm' },
-  { id: 'karakurussi', name: 'Karakurussi', nameML: 'കരകുറുശ്ശി', x: 85, y: 45, size: 'sm' },
-  { id: 'thachampara', name: 'Thachampara', nameML: 'തച്ചമ്പാറ', x: 40, y: 85, size: 'md' },
+  { id: 'kongad', name: 'Kongad', nameML: 'കോങ്ങാട്', col: 2, row: 1, size: 'lg' },
+  { id: 'keralassery', name: 'Keralassery', nameML: 'കേരളശ്ശേരി', col: 0, row: 0, size: 'md' },
+  { id: 'mankara', name: 'Mankara', nameML: 'മങ്കര', col: 3, row: 0, size: 'md' },
+  { id: 'mannur', name: 'Mannur', nameML: 'മണ്ണൂർ', col: 1, row: 0, size: 'md' },
+  { id: 'parali', name: 'Parali', nameML: 'പറളി', col: 4, row: 0, size: 'md' },
+  { id: 'kanjirapuzha', name: 'Kanjirapuzha', nameML: 'കഞ്ഞിരപ്പുഴ', col: 0, row: 2, size: 'md' },
+  { id: 'karimba', name: 'Karimba', nameML: 'കരിമ്പ', col: 1, row: 2, size: 'md' },
+  { id: 'karakurussi', name: 'Karakurussi', nameML: 'കരകുറുശ്ശി', col: 4, row: 1, size: 'md' },
+  { id: 'thachampara', name: 'Thachampara', nameML: 'തച്ചമ്പാറ', col: 3, row: 2, size: 'md' },
 ];
-
-const sizeMap = {
-  sm: { w: 52, h: 52, textSize: 'text-[7px]' },
-  md: { w: 60, h: 60, textSize: 'text-[8px]' },
-  lg: { w: 72, h: 72, textSize: 'text-[9px]' },
-};
 
 export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadMapProps) {
   return (
@@ -35,7 +30,7 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
       transition={{ duration: 0.6 }}
       className="relative w-full bg-gradient-to-br from-[#f0fdf4] to-[#ecfdf5] dark:from-[#0d1f15] dark:to-[#0a1a12] rounded-3xl border border-green-200 dark:border-green-900/50 p-6 md:p-8 overflow-hidden shadow-sm"
     >
-      {/* Background decoration */}
+      {/* Background grid decoration */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
         <svg width="100%" height="100%">
           <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -45,55 +40,69 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
         </svg>
       </div>
 
-      {/* Connection lines (SVG paths between panchayats) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-        {/* Main connections */}
-        <line x1="48" y1="45" x2="30" y2="25" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="70" y2="30" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="20" y2="55" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="75" y2="60" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="55" y2="72" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="85" y2="45" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="15" y2="75" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-        <line x1="48" y1="45" x2="40" y2="85" stroke="currentColor" strokeWidth="0.15" className="text-green-400/40 dark:text-green-600/30" />
-      </svg>
+      {/* Section Title */}
+      <div className="relative z-10 flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+          <MapPin className="w-5 h-5 text-primary" />
+        </div>
+        <div>
+          <h2 className="text-lg font-extrabold text-slate-900 dark:text-slate-100">Explore Kongad</h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">നിങ്ങളുടെ പഞ്ചായത്ത് തിരഞ്ഞെടുക്കൂ</p>
+        </div>
+        {activePanchayat !== 'all' && (
+          <button
+            onClick={() => onPanchayatClick('all')}
+            className="ml-auto text-xs font-bold text-primary hover:text-primary-dark bg-primary/10 px-3 py-1.5 rounded-full transition-colors"
+          >
+            Clear Filter ✕
+          </button>
+        )}
+      </div>
 
-      <div className="relative" style={{ paddingBottom: '55%' }}>
-        {PANCHAYAT_DATA.map((p) => {
+      {/* Panchayat Grid */}
+      <div className="relative z-10 grid grid-cols-3 sm:grid-cols-5 gap-3">
+        {PANCHAYAT_DATA.map((p, index) => {
           const isActive = activePanchayat === p.id;
           const isAll = activePanchayat === 'all';
-          const dims = sizeMap[p.size as keyof typeof sizeMap];
 
           return (
             <motion.button
               key={p.id}
-              onClick={() => onPanchayatClick(p.id)}
-              className={`absolute flex flex-col items-center justify-center rounded-2xl border-2 transition-all duration-300 cursor-pointer group
+              onClick={() => onPanchayatClick(isActive ? 'all' : p.id)}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              className={`relative flex flex-col items-center justify-center rounded-2xl border-2 p-3 md:p-4 cursor-pointer group transition-all duration-300
                 ${isActive
-                  ? 'bg-gradient-to-br from-primary to-primary-light border-primary text-white shadow-lg shadow-primary/30 scale-110 z-20'
+                  ? 'bg-gradient-to-br from-primary to-primary-light border-primary text-white shadow-lg shadow-primary/30 scale-[1.03]'
                   : isAll
-                    ? 'bg-white dark:bg-[#1a2b22] border-green-200 dark:border-green-800 text-slate-700 dark:text-green-100 hover:border-primary hover:shadow-md hover:scale-105 z-10'
-                    : 'bg-white/60 dark:bg-[#1a2b22]/60 border-gray-200 dark:border-green-900/40 text-slate-400 dark:text-green-200/40 hover:border-primary hover:text-slate-700 dark:hover:text-green-100 hover:bg-white dark:hover:bg-[#1a2b22] hover:scale-105 z-10'
-                }`}
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                transform: 'translate(-50%, -50%)',
-                width: `${dims.w}px`,
-                height: `${dims.h}px`,
-              }}
-              whileHover={{ scale: isActive ? 1.1 : 1.08 }}
-              whileTap={{ scale: 0.95 }}
+                    ? 'bg-white dark:bg-[#1a2b22] border-green-200 dark:border-green-800 text-slate-700 dark:text-green-100 hover:border-primary hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white/50 dark:bg-[#1a2b22]/50 border-gray-200 dark:border-green-900/40 text-slate-400 dark:text-green-200/40 hover:border-primary hover:text-slate-700 dark:hover:text-green-100 hover:bg-white dark:hover:bg-[#1a2b22] hover:scale-[1.02]'
+                }
+                ${p.size === 'lg' ? 'sm:col-span-1' : ''}
+              `}
+              whileHover={{ scale: isActive ? 1.03 : 1.04 }}
+              whileTap={{ scale: 0.97 }}
             >
               {/* Pulse ring for active */}
               {isActive && (
-                <span className="absolute inset-0 rounded-2xl animate-ping bg-primary/20" />
+                <span className="absolute inset-0 rounded-2xl animate-ping bg-primary/15" style={{ animationDuration: '2s' }} />
               )}
+
+              {/* Location dot */}
+              <div className={`w-3 h-3 rounded-full mb-2 transition-colors ${
+                isActive ? 'bg-white shadow-sm' : 'bg-primary/30 dark:bg-primary/50 group-hover:bg-primary'
+              }`} />
               
-              <span className={`font-extrabold ${dims.textSize} leading-tight text-center relative z-10`}>
+              <span className={`font-extrabold text-[10px] md:text-xs leading-tight text-center relative z-10 ${
+                isActive ? 'text-white' : ''
+              }`}>
                 {p.nameML}
               </span>
-              <span className={`${dims.textSize} opacity-70 leading-tight relative z-10 mt-0.5`}>
+              <span className={`text-[8px] md:text-[10px] leading-tight relative z-10 mt-0.5 ${
+                isActive ? 'text-white/80' : 'opacity-60'
+              }`}>
                 {p.name}
               </span>
             </motion.button>
