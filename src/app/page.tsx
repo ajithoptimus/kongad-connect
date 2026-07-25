@@ -1105,6 +1105,197 @@ export default function Home() {
           </aside>
 
         </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* TOURIST PLACES — EXPLORE KONGAD */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                  <span className="text-xl">🏞️</span>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100">കോങ്ങാട് ടൂറിസം</h2>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Explore the beauty of Kongad Constituency</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tourist Place Cards - Horizontal Scroll */}
+            <div className="flex overflow-x-auto hide-scrollbar gap-5 pb-4 -mx-2 px-2 snap-x snap-mandatory">
+              
+              {/* Card 1: Meenvallam */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+              >
+                <div className="relative h-[200px] overflow-hidden">
+                  <img src="/meenvallam.jpg" alt="Meenvallam Waterfall" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="bg-blue-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌊 Waterfall</span>
+                    <span className="bg-green-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🥾 Trekking</span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~30km from Palakkad</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 mb-1">മീൻവല്ലം വെള്ളച്ചാട്ടം</h3>
+                  <p className="text-xs font-semibold text-primary mb-3">Meenvallam Waterfalls</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">തുപ്പനാട് നദിയിൽ നിന്ന് രൂപം കൊണ്ട അഞ്ച് പടികളുള്ള മനോഹരമായ വെള്ളച്ചാട്ടം. പശ്ചിമഘട്ടത്തിന്റെ ഹൃദയഭാഗത്ത് 1.5 km ട്രെക്കിങ്ങിലൂടെ എത്തിച്ചേരാം.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2.5 py-1 rounded-full">🌧️ Best: Oct - Mar</span>
+                    <a href="https://maps.google.com/?q=Meenvallam+Waterfalls+Palakkad" target="_blank" className="text-xs font-bold text-primary hover:text-primary-dark flex items-center gap-1 transition-colors">
+                      Navigate <ChevronRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 2: Kanjirapuzha Dam */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+              >
+                <div className="relative h-[200px] overflow-hidden">
+                  <img src="/kanjirapuzha.jpg" alt="Kanjirapuzha Dam" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="bg-teal-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏞️ Dam</span>
+                    <span className="bg-purple-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">👨‍👩‍👧 Family</span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Kanjirapuzha</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 mb-1">കഞ്ഞിരപ്പുഴ ഡാം</h3>
+                  <p className="text-xs font-semibold text-primary mb-3">Kanjirapuzha Dam & Garden</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">വെട്ടിലാചോല നിത്യഹരിത വനത്തിനാൽ ചുറ്റപ്പെട്ട മനോഹരമായ ഡാം. ഡിയർ പാർക്ക്, ബോട്ടിങ്, മ്യൂസിക്കൽ ഫൗണ്ടൻ, കുട്ടികളുടെ പാർക്ക്.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-2.5 py-1 rounded-full">☀️ All Year</span>
+                    <a href="https://maps.google.com/?q=Kanjirapuzha+Dam+Palakkad" target="_blank" className="text-xs font-bold text-primary hover:text-primary-dark flex items-center gap-1 transition-colors">
+                      Navigate <ChevronRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 3: Pamperian Para Temple */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+              >
+                <div className="relative h-[200px] overflow-hidden">
+                  <img src="/pamperian.jpg" alt="Pamperian Para Temple" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="bg-orange-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🛕 Temple</span>
+                    <span className="bg-green-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌿 Nature</span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Keralassery</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 mb-1">പാമ്പേരിയൻ പാറ ക്ഷേത്രം</h3>
+                  <p className="text-xs font-semibold text-primary mb-3">Pamperian Para Temple</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">സുബ്രഹ്മണ്യ ഭഗവാനെ പ്രതിഷ്ഠിച്ച പാറമുകളിലെ ക്ഷേത്രം. താഴ്വരയുടെ മനോഹരമായ കാഴ്ച. 10 മിനിറ്റ് ട്രെക്കിങ്.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2.5 py-1 rounded-full">🛕 Festival Season</span>
+                    <a href="https://maps.google.com/?q=Pamperian+Para+Temple+Keralassery" target="_blank" className="text-xs font-bold text-primary hover:text-primary-dark flex items-center gap-1 transition-colors">
+                      Navigate <ChevronRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 4: Dhoni Hills */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+              >
+                <div className="relative h-[200px] overflow-hidden">
+                  <img src="/dhoni.jpg" alt="Dhoni Hills" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="bg-green-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏔️ Trekking</span>
+                    <span className="bg-red-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🔥 Adventure</span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~20km from Palakkad</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 mb-1">ധോണി ഹിൽസ്</h3>
+                  <p className="text-xs font-semibold text-primary mb-3">Dhoni Hills & Waterfalls</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">പശ്ചിമഘട്ടത്തിലെ ആവേശകരമായ ട്രെക്കിങ് സ്ഥലം. വെള്ളച്ചാട്ടവും മലനിരകളും. സാഹസികതയെ ഇഷ്ടപ്പെടുന്നവർക്ക് അനുയോജ്യം.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2.5 py-1 rounded-full">🌧️ Best: Oct - Feb</span>
+                    <a href="https://maps.google.com/?q=Dhoni+Hills+Palakkad" target="_blank" className="text-xs font-bold text-primary hover:text-primary-dark flex items-center gap-1 transition-colors">
+                      Navigate <ChevronRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 5: Palakkad Fort */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+              >
+                <div className="relative h-[200px] overflow-hidden">
+                  <img src="/palakkad-fort.jpg" alt="Palakkad Fort" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="bg-amber-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏛️ Heritage</span>
+                    <span className="bg-indigo-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">📸 Sightseeing</span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Palakkad Town</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-100 mb-1">പാലക്കാട് കോട്ട</h3>
+                  <p className="text-xs font-semibold text-primary mb-3">Palakkad Fort (Tipu Sultan Fort)</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">ടിപ്പു സുൽത്താന്റെ ചരിത്രപ്രസിദ്ധമായ ഗ്രാനൈറ്റ് കോട്ട. കിടങ്ങും കൊട്ടാരവും. പാലക്കാട് നഗരത്തിന്റെ ഹൃദയഭാഗത്ത്.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-2.5 py-1 rounded-full">☀️ All Year</span>
+                    <a href="https://maps.google.com/?q=Palakkad+Fort" target="_blank" className="text-xs font-bold text-primary hover:text-primary-dark flex items-center gap-1 transition-colors">
+                      Navigate <ChevronRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+            </div>
+          </motion.div>
+        </div>
+
       </main>
       {/* PREMIUM FOOTER */}
       <footer className="bg-slate-900 text-white py-12 mt-8">
