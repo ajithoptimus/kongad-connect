@@ -1107,6 +1107,229 @@ export default function Home() {
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* DEVELOPMENT DASHBOARD — വികസന ഡാഷ്‌ബോർഡ് */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
+                  <span className="text-xl">📊</span>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100">വികസന ഡാഷ്‌ബോർഡ്</h2>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Constituency Development Tracker</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Summary Stats Row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {[
+                { label: 'മൊത്തം പദ്ധതികൾ', labelEn: 'Total Projects', value: '24', icon: '📋', color: 'from-blue-500 to-cyan-500', bg: 'bg-blue-50 dark:bg-blue-950/40' },
+                { label: 'പൂർത്തിയായവ', labelEn: 'Completed', value: '14', icon: '✅', color: 'from-emerald-500 to-green-500', bg: 'bg-emerald-50 dark:bg-emerald-950/40' },
+                { label: 'നടന്നുകൊണ്ടിരിക്കുന്നവ', labelEn: 'In Progress', value: '8', icon: '🔄', color: 'from-amber-500 to-orange-500', bg: 'bg-amber-50 dark:bg-amber-950/40' },
+                { label: 'മൊത്തം ബജറ്റ്', labelEn: 'Total Budget', value: '₹48.5 Cr', icon: '💰', color: 'from-violet-500 to-purple-500', bg: 'bg-violet-50 dark:bg-violet-950/40' },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.labelEn}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`${stat.bg} rounded-2xl p-4 md:p-5 border border-slate-200/60 dark:border-green-900/30`}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center text-sm shadow-sm`}>
+                      {stat.icon}
+                    </div>
+                    <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-100">{stat.value}</div>
+                  </div>
+                  <div className="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                  <div className="text-[9px] text-slate-400 dark:text-slate-500">{stat.labelEn}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Project Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              
+              {/* Project 1 — Road */}
+              {[
+                {
+                  name: 'കോങ്ങാട്-മങ്കര റോഡ് വികസനം',
+                  nameEn: 'Kongad-Mankara Road Development',
+                  category: '🛤️ Road',
+                  categoryColor: 'bg-slate-600',
+                  panchayat: 'Kongad, Mankara',
+                  budget: '₹8.2 Cr',
+                  spent: '₹6.5 Cr',
+                  progress: 79,
+                  status: 'progress' as const,
+                  statusLabel: 'നിർമ്മാണം നടക്കുന്നു',
+                  startDate: 'Jan 2025',
+                  expectedEnd: 'Dec 2026',
+                  description: '12 km റോഡ് വീതി കൂട്ടലും ടാറിംഗും. ഡ്രെയിനേജ് നിർമ്മാണം ഉൾപ്പെടെ.',
+                },
+                {
+                  name: 'കേരളശ്ശേരി ജി.എച്ച്.എസ് നവീകരണം',
+                  nameEn: 'Keralassery GHS Renovation',
+                  category: '🏫 School',
+                  categoryColor: 'bg-blue-600',
+                  panchayat: 'Keralassery',
+                  budget: '₹3.5 Cr',
+                  spent: '₹3.5 Cr',
+                  progress: 100,
+                  status: 'completed' as const,
+                  statusLabel: 'പൂർത്തിയായി',
+                  startDate: 'Mar 2024',
+                  expectedEnd: 'Feb 2025',
+                  description: 'പുതിയ കെട്ടിടം, സ്‌മാർട്ട് ക്ലാസ് റൂം, ലാബ്, ലൈബ്രറി നവീകരണം.',
+                },
+                {
+                  name: 'കഞ്ഞിരപ്പുഴ കുടിവെള്ള പദ്ധതി',
+                  nameEn: 'Kanjirapuzha Drinking Water Project',
+                  category: '💧 Water',
+                  categoryColor: 'bg-cyan-600',
+                  panchayat: 'Kanjirapuzha, Karimba',
+                  budget: '₹12.8 Cr',
+                  spent: '₹8.9 Cr',
+                  progress: 62,
+                  status: 'progress' as const,
+                  statusLabel: 'പൈപ്പ്‌ലൈൻ നിർമ്മാണം',
+                  startDate: 'Jun 2025',
+                  expectedEnd: 'Mar 2027',
+                  description: '2 പഞ്ചായത്തുകളിലെ 15,000 കുടുംബങ്ങൾക്ക് ശുദ്ധജലം. 45 km പൈപ്പ്‌ലൈൻ.',
+                },
+                {
+                  name: 'പറളി PHC ആശുപത്രി നവീകരണം',
+                  nameEn: 'Parali PHC Hospital Upgrade',
+                  category: '🏥 Health',
+                  categoryColor: 'bg-red-500',
+                  panchayat: 'Parali',
+                  budget: '₹4.2 Cr',
+                  spent: '₹4.2 Cr',
+                  progress: 100,
+                  status: 'completed' as const,
+                  statusLabel: 'പൂർത്തിയായി',
+                  startDate: 'Aug 2024',
+                  expectedEnd: 'Jul 2025',
+                  description: 'പുതിയ OP ബ്ലോക്ക്, ലാബ്, ഫാർമസി, 20 കിടക്ക ICU.',
+                },
+                {
+                  name: 'തച്ചമ്പാറ കാർഷിക മാർക്കറ്റ്',
+                  nameEn: 'Thachampara Agri Market Complex',
+                  category: '🌾 Agriculture',
+                  categoryColor: 'bg-green-600',
+                  panchayat: 'Thachampara',
+                  budget: '₹6.1 Cr',
+                  spent: '₹2.4 Cr',
+                  progress: 35,
+                  status: 'progress' as const,
+                  statusLabel: 'അടിസ്ഥാന നിർമ്മാണം',
+                  startDate: 'Nov 2025',
+                  expectedEnd: 'Jun 2027',
+                  description: 'ആധുനിക കാർഷിക വിപണന കേന്ദ്രം. കോൾഡ് സ്റ്റോറേജ്, ഗ്രേഡിങ് യൂണിറ്റ്.',
+                },
+                {
+                  name: 'മണ്ണൂർ-കരകുറുശ്ശി പാലം',
+                  nameEn: 'Mannur-Karakurussi Bridge',
+                  category: '🌉 Bridge',
+                  categoryColor: 'bg-indigo-600',
+                  panchayat: 'Mannur, Karakurussi',
+                  budget: '₹13.7 Cr',
+                  spent: '₹0',
+                  progress: 0,
+                  status: 'upcoming' as const,
+                  statusLabel: 'ടെൻഡർ പ്രക്രിയ',
+                  startDate: 'Jan 2027',
+                  expectedEnd: 'Dec 2028',
+                  description: 'പുതിയ 120m പാലം. രണ്ട് പഞ്ചായത്തുകളെ ബന്ധിപ്പിക്കുന്ന പ്രധാന പദ്ധതി.',
+                },
+              ].map((project, i) => {
+                const statusConfig = {
+                  completed: { color: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-700', barColor: 'bg-gradient-to-r from-emerald-500 to-green-400', dot: '🟢' },
+                  progress: { color: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-700', barColor: 'bg-gradient-to-r from-amber-500 to-orange-400', dot: '🟡' },
+                  upcoming: { color: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-700', barColor: 'bg-gradient-to-r from-blue-500 to-indigo-400', dot: '🔵' },
+                };
+                const sc = statusConfig[project.status];
+
+                return (
+                  <motion.div
+                    key={project.nameEn}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.5 }}
+                    className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-slate-200 dark:border-green-800/50 p-5 hover:shadow-lg transition-all duration-300 group"
+                  >
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className={`text-[10px] font-bold text-white px-2 py-0.5 rounded-full ${project.categoryColor}`}>{project.category}</span>
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sc.color}`}>{sc.dot} {project.statusLabel}</span>
+                        </div>
+                        <h3 className="text-sm font-extrabold text-slate-900 dark:text-slate-100 leading-snug">{project.name}</h3>
+                        <p className="text-[10px] text-primary font-semibold mt-0.5">{project.nameEn}</p>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed mb-4">{project.description}</p>
+
+                    {/* Progress Bar */}
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400">Progress</span>
+                        <span className="text-sm font-black text-slate-900 dark:text-slate-100">{project.progress}%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${project.progress}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+                          className={`h-full rounded-full ${sc.barColor} shadow-sm`}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Budget Info */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex-1 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-2.5">
+                        <div className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">Budget</div>
+                        <div className="text-xs font-black text-slate-900 dark:text-slate-100">{project.budget}</div>
+                      </div>
+                      <div className="flex-1 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-2.5">
+                        <div className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">Spent</div>
+                        <div className="text-xs font-black text-slate-900 dark:text-slate-100">{project.spent}</div>
+                      </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-green-900/30">
+                      <div className="flex items-center gap-1 text-[10px] text-slate-400 dark:text-slate-500">
+                        <MapPin className="w-3 h-3" /> {project.panchayat}
+                      </div>
+                      <div className="text-[10px] text-slate-400 dark:text-slate-500">
+                        {project.startDate} → {project.expectedEnd}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+
+
         {/* TOURIST PLACES — EXPLORE KONGAD */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
