@@ -1519,6 +1519,283 @@ export default function Home() {
           </motion.div>
         </div>
 
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* EVENT CALENDAR — ഇവന്റ് കലണ്ടർ */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center shadow-lg shadow-rose-500/20">
+                  <Calendar className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100">വരാനിരിക്കുന്ന ഇവന്റുകൾ</h2>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Upcoming Events & Programs</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Events Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                {
+                  title: 'കാർഷിക സെമിനാർ',
+                  titleEn: 'Agriculture Seminar',
+                  date: '2026 ആഗസ്റ്റ് 5',
+                  dateEn: 'Aug 5, 2026',
+                  day: '5',
+                  month: 'AUG',
+                  time: '10:00 AM - 4:00 PM',
+                  venue: 'കോങ്ങാട് ടൗൺ ഹാൾ',
+                  venueEn: 'Kongad Town Hall',
+                  category: '🌾 Agriculture',
+                  categoryColor: 'bg-green-500',
+                  highlight: true,
+                },
+                {
+                  title: 'സ്‌കൂൾ കലോത്സവം',
+                  titleEn: 'School Arts Festival',
+                  date: '2026 ആഗസ്റ്റ് 12-14',
+                  dateEn: 'Aug 12-14, 2026',
+                  day: '12',
+                  month: 'AUG',
+                  time: '9:00 AM - 6:00 PM',
+                  venue: 'കേരളശ്ശേരി GHS',
+                  venueEn: 'Keralassery GHS',
+                  category: '🎭 Cultural',
+                  categoryColor: 'bg-purple-500',
+                  highlight: false,
+                },
+                {
+                  title: 'സൗജന്യ ആരോഗ്യ ക്യാമ്പ്',
+                  titleEn: 'Free Health Camp',
+                  date: '2026 ആഗസ്റ്റ് 18',
+                  dateEn: 'Aug 18, 2026',
+                  day: '18',
+                  month: 'AUG',
+                  time: '8:00 AM - 2:00 PM',
+                  venue: 'പറളി PHC',
+                  venueEn: 'Parali PHC',
+                  category: '🏥 Health',
+                  categoryColor: 'bg-red-500',
+                  highlight: false,
+                },
+                {
+                  title: 'ഓണാഘോഷം',
+                  titleEn: 'Onam Celebration',
+                  date: '2026 സെപ്റ്റംബർ 5',
+                  dateEn: 'Sep 5, 2026',
+                  day: '5',
+                  month: 'SEP',
+                  time: '10:00 AM onwards',
+                  venue: 'മണ്ഡല തല ആഘോഷം',
+                  venueEn: 'Constituency Level',
+                  category: '🎉 Festival',
+                  categoryColor: 'bg-amber-500',
+                  highlight: true,
+                },
+                {
+                  title: 'തൊഴിൽ മേള',
+                  titleEn: 'Job Fair 2026',
+                  date: '2026 സെപ്റ്റംബർ 15',
+                  dateEn: 'Sep 15, 2026',
+                  day: '15',
+                  month: 'SEP',
+                  time: '9:00 AM - 5:00 PM',
+                  venue: 'കോങ്ങാട് ടൗൺ ഹാൾ',
+                  venueEn: 'Kongad Town Hall',
+                  category: '💼 Career',
+                  categoryColor: 'bg-blue-500',
+                  highlight: false,
+                },
+                {
+                  title: 'രക്തദാന ക്യാമ്പ്',
+                  titleEn: 'Blood Donation Camp',
+                  date: '2026 സെപ്റ്റംബർ 22',
+                  dateEn: 'Sep 22, 2026',
+                  day: '22',
+                  month: 'SEP',
+                  time: '9:00 AM - 3:00 PM',
+                  venue: 'കഞ്ഞിരപ്പുഴ ഗ്രാമ പഞ്ചായത്ത്',
+                  venueEn: 'Kanjirapuzha Grama Panchayat',
+                  category: '❤️ Social',
+                  categoryColor: 'bg-rose-500',
+                  highlight: false,
+                },
+                {
+                  title: 'ക്ഷേത്രോത്സവം',
+                  titleEn: 'Temple Festival',
+                  date: '2026 ഒക്ടോബർ 8-10',
+                  dateEn: 'Oct 8-10, 2026',
+                  day: '8',
+                  month: 'OCT',
+                  time: 'All Day',
+                  venue: 'പാമ്പേരിയൻ പാറ ക്ഷേത്രം',
+                  venueEn: 'Pamperian Para Temple',
+                  category: '🛕 Temple',
+                  categoryColor: 'bg-orange-500',
+                  highlight: true,
+                },
+                {
+                  title: 'വനിതാ ശാക്തീകരണ ക്യാമ്പ്',
+                  titleEn: "Women's Empowerment Camp",
+                  date: '2026 ഒക്ടോബർ 20',
+                  dateEn: 'Oct 20, 2026',
+                  day: '20',
+                  month: 'OCT',
+                  time: '10:00 AM - 4:00 PM',
+                  venue: 'തച്ചമ്പാറ കമ്മ്യൂണിറ്റി ഹാൾ',
+                  venueEn: 'Thachampara Community Hall',
+                  category: '👩 Women',
+                  categoryColor: 'bg-pink-500',
+                  highlight: false,
+                },
+              ].map((event, i) => (
+                <motion.div
+                  key={event.titleEn}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                  className={`bg-white dark:bg-[#1a2b22] rounded-2xl border overflow-hidden hover:shadow-lg transition-all duration-300 group ${
+                    event.highlight
+                      ? 'border-primary/40 dark:border-primary/30 ring-1 ring-primary/10'
+                      : 'border-slate-200 dark:border-green-800/50'
+                  }`}
+                >
+                  {/* Date Strip */}
+                  <div className={`${event.highlight ? 'bg-gradient-to-r from-primary to-primary-light' : 'bg-slate-100 dark:bg-slate-800/70'} px-5 py-3 flex items-center gap-4`}>
+                    <div className="text-center">
+                      <div className={`text-2xl font-black leading-none ${event.highlight ? 'text-white' : 'text-slate-900 dark:text-slate-100'}`}>{event.day}</div>
+                      <div className={`text-[10px] font-extrabold tracking-widest ${event.highlight ? 'text-white/80' : 'text-slate-500 dark:text-slate-400'}`}>{event.month}</div>
+                    </div>
+                    <div className="h-8 w-px bg-white/20 dark:bg-slate-600" />
+                    <div className="flex-1 min-w-0">
+                      <h3 className={`text-sm font-extrabold leading-snug truncate ${event.highlight ? 'text-white' : 'text-slate-900 dark:text-slate-100'}`}>{event.title}</h3>
+                      <p className={`text-[10px] font-medium truncate ${event.highlight ? 'text-white/70' : 'text-slate-500 dark:text-slate-400'}`}>{event.titleEn}</p>
+                    </div>
+                  </div>
+
+                  {/* Details */}
+                  <div className="p-4 space-y-2.5">
+                    <span className={`text-[10px] font-bold text-white px-2.5 py-0.5 rounded-full ${event.categoryColor}`}>{event.category}</span>
+                    
+                    <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400">
+                      <span className="text-sm">🕐</span>
+                      <span className="font-semibold">{event.time}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-[11px] text-slate-500 dark:text-slate-400">
+                      <MapPin className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                      <div>
+                        <span className="font-bold text-slate-700 dark:text-slate-300">{event.venue}</span>
+                        <span className="block text-[10px] text-slate-400 dark:text-slate-500">{event.venueEn}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* PHOTO GALLERY — ഫോട്ടോ ഗാലറി */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+                  <Camera className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100">ഫോട്ടോ ഗാലറി</h2>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Moments from Kongad Constituency</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 
+              PHOTO GALLERY - PLACEHOLDER IMAGES
+              ====================================
+              Replace the src paths below with your real images.
+              Just drop images into /public/gallery/ folder and update the paths.
+              
+              Recommended image sizes:
+              - Landscape: 800x450px or 1200x675px
+              - Portrait: 450x600px or 675x900px
+              - Square: 600x600px
+            */}
+
+            {/* Masonry Grid */}
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+              {[
+                { src: '/gallery/event-1.jpg', caption: 'ഓണാഘോഷം 2025', captionEn: 'Onam Celebration 2025', category: '🎉 Festival', aspect: 'aspect-[4/3]' },
+                { src: '/gallery/nature-1.jpg', caption: 'കോങ്ങാട് നെൽപ്പാടങ്ങൾ', captionEn: 'Kongad Paddy Fields', category: '🌿 Nature', aspect: 'aspect-[3/4]' },
+                { src: '/gallery/event-2.jpg', caption: 'സ്‌കൂൾ ഉദ്ഘാടനം', captionEn: 'School Inauguration', category: '🏫 Development', aspect: 'aspect-[16/9]' },
+                { src: '/gallery/festival-1.jpg', caption: 'ക്ഷേത്രോത്സവം', captionEn: 'Temple Festival', category: '🛕 Temple', aspect: 'aspect-[3/4]' },
+                { src: '/gallery/nature-2.jpg', caption: 'മീൻവല്ലം ട്രെക്കിങ്', captionEn: 'Meenvallam Trekking', category: '🏞️ Tourism', aspect: 'aspect-[4/3]' },
+                { src: '/gallery/event-3.jpg', caption: 'റോഡ് ഉദ്ഘാടനം', captionEn: 'Road Inauguration', category: '🛤️ Development', aspect: 'aspect-[16/9]' },
+                { src: '/gallery/mla-1.jpg', caption: 'ജനസമ്പർക്ക പരിപാടി', captionEn: 'Public Outreach Program', category: '👥 Program', aspect: 'aspect-[4/3]' },
+                { src: '/gallery/nature-3.jpg', caption: 'കഞ്ഞിരപ്പുഴ സൂര്യാസ്തമയം', captionEn: 'Kanjirapuzha Sunset', category: '🌅 Nature', aspect: 'aspect-[16/9]' },
+                { src: '/gallery/event-4.jpg', caption: 'ആരോഗ്യ ക്യാമ്പ്', captionEn: 'Health Camp', category: '🏥 Health', aspect: 'aspect-[4/3]' },
+                { src: '/gallery/event-5.jpg', caption: 'കാർഷിക സെമിനാർ', captionEn: 'Agri Seminar', category: '🌾 Agriculture', aspect: 'aspect-[3/4]' },
+                { src: '/gallery/sports-1.jpg', caption: 'കോങ്ങാട് സ്‌പോർട്‌സ് മീറ്റ്', captionEn: 'Kongad Sports Meet', category: '⚽ Sports', aspect: 'aspect-[16/9]' },
+                { src: '/gallery/event-6.jpg', caption: 'രക്തദാന ക്യാമ്പ്', captionEn: 'Blood Donation Camp', category: '❤️ Social', aspect: 'aspect-[4/3]' },
+              ].map((photo, i) => (
+                <motion.div
+                  key={photo.captionEn}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                  className="break-inside-avoid rounded-2xl overflow-hidden border border-slate-200 dark:border-green-800/50 bg-white dark:bg-[#1a2b22] group cursor-pointer hover:shadow-xl transition-all duration-300"
+                >
+                  <div className={`relative ${photo.aspect} overflow-hidden bg-slate-100 dark:bg-slate-800`}>
+                    {/* Replace with real images — placeholder shows gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 dark:from-slate-700 dark:via-slate-800 dark:to-slate-700 flex items-center justify-center">
+                      <div className="text-center">
+                        <Camera className="w-8 h-8 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+                        <span className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold">Upload Image</span>
+                      </div>
+                    </div>
+                    {/* Uncomment below and remove the placeholder div above once you add real images: */}
+                    {/* <img src={photo.src} alt={photo.captionEn} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /> */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <span className={`text-[9px] font-bold text-white/90 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm`}>{photo.category}</span>
+                    </div>
+                  </div>
+                  <div className="p-3">
+                    <h4 className="text-xs font-extrabold text-slate-900 dark:text-slate-100 leading-snug">{photo.caption}</h4>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{photo.captionEn}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Upload Note */}
+            <div className="mt-6 text-center">
+              <p className="text-xs text-slate-400 dark:text-slate-500 italic">
+                📸 ഫോട്ടോകൾ ചേർക്കാൻ: <span className="font-semibold text-primary">/public/gallery/</span> ഫോൾഡറിൽ ഇമേജുകൾ ചേർക്കുക
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
       </main>
       {/* PREMIUM FOOTER */}
       <footer className="bg-slate-900 text-white py-12 mt-8">
