@@ -1796,6 +1796,157 @@ export default function Home() {
           </motion.div>
         </div>
 
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* TESTIMONIALS — ജനങ്ങളുടെ അഭിപ്രായങ്ങൾ */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                  <span className="text-xl">💬</span>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100">ജനങ്ങളുടെ അഭിപ്രായങ്ങൾ</h2>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">What Citizens Say About Kongad Connect</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  name: 'രാജേഷ് കുമാർ',
+                  nameEn: 'Rajesh Kumar',
+                  panchayat: 'Kongad',
+                  role: 'കർഷകൻ',
+                  roleEn: 'Farmer',
+                  avatar: '👨‍🌾',
+                  avatarBg: 'from-green-500 to-emerald-600',
+                  stars: 5,
+                  quote: 'കാർഷിക വിപണന ശൃംഖല വഴി ഞങ്ങളുടെ ഉൽപ്പന്നങ്ങൾക്ക് നല്ല വില ലഭിക്കുന്നു. ഇടനിലക്കാരെ ഒഴിവാക്കി നേരിട്ട് വിൽക്കാൻ കഴിയുന്നത് വലിയ മാറ്റമാണ്.',
+                  quoteEn: 'The agricultural market chain helps us get fair prices. Cutting out middlemen has been a game changer.',
+                  date: 'Jul 2026',
+                },
+                {
+                  name: 'ലക്ഷ്മി ദേവി',
+                  nameEn: 'Lakshmi Devi',
+                  panchayat: 'Keralassery',
+                  role: 'വിദ്യാർത്ഥി രക്ഷകർത്താവ്',
+                  roleEn: 'Parent',
+                  avatar: '👩',
+                  avatarBg: 'from-pink-500 to-rose-600',
+                  stars: 5,
+                  quote: 'കേരളശ്ശേരി സ്‌കൂൾ നവീകരണം എന്റെ മക്കളുടെ പഠനാന്തരീക്ഷം പൂർണ്ണമായും മാറ്റി. സ്‌മാർട്ട് ക്ലാസ് റൂമുകൾ അവർക്ക് ഏറെ ഇഷ്ടമാണ്.',
+                  quoteEn: 'The school renovation completely transformed my children\'s learning environment. They love the smart classrooms.',
+                  date: 'Jun 2026',
+                },
+                {
+                  name: 'മുഹമ്മദ് ഫൈസൽ',
+                  nameEn: 'Muhammad Faisal',
+                  panchayat: 'Mankara',
+                  role: 'ചെറുകിട വ്യാപാരി',
+                  roleEn: 'Small Business Owner',
+                  avatar: '👨‍💼',
+                  avatarBg: 'from-blue-500 to-indigo-600',
+                  stars: 4,
+                  quote: 'റോഡ് വികസന പദ്ധതി ഞങ്ങളുടെ പ്രദേശത്തിന്റെ ഗതാഗതം വളരെ മെച്ചപ്പെടുത്തി. ഇപ്പോൾ ഉപഭോക്താക്കൾ എളുപ്പത്തിൽ ഞങ്ങളുടെ കടയിൽ എത്തുന്നു.',
+                  quoteEn: 'The road development project greatly improved transportation. Customers now reach our shop easily.',
+                  date: 'May 2026',
+                },
+                {
+                  name: 'സരിത എസ്. നായർ',
+                  nameEn: 'Saritha S. Nair',
+                  panchayat: 'Parali',
+                  role: 'ആരോഗ്യ പ്രവർത്തക',
+                  roleEn: 'Health Worker',
+                  avatar: '👩‍⚕️',
+                  avatarBg: 'from-red-500 to-rose-600',
+                  stars: 5,
+                  quote: 'പറളി PHC നവീകരണം ഗ്രാമീണ ആരോഗ്യ സേവനങ്ങൾ പൂർണ്ണമായും ഉയർത്തി. ICU സൗകര്യം ഇപ്പോൾ ഇവിടെ തന്നെ ലഭ്യമാണ്. ജീവൻ രക്ഷിക്കുന്ന മാറ്റം!',
+                  quoteEn: 'The PHC renovation elevated rural healthcare completely. ICU facility is now available locally. A life-saving change!',
+                  date: 'Apr 2026',
+                },
+                {
+                  name: 'വിനോദ് ചന്ദ്രൻ',
+                  nameEn: 'Vinod Chandran',
+                  panchayat: 'Kanjirapuzha',
+                  role: 'യുവജന പ്രവർത്തകൻ',
+                  roleEn: 'Youth Activist',
+                  avatar: '👨',
+                  avatarBg: 'from-violet-500 to-purple-600',
+                  stars: 5,
+                  quote: 'ഈ പോർട്ടൽ മണ്ഡലത്തിലെ എല്ലാ വിവരങ്ങളും ഒരു സ്ഥലത്ത് ലഭ്യമാക്കുന്നു. എമർജൻസി നമ്പറുകൾ മുതൽ ബസ് ടൈമിംഗ് വരെ — ഒറ്റ ക്ലിക്കിൽ!',
+                  quoteEn: 'This portal makes all constituency info available in one place. From emergency numbers to bus timings — one click!',
+                  date: 'Jul 2026',
+                },
+                {
+                  name: 'മീന ടീച്ചർ',
+                  nameEn: 'Meena Teacher',
+                  panchayat: 'Thachampara',
+                  role: 'അധ്യാപിക',
+                  roleEn: 'Teacher',
+                  avatar: '👩‍🏫',
+                  avatarBg: 'from-teal-500 to-cyan-600',
+                  stars: 5,
+                  quote: 'വികസന ഡാഷ്‌ബോർഡ് ഞങ്ങളുടെ മണ്ഡലത്തിൽ നടക്കുന്ന പദ്ധതികൾ സുതാര്യമായി കാണിക്കുന്നു. ഇത് ജനാധിപത്യത്തിന്റെ ഭംഗിയാണ്.',
+                  quoteEn: 'The development dashboard shows projects transparently. This is the beauty of democracy.',
+                  date: 'Jun 2026',
+                },
+              ].map((t, i) => (
+                <motion.div
+                  key={t.nameEn}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-slate-200 dark:border-green-800/50 p-6 hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
+                >
+                  {/* Quote Mark Background */}
+                  <div className="absolute -top-2 -right-2 text-8xl font-serif text-slate-100 dark:text-slate-800/50 leading-none select-none pointer-events-none group-hover:text-primary/10 transition-colors">"</div>
+
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-4">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <span key={s} className={`text-sm ${s < t.stars ? 'text-amber-400' : 'text-slate-200 dark:text-slate-700'}`}>★</span>
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed mb-5 relative z-10 min-h-[80px]">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-500 italic mb-4 relative z-10">
+                    &ldquo;{t.quoteEn}&rdquo;
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-green-900/30 relative z-10">
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center text-lg shadow-sm`}>
+                      {t.avatar}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-extrabold text-slate-900 dark:text-slate-100 truncate">{t.name}</div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400">{t.role} • {t.roleEn}</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <span className="text-[9px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">{t.panchayat}</span>
+                      <div className="text-[9px] text-slate-400 dark:text-slate-500 mt-1">{t.date}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
       </main>
       {/* PREMIUM FOOTER */}
       <footer className="bg-slate-900 text-white py-12 mt-8">
