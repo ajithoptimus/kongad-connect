@@ -29,6 +29,7 @@ import Link from 'next/link';
 import { useTheme } from './components/ThemeProvider';
 import { useLanguage } from './components/LanguageProvider';
 import KongadMap from './components/KongadMap';
+import PollWidget from './components/PollWidget';
 import { Moon, Sun, Globe, Plus, MessageCircle, AlertTriangle } from 'lucide-react';
 import { emitTelemetry } from '@/utils/telemetry';
 import { 
@@ -1795,6 +1796,11 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* PUBLIC POLL WIDGET */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <PollWidget />
 
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* TESTIMONIALS — ജനങ്ങളുടെ അഭിപ്രായങ്ങൾ */}
