@@ -30,6 +30,7 @@ import { useTheme } from './components/ThemeProvider';
 import { useLanguage } from './components/LanguageProvider';
 import KongadMap from './components/KongadMap';
 import PollWidget from './components/PollWidget';
+import SchemeFinder from './components/SchemeFinder';
 import { Moon, Sun, Globe, Plus, MessageCircle, AlertTriangle } from 'lucide-react';
 import { emitTelemetry } from '@/utils/telemetry';
 import { 
@@ -1329,6 +1330,11 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* SCHEME & SCHOLARSHIP FINDER */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <SchemeFinder />
 
 
         {/* TOURIST PLACES — EXPLORE KONGAD */}
