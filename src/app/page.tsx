@@ -479,24 +479,6 @@ export default function Home() {
           <KongadMap activePanchayat={activePanchayat} onPanchayatClick={handlePanchayatClick} />
         </div>
 
-        {/* Horizontal Filter Chips — Full width above the grid */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mb-8">
-          <div className="flex overflow-x-auto hide-scrollbar space-x-3 pb-3 border-b border-gray-200">
-            {PANCHAYATS.map((p) => (
-              <button 
-                key={p.id}
-                onClick={() => handlePanchayatClick(p.id)}
-                className={`px-6 py-3 rounded-full whitespace-nowrap text-sm font-bold transition-all border ${
-                  activePanchayat === p.id 
-                    ? 'bg-gradient-to-r from-primary to-primary-light text-white border-primary shadow-md shadow-primary/20' 
-                    : 'bg-white text-slate-600 dark:text-slate-400 border-gray-200 hover:border-primary/40 hover:text-primary hover:shadow-sm'
-                }`}
-              >
-                {p.name}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Master 12-Column Grid */}
         <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-140px)]">
@@ -1247,19 +1229,19 @@ export default function Home() {
                   description: 'ആധുനിക കാർഷിക വിപണന കേന്ദ്രം. കോൾഡ് സ്റ്റോറേജ്, ഗ്രേഡിങ് യൂണിറ്റ്.',
                 },
                 {
-                  name: 'മണ്ണൂർ-കരകുറുശ്ശി പാലം',
-                  nameEn: 'Mannur-Karakurussi Bridge',
-                  category: '🌉 Bridge',
+                  name: 'മണ്ണൂർ-അമ്പലപ്പാറ റോഡ്',
+                  nameEn: 'Mannur-Ambalappara Road',
+                  category: '🛤️ Road',
                   categoryColor: 'bg-indigo-600',
-                  panchayat: 'Mannur, Karakurussi',
-                  budget: '₹13.7 Cr',
+                  panchayat: 'Mannur, Ambalappara',
+                  budget: '₹11.2 Cr',
                   spent: '₹0',
                   progress: 0,
                   status: 'upcoming' as const,
                   statusLabel: 'ടെൻഡർ പ്രക്രിയ',
                   startDate: 'Jan 2027',
                   expectedEnd: 'Dec 2028',
-                  description: 'പുതിയ 120m പാലം. രണ്ട് പഞ്ചായത്തുകളെ ബന്ധിപ്പിക്കുന്ന പ്രധാന പദ്ധതി.',
+                  description: 'മണ്ണൂർ മുതൽ അമ്പലപ്പാറ വരെയുള്ള പ്രധാന റോഡ് വികസനം. 8.5 km നീളം.',
                 },
               ].map((project, i) => {
                 const statusConfig = {
