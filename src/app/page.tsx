@@ -31,6 +31,7 @@ import { useLanguage } from './components/LanguageProvider';
 import KongadMap from './components/KongadMap';
 import PollWidget from './components/PollWidget';
 import SchemeFinder from './components/SchemeFinder';
+import { TharisuNilamRegister, TharisuNilamSeeker } from './components/TharisuNilam';
 import { Moon, Sun, Globe, Plus, MessageCircle, AlertTriangle } from 'lucide-react';
 import { emitTelemetry } from '@/utils/telemetry';
 import { 
@@ -1105,144 +1106,10 @@ export default function Home() {
             </motion.div>
 
             {/* ─── THARISU NILAM REGISTRATION ─── */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4 }}
-              className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-amber-200 dark:border-amber-800/50 shadow-sm overflow-hidden"
-            >
-              <div className="bg-gradient-to-r from-amber-500 to-yellow-500 p-4 flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                  <span className="text-xl">🌾</span>
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-white text-sm">തരിശു നിലം രജിസ്‌ട്രേഷൻ</h3>
-                  <p className="text-[10px] text-white/80 font-medium">Register Your Fallow Land</p>
-                </div>
-              </div>
-              <div className="p-4 space-y-3">
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                  കൃഷി ചെയ്യാത്ത ഭൂമി ഉണ്ടോ? ഇവിടെ രജിസ്റ്റർ ചെയ്യുക. ആവശ്യക്കാരായ കർഷകരെ ഞങ്ങൾ ബന്ധിപ്പിക്കാം.
-                </p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 italic">
-                  Have idle farming land? Register here and we&apos;ll connect you with interested farmers.
-                </p>
-                <div className="space-y-2">
-                  <input 
-                    type="text" 
-                    placeholder="ഉടമയുടെ പേര് (Owner Name)" 
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium" 
-                  />
-                  <div className="grid grid-cols-2 gap-2">
-                    <input 
-                      type="text" 
-                      placeholder="സ്ഥലം (Location)" 
-                      className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium" 
-                    />
-                    <input 
-                      type="text" 
-                      placeholder="വിസ്തീർണ്ണം (Area)" 
-                      className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium" 
-                    />
-                  </div>
-                  <select className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium">
-                    <option value="">പഞ്ചായത്ത് തിരഞ്ഞെടുക്കുക (Select Panchayat)</option>
-                    <option value="kongad">കോങ്ങാട്</option>
-                    <option value="keralassery">കേരളശ്ശേരി</option>
-                    <option value="mankara">മങ്കര</option>
-                    <option value="parali">പറളി</option>
-                    <option value="kanjirapuzha">കഞ്ഞിരപ്പുഴ</option>
-                    <option value="thachampara">തച്ചമ്പാറ</option>
-                  </select>
-                  <input 
-                    type="tel" 
-                    placeholder="ഫോൺ നമ്പർ (Phone)" 
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium" 
-                  />
-                  <textarea 
-                    rows={2}
-                    placeholder="അധിക വിവരങ്ങൾ (Additional Details - soil type, water availability etc.)" 
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium resize-none" 
-                  />
-                </div>
-                <button className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-amber-500/20 flex items-center justify-center gap-2">
-                  🌾 നിലം രജിസ്റ്റർ ചെയ്യുക (Register Land)
-                </button>
-              </div>
-            </motion.div>
+            <TharisuNilamRegister />
 
             {/* ─── THARISU NILAM AAVASYAMUNDU ─── */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-green-200 dark:border-green-800/50 shadow-sm overflow-hidden"
-            >
-              <div className="bg-gradient-to-r from-green-600 to-emerald-500 p-4 flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                  <span className="text-xl">👨‍🌾</span>
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-white text-sm">തരിശു നിലം ആവശ്യമുണ്ട്</h3>
-                  <p className="text-[10px] text-white/80 font-medium">Looking for Farming Land</p>
-                </div>
-              </div>
-              <div className="p-4 space-y-3">
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                  കൃഷി ചെയ്യാൻ ഭൂമി ആവശ്യമുണ്ടോ? ഇവിടെ രജിസ്റ്റർ ചെയ്യുക. തരിശു നിലം ഉടമകളെ ഞങ്ങൾ ബന്ധിപ്പിക്കാം.
-                </p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 italic">
-                  Need land for farming? Register here and we&apos;ll connect you with landowners.
-                </p>
-                <div className="space-y-2">
-                  <input 
-                    type="text" 
-                    placeholder="പേര് (Your Name)" 
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium" 
-                  />
-                  <div className="grid grid-cols-2 gap-2">
-                    <select className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium">
-                      <option value="">പഞ്ചായത്ത് (Panchayat)</option>
-                      <option value="kongad">കോങ്ങാട്</option>
-                      <option value="keralassery">കേരളശ്ശേരി</option>
-                      <option value="mankara">മങ്കര</option>
-                      <option value="parali">പറളി</option>
-                      <option value="kanjirapuzha">കഞ്ഞിരപ്പുഴ</option>
-                      <option value="thachampara">തച്ചമ്പാറ</option>
-                    </select>
-                    <input 
-                      type="text" 
-                      placeholder="ആവശ്യമുള്ള വിസ്തീർണ്ണം (Area)" 
-                      className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium" 
-                    />
-                  </div>
-                  <select className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium">
-                    <option value="">കൃഷി തരം (Farming Type)</option>
-                    <option value="rice">നെൽകൃഷി (Paddy)</option>
-                    <option value="vegetable">പച്ചക്കറി (Vegetable)</option>
-                    <option value="banana">വാഴ (Banana)</option>
-                    <option value="coconut">തെങ്ങ് (Coconut)</option>
-                    <option value="mixed">മിശ്ര കൃഷി (Mixed Farming)</option>
-                    <option value="other">മറ്റുള്ളവ (Other)</option>
-                  </select>
-                  <input 
-                    type="tel" 
-                    placeholder="ഫോൺ നമ്പർ (Phone)" 
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium" 
-                  />
-                  <textarea 
-                    rows={2}
-                    placeholder="അധിക വിവരങ്ങൾ (Experience, preferences etc.)" 
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium resize-none" 
-                  />
-                </div>
-                <button className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-green-500/20 flex items-center justify-center gap-2">
-                  👨‍🌾 അപേക്ഷ സമർപ്പിക്കുക (Submit Request)
-                </button>
-              </div>
-            </motion.div>
+            <TharisuNilamSeeker />
 
           </aside>
 
