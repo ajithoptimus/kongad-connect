@@ -377,12 +377,12 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <Link 
-                  href="/mla-connect" 
+                <a 
+                  href="#mla-contact" 
                   className="bg-accent text-white px-7 py-3 rounded-full font-bold hover:bg-accent-light transition-all flex items-center gap-2 w-fit shadow-lg shadow-accent/30 hover:shadow-xl hover:-translate-y-0.5 text-base"
                 >
                   {t('heroButton1')}
-                </Link>
+                </a>
                 <a 
                   href="#krishi-hub" 
                   className="border-2 border-white/30 text-white px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm text-base"
@@ -1950,7 +1950,7 @@ export default function Home() {
 
       </main>
       {/* PREMIUM FOOTER */}
-      <footer className="bg-slate-900 text-white py-12 mt-8">
+      <footer id="mla-contact" className="bg-slate-900 text-white py-12 mt-8">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
@@ -1969,7 +1969,7 @@ export default function Home() {
               <h4 className="font-bold text-sm uppercase tracking-wider text-slate-300 mb-4">പ്രധാന ലിങ്കുകൾ</h4>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><a href="#krishi-hub" className="hover:text-green-400 transition-colors">കാർഷിക ഇടം</a></li>
-                <li><Link href="/mla-connect" className="hover:text-green-400 transition-colors">MLA Connect</Link></li>
+                <li><a href="#mla-contact" className="hover:text-green-400 transition-colors">MLA Connect</a></li>
                 <li><a href="#civic-reporter" className="hover:text-green-400 transition-colors">ജനകീയ റിപ്പോർട്ടർ</a></li>
               </ul>
             </div>
