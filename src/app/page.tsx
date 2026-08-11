@@ -155,13 +155,7 @@ const SectionHeader = ({ title }: { title: string }) => (
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   const [activePanchayat, setActivePanchayat] = useState<string>('all');
   const [krishiRole, setKrishiRole] = useState<UserRole>('farmer');
   const [isKrishiExpanded, setIsKrishiExpanded] = useState(true);
@@ -315,7 +309,7 @@ export default function Home() {
               <div className="flex items-center gap-2 mb-6">
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 shadow-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
                   aria-label="Toggle dark mode"
                 >
                   {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -323,7 +317,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 shadow-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
                   aria-label="Toggle language"
                 >
                   <Globe className="w-4 h-4" />
@@ -336,7 +330,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <span className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-medium px-3 py-1.5 rounded-full mb-4 backdrop-blur-sm">
+                <span className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-medium px-3 py-1.5 rounded-full mb-4 shadow-sm">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
@@ -385,7 +379,7 @@ export default function Home() {
                 </a>
                 <a 
                   href="#krishi-hub" 
-                  className="border-2 border-white/30 text-white px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm text-base"
+                  className="border-2 border-white/30 text-white px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 shadow-sm text-base"
                 >
                   {t('heroButton2')}
                 </a>
@@ -1363,11 +1357,11 @@ export default function Home() {
                   <img src="/meenvallam.jpg" alt="Meenvallam Waterfall" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="bg-blue-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌊 Waterfall</span>
-                    <span className="bg-green-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🥾 Trekking</span>
+                    <span className="bg-blue-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌊 Waterfall</span>
+                    <span className="bg-green-600/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🥾 Trekking</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~30km from Palakkad</span>
+                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~30km from Palakkad</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1395,11 +1389,11 @@ export default function Home() {
                   <img src="/kanjirapuzha.jpg" alt="Kanjirapuzha Dam" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="bg-teal-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏞️ Dam</span>
-                    <span className="bg-purple-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">👨‍👩‍👧 Family</span>
+                    <span className="bg-teal-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏞️ Dam</span>
+                    <span className="bg-purple-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">👨‍👩‍👧 Family</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Kanjirapuzha</span>
+                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Kanjirapuzha</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1427,11 +1421,11 @@ export default function Home() {
                   <img src="/pamperian.jpg" alt="Pamperian Para Temple" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="bg-orange-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🛕 Temple</span>
-                    <span className="bg-green-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌿 Nature</span>
+                    <span className="bg-orange-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🛕 Temple</span>
+                    <span className="bg-green-600/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌿 Nature</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Keralassery</span>
+                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Keralassery</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1459,11 +1453,11 @@ export default function Home() {
                   <img src="/dhoni.jpg" alt="Dhoni Hills" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="bg-green-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏔️ Trekking</span>
-                    <span className="bg-red-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🔥 Adventure</span>
+                    <span className="bg-green-600/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏔️ Trekking</span>
+                    <span className="bg-red-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🔥 Adventure</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~20km from Palakkad</span>
+                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~20km from Palakkad</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1491,11 +1485,11 @@ export default function Home() {
                   <img src="/palakkad-fort.jpg" alt="Palakkad Fort" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="bg-amber-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏛️ Heritage</span>
-                    <span className="bg-indigo-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">📸 Sightseeing</span>
+                    <span className="bg-amber-600/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🏛️ Heritage</span>
+                    <span className="bg-indigo-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">📸 Sightseeing</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Palakkad Town</span>
+                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Palakkad Town</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1772,7 +1766,7 @@ export default function Home() {
                     {/* <img src={photo.src} alt={photo.captionEn} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /> */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <span className={`text-[9px] font-bold text-white/90 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm`}>{photo.category}</span>
+                      <span className={`text-[9px] font-bold text-white/90 px-2 py-0.5 rounded-full bg-white/20 shadow-sm`}>{photo.category}</span>
                     </div>
                   </div>
                   <div className="p-3">
@@ -1998,7 +1992,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-[59]"
+              className="fixed inset-0 bg-black/20 dark:bg-black/50 shadow-sm z-[59]"
               onClick={() => setIsFabOpen(false)}
             />
           )}
@@ -2142,7 +2136,7 @@ export default function Home() {
                   <div className="text-[10px] text-green-200">Kongad, Palakkad</div>
                 </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 mt-4 border border-white/20">
+              <div className="bg-white/10 shadow-sm rounded-xl p-3 mt-4 border border-white/20">
                 <div className="flex items-start gap-3">
                   <CloudLightning className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
                   <div>
