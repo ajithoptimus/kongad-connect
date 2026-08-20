@@ -32,6 +32,9 @@ import KongadMap from './components/KongadMap';
 import PollWidget from './components/PollWidget';
 import SchemeFinder from './components/SchemeFinder';
 import { TharisuNilamRegister, TharisuNilamSeeker } from './components/TharisuNilam';
+import AIChatbot from './components/AIChatbot';
+import { SchemeRecommender } from './components/SchemeRecommender';
+import { CropAdvisor } from './components/CropAdvisor';
 import { Moon, Sun, Globe, Plus, MessageCircle, AlertTriangle } from 'lucide-react';
 import { emitTelemetry } from '@/utils/telemetry';
 import { 
@@ -1319,6 +1322,20 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         <SchemeFinder />
 
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* AI SCHEME RECOMMENDER */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+          <SchemeRecommender />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* AI CROP ADVISOR */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+          <CropAdvisor />
+        </div>
+
 
         {/* TOURIST PLACES — EXPLORE KONGAD */}
         {/* ═══════════════════════════════════════════════════════════════ */}
@@ -2178,6 +2195,9 @@ export default function Home() {
           <span className="text-[10px] font-bold">{t('navProfile')}</span>
         </button>
       </nav>
+
+      {/* AI CHATBOT - Floating */}
+      <AIChatbot />
     </div>
   );
 }
