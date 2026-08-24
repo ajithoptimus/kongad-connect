@@ -303,11 +303,11 @@ export default function Home() {
           }}
         />
 
-        <div className="container mx-auto px-6 lg:px-8 relative z-10 py-12">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 relative z-10 py-12 lg:py-16">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Text Content */}
-            <div className="text-white">
+            <div className="text-white lg:col-span-7 xl:col-span-8">
               {/* Theme & Language Controls */}
               <div className="flex items-center gap-2 mb-6">
                 <button
@@ -472,13 +472,13 @@ export default function Home() {
       <main className="w-full min-h-screen py-12">
 
         {/* Interactive Constituency Map */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mb-6">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mb-6">
           <KongadMap activePanchayat={activePanchayat} onPanchayatClick={handlePanchayatClick} />
         </div>
 
 
         {/* Master 12-Column Grid */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-140px)]">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-140px)]">
 
           {/* ═══════════════════════════════════════════════════════════════ */}
           {/* LEFT COLUMN: Information Feed (Scrollable) — 8 columns       */}
@@ -1097,7 +1097,7 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* DEVELOPMENT DASHBOARD — വികസന ഡാഷ്‌ബോർഡ് */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1325,21 +1325,21 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* AI SCHEME RECOMMENDER */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12">
           <SchemeRecommender />
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* AI CROP ADVISOR */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12">
           <CropAdvisor />
         </div>
 
 
         {/* TOURIST PLACES — EXPLORE KONGAD */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1529,7 +1529,7 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* EVENT CALENDAR — ഇവന്റ് കലണ്ടർ */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1715,7 +1715,7 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* PHOTO GALLERY — ഫോട്ടോ ഗാലറി */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12 mb-8">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1811,7 +1811,7 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* TESTIMONIALS — ജനങ്ങളുടെ അഭിപ്രായങ്ങൾ */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12 mb-8">
+        <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
