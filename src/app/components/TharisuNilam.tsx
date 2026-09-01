@@ -28,8 +28,11 @@ const panchayats = [
   { value: 'kongad', label: 'കോങ്ങാട്' },
   { value: 'keralassery', label: 'കേരളശ്ശേരി' },
   { value: 'mankara', label: 'മങ്കര' },
+  { value: 'mannur', label: 'മണ്ണൂർ' },
   { value: 'parali', label: 'പറളി' },
   { value: 'kanjirapuzha', label: 'കഞ്ഞിരപ്പുഴ' },
+  { value: 'karimba', label: 'കരിമ്പ' },
+  { value: 'karakurussi', label: 'കരകുറുശ്ശി' },
   { value: 'thachampara', label: 'തച്ചമ്പാറ' },
 ];
 

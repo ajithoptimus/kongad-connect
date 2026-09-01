@@ -115,7 +115,8 @@ export default function SchemeFinder() {
   });
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 mt-12 mb-8">
+    <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mb-10 mt-12">
+      <div className="bg-gradient-to-br from-violet-50/60 to-purple-50/60 dark:from-[#0f0a1c] dark:to-[#170a1c] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-violet-900/5 w-full">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -227,6 +228,7 @@ export default function SchemeFinder() {
           )}
         </div>
       </motion.div>
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-noto-malayalam)", "sans-serif"],
+        sans: ["var(--font-malayalam)", "sans-serif"],
       },
       colors: {
         background: "var(--background)",

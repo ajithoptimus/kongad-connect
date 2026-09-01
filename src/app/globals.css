@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-inter), var(--font-noto-malayalam), "system-ui", "sans-serif";
+  --font-sans: var(--font-inter), var(--font-malayalam), "system-ui", "sans-serif";
   --color-primary: #1B7A42;
   --color-primary-dark: #0F5028;
   --color-primary-light: #22955A;
@@ -61,9 +61,9 @@ html.dark ::-webkit-scrollbar-track {
   outline-offset: 2px;
 }
 input:focus, select:focus, textarea:focus {
-  outline: none !important;
-  border: 2px solid #1B7A42 !important;
-  box-shadow: none !important;
+  outline: none;
+  border-color: #1B7A42;
+  box-shadow: 0 0 0 3px rgba(27, 122, 66, 0.15);
 }
 
 /* Selection color */
@@ -77,10 +77,10 @@ html.dark ::selection {
 }
 
 /* Smooth transitions for theme switching */
-*, *::before, *::after {
-  transition-property: background-color, border-color, color, fill, stroke;
+body, .theme-transition {
+  transition-property: background-color, border-color, color;
   transition-timing-function: ease;
-  transition-duration: 0.15s;
+  transition-duration: 0.2s;
 }
 
 /* Override transitions for animations that should not inherit theme transition */

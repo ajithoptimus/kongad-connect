@@ -78,8 +78,14 @@ export function CropAdvisor() {
                 <select className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-green-800/50 bg-white dark:bg-[#0f1914] text-gray-900 dark:text-white" onChange={e => handleSelect('panchayat', e.target.value)} value={formData.panchayat}>
                   <option value="">Select Panchayat</option>
                   <option value="Kongad">Kongad</option>
+                  <option value="Keralassery">Keralassery</option>
                   <option value="Mankara">Mankara</option>
                   <option value="Mannur">Mannur</option>
+                  <option value="Parali">Parali</option>
+                  <option value="Kanjirapuzha">Kanjirapuzha</option>
+                  <option value="Karimba">Karimba</option>
+                  <option value="Karakurissi">Karakurissi</option>
+                  <option value="Thachampara">Thachampara</option>
                 </select>
               </div>
               <div>

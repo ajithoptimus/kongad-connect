@@ -59,8 +59,8 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
         )}
       </div>
 
-      {/* Panchayat Grid */}
-      <div className="relative z-10 grid grid-cols-3 sm:grid-cols-5 gap-3">
+      {/* Panchayat Single Row (Scrollable on mobile) */}
+      <div className="relative z-10 flex overflow-x-auto gap-3 pb-4 scrollbar-hide snap-x [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {PANCHAYAT_DATA.map((p, index) => {
           const isActive = activePanchayat === p.id;
           const isAll = activePanchayat === 'all';
@@ -73,14 +73,13 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.4 }}
-              className={`relative flex flex-col items-center justify-center rounded-2xl border-2 p-3 md:p-4 cursor-pointer group transition-all duration-300
+              className={`relative flex-shrink-0 snap-start w-[140px] md:w-auto md:flex-1 flex flex-col items-center justify-center rounded-2xl border-2 p-3 md:p-4 cursor-pointer group transition-all duration-300
                 ${isActive
                   ? 'bg-gradient-to-br from-primary to-primary-light border-primary text-white shadow-lg shadow-primary/30 scale-[1.03]'
                   : isAll
                     ? 'bg-white dark:bg-[#1a2b22] border-green-200 dark:border-green-800 text-slate-700 dark:text-green-100 hover:border-primary hover:shadow-md hover:scale-[1.02]'
                     : 'bg-white/50 dark:bg-[#1a2b22]/50 border-gray-200 dark:border-green-900/40 text-slate-400 dark:text-green-200/40 hover:border-primary hover:text-slate-700 dark:hover:text-green-100 hover:bg-white dark:hover:bg-[#1a2b22] hover:scale-[1.02]'
                 }
-                ${p.size === 'lg' ? 'sm:col-span-1' : ''}
               `}
               whileHover={{ scale: isActive ? 1.03 : 1.04 }}
               whileTap={{ scale: 0.97 }}
