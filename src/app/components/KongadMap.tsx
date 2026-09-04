@@ -28,17 +28,8 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="relative w-full bg-gradient-to-br from-[#f0fdf4] to-[#ecfdf5] dark:from-[#0d1f15] dark:to-[#0a1a12] rounded-3xl border border-green-200 dark:border-green-900/50 p-6 md:p-8 overflow-hidden shadow-sm"
+      className="relative w-full bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-slate-700/30 p-6 md:p-8 shadow-xl shadow-emerald-500/10 overflow-hidden"
     >
-      {/* Background grid decoration */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-        <svg width="100%" height="100%">
-          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-green-600" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
 
       {/* Section Title */}
       <div className="relative z-10 flex items-center gap-3 mb-6">
@@ -73,12 +64,12 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.4 }}
-              className={`relative flex-shrink-0 snap-start w-[140px] md:w-auto md:flex-1 flex flex-col items-center justify-center rounded-2xl border-2 p-3 md:p-4 cursor-pointer group transition-all duration-300
+              className={`relative flex-shrink-0 snap-start w-auto flex flex-col items-center justify-center rounded-2xl border-2 px-6 py-4 cursor-pointer group transition-all duration-300 backdrop-blur-sm
                 ${isActive
-                  ? 'bg-gradient-to-br from-primary to-primary-light border-primary text-white shadow-lg shadow-primary/30 scale-[1.03]'
+                  ? 'bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/30 scale-[1.03]'
                   : isAll
-                    ? 'bg-white dark:bg-[#1a2b22] border-green-200 dark:border-green-800 text-slate-700 dark:text-green-100 hover:border-primary hover:shadow-md hover:scale-[1.02]'
-                    : 'bg-white/50 dark:bg-[#1a2b22]/50 border-gray-200 dark:border-green-900/40 text-slate-400 dark:text-green-200/40 hover:border-primary hover:text-slate-700 dark:hover:text-green-100 hover:bg-white dark:hover:bg-[#1a2b22] hover:scale-[1.02]'
+                    ? 'bg-white/50 dark:bg-slate-800/50 border-emerald-200/50 dark:border-emerald-800/50 text-slate-700 dark:text-emerald-100 hover:border-emerald-500 hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white/30 dark:bg-slate-800/30 border-gray-200/50 dark:border-emerald-900/40 text-slate-500 dark:text-emerald-200/60 hover:border-emerald-500 hover:text-slate-700 dark:hover:text-emerald-100 hover:bg-white/80 dark:hover:bg-slate-800/80 hover:scale-[1.02]'
                 }
               `}
               whileHover={{ scale: isActive ? 1.03 : 1.04 }}
@@ -86,20 +77,20 @@ export default function KongadMap({ activePanchayat, onPanchayatClick }: KongadM
             >
               {/* Pulse ring for active */}
               {isActive && (
-                <span className="absolute inset-0 rounded-2xl animate-ping bg-primary/15" style={{ animationDuration: '2s' }} />
+                <span className="absolute inset-0 rounded-2xl animate-ping bg-emerald-500/20" style={{ animationDuration: '2s' }} />
               )}
 
               {/* Location dot */}
               <div className={`w-3 h-3 rounded-full mb-2 transition-colors ${
-                isActive ? 'bg-white shadow-sm' : 'bg-primary/30 dark:bg-primary/50 group-hover:bg-primary'
+                isActive ? 'bg-white shadow-sm' : 'bg-emerald-500/30 dark:bg-emerald-500/50 group-hover:bg-emerald-500'
               }`} />
               
-              <span className={`font-extrabold text-[10px] md:text-xs leading-tight text-center relative z-10 ${
+              <span className={`font-extrabold text-sm md:text-base leading-tight text-center relative z-10 whitespace-nowrap ${
                 isActive ? 'text-white' : ''
               }`}>
                 {p.nameML}
               </span>
-              <span className={`text-[8px] md:text-[10px] leading-tight relative z-10 mt-0.5 ${
+              <span className={`text-[10px] md:text-xs leading-tight relative z-10 mt-0.5 whitespace-nowrap ${
                 isActive ? 'text-white/80' : 'opacity-60'
               }`}>
                 {p.name}

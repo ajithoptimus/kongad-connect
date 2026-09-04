@@ -148,12 +148,14 @@ const BLOOD_DONORS: BloodDonor[] = [
 ];
 
 const SectionHeader = ({ title }: { title: string }) => (
-  <div className="flex items-center justify-between bg-slate-50 dark:bg-[#0f1a14] dark:border-green-900/50 border-y border-gray-200 px-4 py-3 mb-6">
-    <div className="flex items-center">
-      <div className="w-1.5 h-6 bg-primary mr-3" />
+  <div className="flex items-center justify-between bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border border-white/20 dark:border-slate-700/30 rounded-2xl px-5 py-3.5 mb-6 shadow-sm">
+    <div className="flex items-center gap-3">
+      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20">
+        <div className="w-1.5 h-1.5 bg-white rounded-full animate-[pulse-glow_2s_ease-in-out_infinite]" />
+      </div>
       <h2 className="text-[15px] font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">{title}</h2>
     </div>
-    <a href="#" className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">View All</a>
+    <a href="#" className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">View All</a>
   </div>
 );
 
@@ -269,36 +271,34 @@ export default function Home() {
 
 
 
-      {/* Ambient Fixed Background Layer with State Emblem Watermark */}
-      <div className="fixed inset-0 z-[-1] bg-[#F4F7F5] dark:bg-[#0a1510] overflow-hidden flex items-center justify-center">
-        <div className="absolute top-[-15%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
-        {/* Government of Kerala Emblem Watermark */}
-        <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Seal_of_Kerala.svg" 
-          alt="Government of Kerala Watermark" 
-          className="w-[80vw] md:w-[50vw] max-w-[600px] opacity-[0.03] pointer-events-none grayscale"
-        />
+      {/* Ambient Fixed Background Layer */}
+      <div className="fixed inset-0 z-[-1] bg-slate-50 dark:bg-slate-950 overflow-hidden flex items-center justify-center">
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-500/10 blur-[120px] pointer-events-none animate-[gradient-shift_8s_ease-in-out_infinite]" style={{ backgroundSize: '200% 200%' }} />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-gradient-to-tl from-emerald-600/10 to-green-400/5 blur-[120px] pointer-events-none animate-[gradient-shift_8s_ease-in-out_infinite]" style={{ backgroundSize: '200% 200%', animationDirection: 'reverse' }} />
+        {/* Floating Particles */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-emerald-400/40 blur-[1px] animate-[float_4s_ease-in-out_infinite]" />
+        <div className="absolute top-3/4 left-2/3 w-3 h-3 rounded-full bg-teal-400/30 blur-[2px] animate-[float_6s_ease-in-out_infinite_1s]" />
+        <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-emerald-300/50 blur-[1px] animate-[float_5s_ease-in-out_infinite_2s]" />
       </div>
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-gradient-to-br from-[#1a7a3a] via-[#15663a] to-[#0d4a28]">
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900">
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <motion.img
             src="/dam.png"
             alt="Kanjirapuzha Dam in Kongad"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-25 mix-blend-overlay"
             initial={{ scale: 1 }}
             animate={{ scale: 1.05 }}
             transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a7a3a]/90 via-[#15663a]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-emerald-800/80 to-transparent" />
         </div>
 
         {/* Grain texture overlay */}
         <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
@@ -310,10 +310,10 @@ export default function Home() {
             {/* Text Content */}
             <div className="text-white lg:col-span-7 xl:col-span-8">
               {/* Theme & Language Controls */}
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-3 mb-8">
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 shadow-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md shadow-lg border border-white/20 text-white px-4 py-2.5 rounded-full transition-all text-xs font-bold"
                   aria-label="Toggle dark mode"
                 >
                   {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -321,7 +321,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 shadow-sm border border-white/20 text-white px-3 py-2 rounded-full transition-all text-xs font-bold"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md shadow-lg border border-white/20 text-white px-4 py-2.5 rounded-full transition-all text-xs font-bold"
                   aria-label="Toggle language"
                 >
                   <Globe className="w-4 h-4" />
@@ -334,17 +334,17 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <span className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-medium px-3 py-1.5 rounded-full mb-4 shadow-sm">
+                <span className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-100 text-xs font-medium px-4 py-2 rounded-full mb-6 shadow-sm">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                   </span>
                   Welcome to Kongad Connect
                 </span>
               </motion.div>
 
               <motion.h1
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.1] mb-2"
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] mb-4 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/70 drop-shadow-sm"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
@@ -353,7 +353,7 @@ export default function Home() {
               </motion.h1>
               
               <motion.p
-                className="text-sm lg:text-base text-green-200/90 font-bold tracking-widest uppercase mb-5 max-w-lg"
+                className="text-sm lg:text-base text-emerald-200/90 font-bold tracking-widest uppercase mb-6 max-w-lg drop-shadow-md"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -366,24 +366,24 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <p className="mt-3 text-base lg:text-lg text-white/80 max-w-2xl leading-relaxed mb-8">{t('heroDescription')}</p>
+                <p className="mt-3 text-base lg:text-lg text-white/80 max-w-2xl leading-relaxed mb-10 font-medium">{t('heroDescription')}</p>
               </motion.div>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-3"
+                className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <a 
                   href="#mla-contact" 
-                  className="bg-accent text-white px-7 py-3 rounded-full font-bold hover:bg-accent-light transition-all flex items-center gap-2 w-fit shadow-lg shadow-accent/30 hover:shadow-xl hover:-translate-y-0.5 text-base"
+                  className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-3.5 rounded-full font-bold hover:from-amber-400 hover:to-orange-400 transition-all flex items-center justify-center gap-2 w-fit shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5 text-base"
                 >
                   {t('heroButton1')}
                 </a>
                 <a 
                   href="#krishi-hub" 
-                  className="border-2 border-white/30 text-white px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 shadow-sm text-base"
+                  className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-2 shadow-sm text-base"
                 >
                   {t('heroButton2')}
                 </a>
@@ -391,7 +391,7 @@ export default function Home() {
 
               {/* Trust badges */}
               <motion.div
-                className="mt-8 flex flex-wrap gap-4"
+                className="mt-10 flex flex-wrap gap-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -402,15 +402,15 @@ export default function Home() {
                   { icon: "📰", label: "കോങ്ങാട് വാർത്തകൾ" },
                   { icon: "💼", label: "തൊഴിൽ & നാട്ടുചന്ത" },
                 ].map((badge) => (
-                  <div key={badge.label} className="flex items-center gap-2 text-green-200">
+                  <div key={badge.label} className="flex items-center gap-2.5 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-2xl">
                     <span className="text-lg">{badge.icon}</span>
-                    <span className="text-xs font-medium">{badge.label}</span>
+                    <span className="text-sm font-medium text-emerald-50">{badge.label}</span>
                   </div>
                 ))}
               </motion.div>
             </div>
 
-            {/* Hero Visual - Tech Scanner Element */}
+            {/* Hero Visual - Clean Tech MLA Card */}
             <motion.div
               className="relative hidden lg:block"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -419,36 +419,27 @@ export default function Home() {
             >
               <div className="relative mx-auto w-[280px] h-[340px]">
                 {/* Glow effect */}
-                <div className="absolute inset-0 bg-green-400/20 rounded-3xl blur-3xl scale-110" />
+                <div className="absolute inset-0 bg-emerald-500/20 rounded-3xl blur-3xl scale-110" />
 
                 {/* Main image container */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-black/50 group">
+                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl shadow-emerald-900/50 group">
                   <img
                     src="/mla-thulasi.jpg"
                     alt="K. Santhakumari - MLA Kongad"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   
-                  {/* Subtle dark gradient for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-green-950/80 via-transparent to-transparent" />
+                  {/* Frosted Glass Overlay for bottom info */}
+                  <div className="absolute bottom-0 left-0 w-full h-2/5 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent backdrop-blur-[2px]" />
 
                   {/* Corner Brackets */}
-                  <div className="absolute top-5 left-5 w-6 h-6 border-t-[3px] border-l-[3px] border-white/60" />
-                  <div className="absolute top-5 right-5 w-6 h-6 border-t-[3px] border-r-[3px] border-white/60" />
-                  <div className="absolute bottom-5 left-5 w-6 h-6 border-b-[3px] border-l-[3px] border-white/60" />
-                  <div className="absolute bottom-5 right-5 w-6 h-6 border-b-[3px] border-r-[3px] border-white/60" />
-
-                  {/* Scanning Line Animation */}
-                  <motion.div
-                    className="absolute left-0 right-0 h-[2px] bg-green-400 shadow-[0_0_15px_rgba(74,222,128,1)] z-10"
-                    animate={{ top: ["15%", "85%", "15%"] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  />
-
+                  <div className="absolute top-5 left-5 w-6 h-6 border-t-[3px] border-l-[3px] border-white/40 rounded-tl-lg" />
+                  <div className="absolute top-5 right-5 w-6 h-6 border-t-[3px] border-r-[3px] border-white/40 rounded-tr-lg" />
+                  
                   {/* Bottom Info */}
-                  <div className="absolute bottom-8 left-0 w-full text-center px-4 drop-shadow-lg">
-                     <p className="text-white text-[10px] opacity-90 uppercase tracking-widest font-bold mb-1">MLA Kongad, Hon. Minister</p>
-                     <p className="text-white text-sm font-extrabold tracking-wide uppercase">K A Thulasi Teacher</p>
+                  <div className="absolute bottom-6 left-0 w-full text-center px-4 drop-shadow-md">
+                     <p className="text-emerald-300 text-[10px] opacity-90 uppercase tracking-[0.2em] font-bold mb-1">Hon. Minister</p>
+                     <p className="text-white text-base font-extrabold tracking-wide uppercase">K A Thulasi Teacher</p>
                   </div>
                 </div>
               </div>
@@ -458,13 +449,13 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center gap-2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 flex flex-col items-center gap-2 backdrop-blur-sm bg-white/5 px-4 py-2 rounded-full border border-white/10"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
         >
-          <span className="text-xs tracking-widest uppercase">{t('scroll')}</span>
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <span className="text-[10px] tracking-[0.2em] uppercase font-bold">{t('scroll')}</span>
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
       </section>
@@ -479,7 +470,7 @@ export default function Home() {
 
         {/* Tharisu Nilam (50/50 Split) */}
         <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mb-10">
-          <div className="bg-gradient-to-br from-blue-100 to-[#dbeafe] dark:from-[#0c1e30] dark:to-[#07131e] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/50 dark:border-slate-800/50 shadow-xl shadow-blue-900/5">
+          <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/30 dark:border-slate-700/30 shadow-xl shadow-emerald-500/5">
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
                 <span className="text-3xl">🌱</span> തരിശു നിലം സംയോജന പദ്ധതി
@@ -506,7 +497,7 @@ export default function Home() {
 
             {/* Nelmani Fresh Ad - will be added back when image asset is ready */}
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100/70 dark:from-[#0b2413] dark:to-[#071a0e] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-green-900/5 w-full">
+            <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/30 dark:border-slate-700/30 shadow-xl shadow-emerald-500/5 w-full">
               <div className="text-center mb-8">
                 <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
                   <span className="text-3xl">🌾</span> സമഗ്ര കാർഷിക സേവനങ്ങൾ
@@ -517,8 +508,8 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 w-full">
               {/* Section 1: കാർഷിക ഇടം (Krishi Hub — Market Rates) */}
-            <section id="krishi-hub" className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
-              <div className="bg-gradient-to-r from-primary to-primary-light p-5 md:p-6 rounded-t-2xl">
+            <section id="krishi-hub" className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-emerald-500/5 border border-slate-200/50 dark:border-slate-700/30 flex flex-col">
+              <div className="bg-gradient-to-r from-emerald-600 to-teal-600 shadow-md p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsKrishiExpanded(!isKrishiExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
@@ -530,7 +521,7 @@ export default function Home() {
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
                 {isKrishiExpanded && (
-                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                  <div className="bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 p-4 rounded-xl text-sm leading-relaxed border border-emerald-200/30 dark:border-emerald-800/30 backdrop-blur-sm mb-2">
                     കോങ്ങാടിന്റെ കാർഷിക ഹൃദയത്തിലേക്ക് സ്വാഗതം. കർഷകർക്ക് ആവശ്യമായ ദൈനംദിന വിപണി വിലകൾ, കാലാവസ്ഥാ മുന്നറിയിപ്പുകൾ, മറ്റ് കാർഷിക വിവരങ്ങൾ എന്നിവ ഇവിടെ ഒറ്റനോട്ടത്തിൽ ലഭ്യമാണ്. ഇടനിലക്കാരില്ലാതെ കർഷകർക്കും വ്യാപാരികൾക്കും നേരിട്ട് വിനിമയം നടത്താനുള്ള സുതാര്യമായ വേദി കൂടിയാണിത്.
                   </div>
                 )}
@@ -542,7 +533,7 @@ export default function Home() {
                 className="grid grid-cols-2 md:grid-cols-3 gap-3"
               >
                 {marketItems.map((item) => (
-                  <motion.div variants={staggerItem} key={item.id} className={`bg-slate-50 rounded-xl p-5 border-l-4 ${item.trend === 'up' ? 'border-green-500' : item.trend === 'down' ? 'border-red-400' : 'border-slate-300'} shadow-sm flex flex-col justify-center min-h-[90px] hover:shadow-md transition-shadow`}>
+                  <motion.div variants={staggerItem} key={item.id} className={`bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl p-5 border-l-4 shadow-sm hover:shadow-md transition-all ${item.trend === 'up' ? 'border-green-500' : item.trend === 'down' ? 'border-red-400' : 'border-slate-300'} shadow-sm flex flex-col justify-center min-h-[90px] hover:shadow-md transition-shadow`}>
                     <span className="text-base font-bold text-gray-800">{item.name}</span>
                     <div className="flex items-end justify-between mt-2">
                       <div className="flex items-baseline gap-1">
@@ -565,7 +556,7 @@ export default function Home() {
 {/* ═══════════════════════════════════════════════════════════════ */}
         {/* DEVELOPMENT DASHBOARD — വികസന ഡാഷ്‌ബോർഡ് */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="bg-gradient-to-br from-slate-100 to-indigo-50/50 dark:from-[#111827] dark:to-[#0f172a] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-indigo-900/5 w-full">
+        <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/30 dark:border-slate-700/30 shadow-xl shadow-emerald-500/5 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -599,13 +590,13 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`${stat.bg} rounded-2xl p-4 md:p-5 border border-slate-200/60 dark:border-green-900/30`}
+                  className={`${stat.bg} backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/40 dark:border-slate-700/50 shadow-lg shadow-black/5`}
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center text-sm shadow-sm`}>
                       {stat.icon}
                     </div>
-                    <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-100">{stat.value}</div>
+                    <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-100 tabular-nums">{stat.value}</div>
                   </div>
                   <div className="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">{stat.label}</div>
                   <div className="text-[9px] text-slate-400 dark:text-slate-500">{stat.labelEn}</div>
@@ -787,7 +778,7 @@ export default function Home() {
 
 
             {/* Section 2: കാർഷിക അറിവുകൾ (Agri-Tips) */}
-            <section className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
+            <section className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-emerald-500/5 border border-slate-200/50 dark:border-slate-700/30 flex flex-col">
               <div className="bg-gradient-to-r from-amber-500 to-amber-400 p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsTipsExpanded(!isTipsExpanded)}
@@ -800,7 +791,7 @@ export default function Home() {
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
                 {isTipsExpanded && (
-                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                  <div className="bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 p-4 rounded-xl text-sm leading-relaxed border border-emerald-200/30 dark:border-emerald-800/30 backdrop-blur-sm mb-2">
                     പുതിയ കാർഷിക രീതികൾ, വിളപരിപാലനം, ജൈവവള പ്രയോഗം എന്നിവയെക്കുറിച്ചുള്ള വിദഗ്ധ ലേഖനങ്ങൾ. മികച്ച വിളവിനും ലാഭത്തിനും ഈ അറിവുകൾ പ്രയോജനപ്പെടുത്താം.
                   </div>
                 )}
@@ -827,8 +818,8 @@ export default function Home() {
             </section>
 
             {/* Section: ഉത്സവങ്ങൾ (Local Events Timeline) */}
-            <section className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
-              <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-5 md:p-6 rounded-t-2xl">
+            <section className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-emerald-500/5 border border-slate-200/50 dark:border-slate-700/30 flex flex-col">
+              <div className="bg-gradient-to-r from-purple-600 to-purple-500 shadow-md p-5 md:p-6 rounded-t-2xl">
                 <button onClick={() => setIsEventsExpanded(!isEventsExpanded)} className="w-full flex items-center justify-between focus:outline-none">
                   <h2 className="text-lg md:text-xl font-extrabold text-white tracking-wide flex items-center gap-2">🎪 ഉത്സവങ്ങൾ & പരിപാടികൾ</h2>
                   <ChevronDown className={`w-5 h-5 text-white/70 transform ${isEventsExpanded ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`} />
@@ -879,8 +870,8 @@ export default function Home() {
 
 
             {/* Civic Reporter */}
-            <section id="civic-reporter" className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
-              <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-5 md:p-6 rounded-t-2xl">
+            <section id="civic-reporter" className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-emerald-500/5 border border-slate-200/50 dark:border-slate-700/30 flex flex-col">
+              <div className="bg-gradient-to-r from-rose-500 to-pink-500 shadow-md p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsCivicExpanded(!isCivicExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
@@ -892,7 +883,7 @@ export default function Home() {
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
                 {isCivicExpanded && (
-                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                  <div className="bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 p-4 rounded-xl text-sm leading-relaxed border border-emerald-200/30 dark:border-emerald-800/30 backdrop-blur-sm mb-2">
                     നമ്മുടെ നാടിന്റെ അടിസ്ഥാന സൗകര്യങ്ങളിലെ പ്രശ്നങ്ങൾ, റോഡ് അറ്റകുറ്റപ്പണികൾ, കുടിവെള്ള പ്രശ്നങ്ങൾ എന്നിവ നേരിട്ട് ജനപ്രതിനിധികളെ അറിയിക്കാനുള്ള ജനകീയ വേദി. ഒരു ഫോട്ടോയിലൂടെ പ്രശ്നം റിപ്പോർട്ട് ചെയ്യാം.
                   </div>
                 )}
@@ -904,7 +895,7 @@ export default function Home() {
                       required 
                       value={reportCategory}
                       onChange={(e) => setReportCategory(e.target.value)}
-                      className="w-full bg-[#FDFCF8] border border-gray-200 rounded-xl px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                      className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl focus:ring-2 focus:ring-emerald-500/20 px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     >
                       <option value="">Select Category...</option>
                       <option value="Roads">Potholes / Road Damage</option>
@@ -920,7 +911,7 @@ export default function Home() {
                       placeholder="Nearest Landmark" 
                       value={reportLandmark}
                       onChange={(e) => setReportLandmark(e.target.value)}
-                      className="w-full bg-[#FDFCF8] border border-gray-200 rounded-xl px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" 
+                      className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl focus:ring-2 focus:ring-emerald-500/20 px-4 py-3 font-semibold text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" 
                     />
                   </div>
                   <div className="flex space-x-3 pt-2">
@@ -946,7 +937,7 @@ export default function Home() {
           {/* RIGHT COLUMN: Immediate Services (Independent Scroll) — 4 columns */}
           {/* ═══════════════════════════════════════════════════════════════ */}
           <aside className="lg:col-span-4 lg:h-full lg:overflow-y-auto lg:pl-2 pb-20 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="bg-gradient-to-br from-slate-50 to-slate-100/70 dark:from-[#0f172a] dark:to-[#020617] rounded-[2.5rem] p-5 md:p-8 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-slate-900/5 w-full flex flex-col gap-6">
+            <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-5 md:p-8 border border-white/30 dark:border-slate-700/30 shadow-xl shadow-emerald-500/5 w-full flex flex-col gap-6">
               <div className="text-center mb-2">
                 <h2 className="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100 flex items-center justify-center gap-3">
                   <span className="text-2xl">🏛️</span> പ്രധാന സേവനങ്ങൾ
@@ -993,7 +984,7 @@ export default function Home() {
                           <select 
                             value={selectedCategory} 
                             onChange={(e) => setSelectedCategory(e.target.value as ServiceCategory)}
-                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                            className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/30 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                           >
                             <option value="krishi">Krishi Bhavan</option>
                             <option value="ration">Ration Shop</option>
@@ -1010,7 +1001,7 @@ export default function Home() {
                           <select 
                             value={selectedPanchayat} 
                             onChange={(e) => setSelectedPanchayat(e.target.value)}
-                            className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                            className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/30 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                           >
                             {PANCHAYATS.filter(p => p.id !== 'all').map(p => (
                               <option key={p.id} value={p.name}>{p.name}</option>
@@ -1114,7 +1105,7 @@ export default function Home() {
                   <input 
                     type="text" 
                     placeholder={krishiRole === 'farmer' ? 'ഉദാ: 50kg മട്ട നെല്ല്' : 'ഉദാ: 100kg റബ്ബർ ഷീറ്റ്'} 
-                    className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                    className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/30 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                   />
                 </div>
                 <button type="submit" className="w-full bg-gradient-to-r from-[#0A5C36] to-[#0d7a48] text-white font-bold rounded-xl px-5 py-3.5 mt-4 hover:shadow-lg hover:shadow-[#0A5C36]/20 transition-all flex items-center justify-center gap-2">
@@ -1128,8 +1119,8 @@ export default function Home() {
 
 
             {/* Section 3: കോങ്ങാട് വാർത്തകൾ (Kongad Vartha / News) */}
-            <section className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 shadow-sm border border-slate-200 flex flex-col">
-              <div className="bg-gradient-to-r from-accent to-amber-500 p-5 md:p-6 rounded-t-2xl">
+            <section className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-emerald-500/5 border border-slate-200/50 dark:border-slate-700/30 flex flex-col">
+              <div className="bg-gradient-to-r from-amber-500 to-orange-500 shadow-md p-5 md:p-6 rounded-t-2xl">
                 <button 
                   onClick={() => setIsNewsExpanded(!isNewsExpanded)}
                   className="w-full flex items-center justify-between focus:outline-none"
@@ -1141,7 +1132,7 @@ export default function Home() {
               <div className="p-5 md:p-6 flex flex-col gap-5">
 
                 {isNewsExpanded && (
-                  <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg text-sm leading-relaxed border border-[#E2EBE5] mb-2">
+                  <div className="bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 p-4 rounded-xl text-sm leading-relaxed border border-emerald-200/30 dark:border-emerald-800/30 backdrop-blur-sm mb-2">
                     നമ്മുടെ നാട്ടിലെ പ്രധാന വാർത്തകൾ, പഞ്ചായത്ത് അറിയിപ്പുകൾ, ഉത്സവ വിശേഷങ്ങൾ എന്നിവ അറിയാൻ ഈ ഇടം ഉപയോഗിക്കുക. കോങ്ങാടിന്റെ സ്പന്ദനങ്ങൾ ഇനി നിങ്ങളുടെ വിരൽത്തുമ്പിൽ.
                   </div>
                 )}
@@ -1311,7 +1302,7 @@ export default function Home() {
         <SchemeFinder />
 
         <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12">
-          <div className="bg-gradient-to-br from-cyan-50/50 to-sky-50/50 dark:from-[#081318] dark:to-[#050e13] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-sky-900/5 w-full">
+          <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-white/30 dark:border-slate-700/30 shadow-xl shadow-emerald-500/5 w-full">
 
 
             {/* Widget 3: വിദ്യാഭ്യാസ സ്ഥാപനങ്ങൾ (Educational Institutions) */}
@@ -1354,7 +1345,7 @@ export default function Home() {
                     <select 
                       value={selectedEdu}
                       onChange={(e) => setSelectedEdu(e.target.value)}
-                      className="w-full bg-[#F9FAFB] border border-slate-200 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
+                      className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-slate-600/30 text-slate-800 dark:text-slate-100 text-sm rounded-xl focus:ring-2 focus:ring-[#0A5C36]/20 focus:border-[#0A5C36]/50 block p-3.5 appearance-none transition-all"
                     >
                       {institutions.map(inst => (
                         <option key={inst.id} value={inst.contact}>{inst.name}</option>
@@ -1426,7 +1417,7 @@ export default function Home() {
                     <span className="bg-green-600/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🥾 Trekking</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~30km from Palakkad</span>
+                    <span className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~30km from Palakkad</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1458,7 +1449,7 @@ export default function Home() {
                     <span className="bg-purple-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">👨‍👩‍👧 Family</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Kanjirapuzha</span>
+                    <span className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Kanjirapuzha</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1490,7 +1481,7 @@ export default function Home() {
                     <span className="bg-green-600/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🌿 Nature</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Keralassery</span>
+                    <span className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Keralassery</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1522,7 +1513,7 @@ export default function Home() {
                     <span className="bg-red-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">🔥 Adventure</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~20km from Palakkad</span>
+                    <span className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 ~20km from Palakkad</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1554,7 +1545,7 @@ export default function Home() {
                     <span className="bg-indigo-500/90 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">📸 Sightseeing</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/20 shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Palakkad Town</span>
+                    <span className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md shadow-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/30">📍 Palakkad Town</span>
                   </div>
                 </div>
                 <div className="p-5">
@@ -1721,14 +1712,14 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.5 }}
-                  className={`bg-white dark:bg-[#1a2b22] rounded-2xl border overflow-hidden hover:shadow-lg transition-all duration-300 group ${
+                  className={`bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group ${
                     event.highlight
-                      ? 'border-primary/40 dark:border-primary/30 ring-1 ring-primary/10'
+                      ? 'border-emerald-500/40 dark:border-emerald-400/30 ring-1 ring-emerald-500/20 shadow-lg shadow-emerald-500/10'
                       : 'border-slate-200 dark:border-green-800/50'
                   }`}
                 >
                   {/* Date Strip */}
-                  <div className={`${event.highlight ? 'bg-gradient-to-r from-primary to-primary-light' : 'bg-slate-100 dark:bg-slate-800/70'} px-5 py-3 flex items-center gap-4`}>
+                  <div className={`${event.highlight ? 'bg-gradient-to-r from-emerald-500 to-teal-500 shadow-sm' : 'bg-slate-50/80 dark:bg-slate-800/80 backdrop-blur-sm'} px-5 py-3 flex items-center gap-4`}>
                     <div className="text-center">
                       <div className={`text-2xl font-black leading-none ${event.highlight ? 'text-white' : 'text-slate-900 dark:text-slate-100'}`}>{event.day}</div>
                       <div className={`text-[10px] font-extrabold tracking-widest ${event.highlight ? 'text-white/80' : 'text-slate-500 dark:text-slate-400'}`}>{event.month}</div>
@@ -1833,7 +1824,7 @@ export default function Home() {
                     </div>
                     {/* Uncomment below and remove the placeholder div above once you add real images: */}
                     {/* <img src={photo.src} alt={photo.captionEn} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /> */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-white/20 dark:bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" />
                     <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                       <span className={`text-[9px] font-bold text-white/90 px-2 py-0.5 rounded-full bg-white/20 shadow-sm`}>{photo.category}</span>
                     </div>
@@ -1972,10 +1963,10 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-slate-200 dark:border-green-800/50 p-6 hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
+                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 dark:border-slate-700/30 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group"
                 >
                   {/* Quote Mark Background */}
-                  <div className="absolute -top-2 -right-2 text-8xl font-serif text-slate-100 dark:text-slate-800/50 leading-none select-none pointer-events-none group-hover:text-primary/10 transition-colors">"</div>
+                  <div className="absolute -top-2 -right-2 text-8xl font-serif text-slate-200/50 dark:text-slate-700/30 leading-none select-none pointer-events-none group-hover:text-emerald-500/10 transition-colors">"</div>
 
                   {/* Stars */}
                   <div className="flex gap-0.5 mb-4">
@@ -2015,7 +2006,7 @@ export default function Home() {
 
       </main>
       {/* PREMIUM FOOTER */}
-      <footer id="mla-contact" className="bg-slate-900 text-white py-12 mt-8">
+      <footer id="mla-contact" className="bg-slate-900/90 backdrop-blur-xl border-t border-emerald-900/50 text-white py-12 mt-8">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
@@ -2193,7 +2184,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              className="bg-[#0d522a] rounded-[2rem] shadow-2xl text-white mb-3 p-5 overflow-hidden relative"
+              className="bg-emerald-900/90 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl text-white mb-3 p-5 overflow-hidden relative"
             >
               {/* Decorative background circle */}
               <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-green-400/20 rounded-full blur-2xl"></div>
@@ -2265,8 +2256,8 @@ export default function Home() {
         </motion.button>
       </div>
       {/* 3. MOBILE BOTTOM NAVIGATION */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-[#0f1a14]/95 dark:border-slate-700 backdrop-blur-xl border-t border-slate-200 flex justify-around items-center p-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
-        <button className="flex flex-col items-center gap-1 text-primary">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/90 backdrop-blur-2xl border-t border-white/20 dark:border-slate-700/30 flex justify-around items-center p-3 z-50 shadow-[0_-8px_32px_rgba(0,0,0,0.08)] pb-safe">
+        <button className="flex flex-col items-center gap-1 text-emerald-600 dark:text-emerald-400 relative">
           <HomeIcon className="w-5 h-5" />
           <span className="text-[10px] font-bold">{t('navHome')}</span>
         </button>

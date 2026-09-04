@@ -142,7 +142,7 @@ export default function AIChatbot() {
 
   return (
     <>
-      <div className="fixed bottom-6 left-6 z-50">
+      <div className="fixed bottom-24 right-6 md:bottom-6 z-50">
         <AnimatePresence>
           {!isOpen && (
             <motion.button
@@ -150,11 +150,11 @@ export default function AIChatbot() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               onClick={() => setIsOpen(true)}
-              className="bg-primary hover:bg-green-700 text-white w-20 h-20 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ring-4 ring-green-600/30 group"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ring-4 ring-emerald-500/30 group"
             >
-              <Bot className="w-10 h-10 group-hover:animate-bounce" />
-              <span className="absolute -top-2 -right-3 bg-accent text-white text-sm font-black px-3 py-1 rounded-full flex items-center gap-1 shadow-lg border-2 border-white dark:border-[#0a1510]">
-                AI <Sparkles className="w-4 h-4" />
+              <Bot className="w-7 h-7 group-hover:animate-bounce" />
+              <span className="absolute -top-2 -right-3 bg-teal-500 text-white text-xs font-black px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg border-2 border-white dark:border-slate-900">
+                AI <Sparkles className="w-3 h-3" />
               </span>
             </motion.button>
           )}
@@ -168,11 +168,10 @@ export default function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-28 left-6 z-50 w-[350px] max-w-[calc(100vw-3rem)] bg-white dark:bg-[#1a2b22] rounded-[2rem] shadow-2xl border-4 border-white/60 dark:border-green-800/50 flex flex-col overflow-hidden"
-            style={{ height: '600px' }}
+            className="fixed bottom-20 right-6 md:bottom-24 md:right-6 z-50 w-[340px] max-w-[calc(100vw-3rem)] max-h-[min(500px,70vh)] bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/20 dark:border-slate-700/50 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-emerald-600 to-primary text-white p-5 flex justify-between items-center shrink-0">
+            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-5 flex justify-between items-center shrink-0">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 p-2 rounded-full">
                   <Bot className="w-7 h-7" />
@@ -190,14 +189,14 @@ export default function AIChatbot() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-[#F3F7F4]/50 dark:bg-[#0a1510]/50">
+            <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-slate-50/50 dark:bg-slate-900/50">
               {messages.map(msg => (
                 <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div
                     className={`max-w-[85%] rounded-2xl p-4 text-[15px] whitespace-pre-wrap leading-relaxed shadow-sm ${
                       msg.type === 'user'
-                        ? 'bg-primary text-white rounded-br-none'
-                        : 'bg-white dark:bg-[#233a2e] text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-green-800/50 rounded-bl-none font-medium'
+                        ? 'bg-emerald-600 text-white rounded-br-none'
+                        : 'bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-800 dark:text-slate-100 border border-white/40 dark:border-slate-700/50 rounded-bl-none font-medium'
                     }`}
                   >
                     {msg.text}
@@ -230,7 +229,7 @@ export default function AIChatbot() {
                             if(btn) btn.click();
                           }, 100);
                         }}
-                        className="bg-white dark:bg-[#1a2b22] border border-emerald-200 dark:border-emerald-800/50 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-xl text-sm font-bold shadow-sm transition-colors text-left"
+                        className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-emerald-200/50 dark:border-emerald-800/50 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-xl text-sm font-bold shadow-sm transition-colors text-left"
                       >
                         {chip}
                       </button>
@@ -241,7 +240,7 @@ export default function AIChatbot() {
 
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-white dark:bg-[#233a2e] border border-slate-200 dark:border-green-800/50 rounded-2xl rounded-bl-none p-4 shadow-sm flex gap-1.5">
+                  <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-white/40 dark:border-slate-700/50 rounded-2xl rounded-bl-none p-4 shadow-sm flex gap-1.5">
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className="w-2.5 h-2.5 bg-slate-400 rounded-full" />
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-2.5 h-2.5 bg-slate-400 rounded-full" />
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-2.5 h-2.5 bg-slate-400 rounded-full" />
@@ -252,14 +251,14 @@ export default function AIChatbot() {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-white dark:bg-[#1a2b22] border-t border-slate-200 dark:border-green-800/50 shrink-0">
+            <div className="p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-white/20 dark:border-slate-700/50 shrink-0">
               <div className="flex gap-2">
                 <button
                   onClick={toggleListen}
                   className={`p-2 rounded-full transition-colors flex items-center justify-center shrink-0 ${
                     isListening 
                       ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' 
-                      : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300'
+                      : 'bg-emerald-50 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-slate-700 text-emerald-600 dark:text-emerald-400'
                   }`}
                   title={isListening ? "Stop listening" : "Speak to AI"}
                 >
@@ -271,13 +270,13 @@ export default function AIChatbot() {
                   onChange={e => setInput(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && handleSend()}
                   placeholder={isListening ? "Listening..." : "Ask something..."}
-                  className="flex-1 bg-gray-100 dark:bg-[#0f1914] text-gray-900 dark:text-white rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-green-600"
+                  className="flex-1 bg-emerald-50/50 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 border border-emerald-100 dark:border-slate-700"
                 />
                 <button
                   id="ai-send-btn"
                   onClick={handleSend}
                   disabled={!input.trim() || isTyping}
-                  className="bg-primary hover:bg-green-700 disabled:opacity-50 text-white p-2 rounded-full transition-colors flex items-center justify-center shrink-0"
+                  className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white p-2 rounded-full transition-colors flex items-center justify-center shrink-0"
                 >
                   <Send className="w-5 h-5" />
                 </button>
