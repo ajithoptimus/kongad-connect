@@ -142,21 +142,35 @@ export default function AIChatbot() {
 
   return (
     <>
-      <div className="fixed bottom-24 right-6 md:bottom-6 z-50">
+      <div className="fixed bottom-24 right-6 md:bottom-6 z-50 flex flex-col gap-3">
         <AnimatePresence>
           {!isOpen && (
-            <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              onClick={() => setIsOpen(true)}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ring-4 ring-emerald-500/30 group"
-            >
-              <Bot className="w-7 h-7 group-hover:animate-bounce" />
-              <span className="absolute -top-2 -right-3 bg-teal-500 text-white text-xs font-black px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg border-2 border-white dark:border-slate-900">
-                AI <Sparkles className="w-3 h-3" />
-              </span>
-            </motion.button>
+            <>
+              <motion.a
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                href="https://t.me/kongadconnect_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#229ED9] hover:bg-[#1C82B3] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ring-4 ring-[#229ED9]/30"
+                title="Chat on Telegram"
+              >
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.18-.08-.05-.19-.02-.27 0-.11.03-1.84 1.18-5.21 3.47-.49.33-.94.5-1.35.49-.45-.01-1.31-.25-1.95-.46-.78-.26-1.4-.4-1.34-.84.03-.22.34-.45.92-.69 3.6-1.56 6.01-2.61 7.23-3.11 3.43-1.43 4.15-1.68 4.63-1.69.11 0 .34.02.48.13.11.08.14.19.16.27.02.06.03.18.01.27z"/></svg>
+              </motion.a>
+              <motion.button
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                onClick={() => setIsOpen(true)}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ring-4 ring-emerald-500/30 group relative"
+              >
+                <Bot className="w-7 h-7 group-hover:animate-bounce" />
+                <span className="absolute -top-2 -right-3 bg-teal-500 text-white text-xs font-black px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg border-2 border-white dark:border-slate-900">
+                  AI <Sparkles className="w-3 h-3" />
+                </span>
+              </motion.button>
+            </>
           )}
         </AnimatePresence>
       </div>
