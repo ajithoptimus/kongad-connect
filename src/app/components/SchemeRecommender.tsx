@@ -64,10 +64,10 @@ export function SchemeRecommender() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white dark:bg-[#1a2b22] rounded-2xl border border-gray-200 dark:border-green-800/50 shadow-xl overflow-hidden p-6">
-      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100 dark:border-green-900/30">
+    <div className="w-full max-w-2xl mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/30 shadow-lg shadow-emerald-500/5 overflow-hidden p-6">
+      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-200/50 dark:border-slate-700/30">
         <Brain className="w-6 h-6 text-primary" />
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">AI Scheme Recommender</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">AI Scheme Recommender</h2>
       </div>
 
       {step < questions.length && !isAnalyzing && (
@@ -83,7 +83,7 @@ export function SchemeRecommender() {
               <button
                 key={opt}
                 onClick={() => handleOptionSelect(opt)}
-                className="p-3 text-left rounded-xl border border-gray-200 dark:border-green-800/50 hover:border-primary hover:bg-green-50 dark:hover:bg-green-900/20 text-gray-700 dark:text-gray-300 transition-colors flex justify-between items-center"
+                className="p-3 text-left rounded-xl border border-emerald-200/30 dark:border-slate-600/30 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm hover:border-primary hover:bg-emerald-50/50 dark:hover:bg-slate-700/50 text-slate-700 dark:text-slate-200 transition-all hover:shadow-md hover:-translate-y-0.5 flex justify-between items-center"
               >
                 {opt}
                 <ChevronRight className="w-4 h-4 opacity-50" />
@@ -98,8 +98,8 @@ export function SchemeRecommender() {
           <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}>
             <Brain className="w-12 h-12 text-primary" />
           </motion.div>
-          <p className="text-gray-600 dark:text-gray-300 font-medium">AI Analyzing your profile...</p>
-          <div className="w-48 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <p className="text-slate-600 dark:text-slate-300 font-medium">AI Analyzing your profile...</p>
+          <div className="w-48 h-2 bg-slate-200/50 dark:bg-slate-700/50 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
@@ -124,19 +124,19 @@ export function SchemeRecommender() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.2 }}
-                className="p-4 rounded-xl border border-gray-200 dark:border-green-800/50 bg-gray-50/50 dark:bg-[#233a2e]"
+                className="p-4 rounded-2xl border border-slate-200/50 dark:border-slate-700/30 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="font-bold text-gray-900 dark:text-white text-lg">{scheme.name}</h4>
-                  <span className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                  <h4 className="font-bold text-slate-900 dark:text-slate-100 text-lg">{scheme.name}</h4>
+                  <span className="bg-emerald-100/50 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200 border border-emerald-200/50 dark:border-emerald-700/30 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                     {scheme.matchScore}% Match <CheckCircle2 className="w-3 h-3" />
                   </span>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-300 mb-3 space-y-1">
+                <div className="text-sm text-slate-600 dark:text-slate-300 mb-3 space-y-1">
                   <p><span className="font-semibold">Benefit:</span> {scheme.amount}</p>
                   <p><span className="font-semibold">Eligibility:</span> {scheme.eligibility}</p>
                 </div>
-                <button className="w-full py-2 bg-primary hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-colors">
+                <button className="w-full py-2 bg-primary hover:bg-primary-dark text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all">
                   Apply Now
                 </button>
               </motion.div>
@@ -150,7 +150,7 @@ export function SchemeRecommender() {
         </motion.div>
       )}
 
-      <div className="mt-6 pt-4 border-t border-gray-100 dark:border-green-900/30 text-center text-xs text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1">
+      <div className="mt-6 pt-4 border-t border-slate-200/50 dark:border-slate-700/30 text-center text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1">
         Powered by Synthara Vision AI <Sparkles className="w-3 h-3 text-accent" />
       </div>
     </div>

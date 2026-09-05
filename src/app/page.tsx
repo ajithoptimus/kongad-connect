@@ -422,7 +422,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-emerald-500/20 rounded-3xl blur-3xl scale-110" />
 
                 {/* Main image container */}
-                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl shadow-emerald-900/50 group">
+                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl shadow-emerald-500/50 group">
                   <img
                     src="/mla-thulasi.jpg"
                     alt="K. Santhakumari - MLA Kongad"
@@ -714,7 +714,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08, duration: 0.5 }}
-                    className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-slate-200 dark:border-green-800/50 p-5 hover:shadow-lg transition-all duration-300 group"
+                    className="bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-green-800/50 p-5 hover:shadow-lg transition-all duration-300 group"
                   >
                     {/* Header */}
                     <div className="flex items-start justify-between mb-3">
@@ -827,7 +827,7 @@ export default function Home() {
               </div>
               <div className="p-5 md:p-6 flex flex-col gap-5">
                 {isEventsExpanded && (
-                  <div className="bg-[#F8F5FF] text-purple-900 p-4 rounded-lg text-sm leading-relaxed border border-purple-100 mb-2">
+                  <div className="bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-purple-900 p-4 rounded-lg text-sm leading-relaxed border border-purple-100 mb-2">
                     നാട്ടിലെ പ്രധാന ഉത്സവങ്ങൾ, കായിക മത്സരങ്ങൾ, പൊതുയോഗങ്ങൾ എന്നിവയുടെ വിവരങ്ങൾ. 
                   </div>
                 )}
@@ -887,7 +887,7 @@ export default function Home() {
                     നമ്മുടെ നാടിന്റെ അടിസ്ഥാന സൗകര്യങ്ങളിലെ പ്രശ്നങ്ങൾ, റോഡ് അറ്റകുറ്റപ്പണികൾ, കുടിവെള്ള പ്രശ്നങ്ങൾ എന്നിവ നേരിട്ട് ജനപ്രതിനിധികളെ അറിയിക്കാനുള്ള ജനകീയ വേദി. ഒരു ഫോട്ടോയിലൂടെ പ്രശ്നം റിപ്പോർട്ട് ചെയ്യാം.
                   </div>
                 )}
-              <motion.div {...scrollMotionProps} whileHover={{ scale: 1.01 }} className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6">
+              <motion.div {...scrollMotionProps} whileHover={{ scale: 1.01 }} className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 border border-transparent shadow-[0_4px_20px_-4px_rgba(10,92,54,0.08)] hover:shadow-[0_8px_30px_-4px_rgba(10,92,54,0.15)] hover:-translate-y-1 transition-all duration-300 p-6">
                 <form onSubmit={handleCivicSubmit} className="space-y-4">
                   <div>
                     <label className="block text-[11px] uppercase tracking-widest font-bold text-slate-500 dark:text-slate-400 mb-2">Category</label>
@@ -915,7 +915,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex space-x-3 pt-2">
-                    <button type="button" className="flex-1 bg-[#FDFCF8] border border-gray-200 text-slate-700 rounded-xl py-3 flex items-center justify-center font-bold text-sm hover:bg-white hover:shadow-sm transition-all">
+                    <button type="button" className="flex-1 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200 text-slate-700 rounded-xl py-3 flex items-center justify-center font-bold text-sm hover:bg-white hover:shadow-sm transition-all">
                       <Camera className="w-4 h-4 mr-2 text-slate-500 dark:text-slate-400" /> Photo
                     </button>
                     <button type="submit" className="flex-1 bg-primary text-white font-bold py-3 rounded-xl flex items-center justify-center hover:bg-primary-dark transition-colors text-sm shadow-sm">
@@ -952,7 +952,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
             >
               <button 
                 onClick={() => setIsGovtExpanded(!isGovtExpanded)}
@@ -1043,7 +1043,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
             >
               <button 
                 onClick={() => setIsMarketExpanded(!isMarketExpanded)}
@@ -1063,7 +1063,7 @@ export default function Home() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed mb-6 border border-[#E2EBE5]">
+                    <div className="bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 p-4 rounded-lg mt-3 text-sm leading-relaxed mb-6 border border-[#E2EBE5]">
                       കർഷകർക്കും വ്യാപാരികൾക്കും ഇടനിലക്കാരില്ലാതെ നേരിട്ട് വിനിമയം നടത്താനുള്ള സുതാര്യമായ വേദി. നിങ്ങളുടെ വിളകൾ മികച്ച വിലയ്ക്ക് വിൽക്കാനും, ഗുണനിലവാരമുള്ള കാർഷികോൽപ്പന്നങ്ങൾ വാങ്ങാനും ഈ സംവിധാനം ഉപയോഗപ്പെടുത്താം.
                     </div>
                   </motion.div>
@@ -1179,7 +1179,7 @@ export default function Home() {
 
 
             {/* Widget: യാത്രാ വിവരങ്ങൾ (Bus Timings) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.2 }} className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm">
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.2 }} className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 p-6 border border-slate-200 shadow-sm">
               <button onClick={() => setIsBusExpanded(!isBusExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
                 <div className="flex items-center">
                   <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
@@ -1236,7 +1236,7 @@ export default function Home() {
             </motion.div>
 
             {/* Widget: രക്തദാന സേന (Blood Donor Network) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.45 }} className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm">
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.45 }} className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 p-6 border border-slate-200 shadow-sm">
               <button onClick={() => setIsBloodExpanded(!isBloodExpanded)} className="w-full flex items-center justify-between focus:outline-none mb-4 group">
                 <div className="flex items-center">
                   <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
@@ -1311,7 +1311,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               whileHover={{ scale: 1.01 }}
-              className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
+              className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 p-6 border border-slate-200 shadow-sm"
             >
               <button 
                 onClick={() => setIsEduExpanded(!isEduExpanded)}
@@ -1330,7 +1330,7 @@ export default function Home() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="bg-[#F3F7F4] text-[#2D4A36] p-4 rounded-lg mt-3 text-sm leading-relaxed mb-6 border border-[#E2EBE5]">
+                    <div className="bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 p-4 rounded-lg mt-3 text-sm leading-relaxed mb-6 border border-[#E2EBE5]">
                       കോങ്ങാട് മണ്ഡലത്തിലെയും സമീപ പ്രദേശങ്ങളിലെയും പ്രധാന കോളേജുകൾ, ഐ.ടി.ഐ, മറ്റ് വിദ്യാഭ്യാസ സ്ഥാപനങ്ങൾ എന്നിവയുടെ വിവരങ്ങൾ. വിദ്യാർത്ഥികൾക്കും രക്ഷിതാക്കൾക്കും നേരിട്ട് ബന്ധപ്പെടാം.
                     </div>
                   </motion.div>
@@ -1340,7 +1340,7 @@ export default function Home() {
               {!isEduExpanded && <p className="text-xs text-slate-500 dark:text-slate-400 mb-5">വിദ്യാഭ്യാസ വിവരങ്ങൾ</p>}
 
               <div className="space-y-3">
-                <div className="bg-white rounded-2xl dark:bg-[#1a2b22] dark:border-green-800/50 p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
+                <div className="bg-white rounded-2xl dark:bg-slate-800/80 dark:border-green-800/50 p-4 border border-gray-100 shadow-sm flex flex-col gap-3">
                   <div className="relative">
                     <select 
                       value={selectedEdu}
@@ -1378,7 +1378,7 @@ export default function Home() {
         {/* TOURIST PLACES — EXPLORE KONGAD */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12 mb-12">
-          <div className="bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-[#061810] dark:to-[#04100b] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-emerald-900/5 w-full">
+          <div className="bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-[#061810] dark:to-[#04100b] rounded-3xl p-6 md:p-10 border border-white/20 backdrop-blur-xl dark:border-slate-800/50 shadow-xl shadow-emerald-500/5 w-full">
             <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1407,7 +1407,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/80 group snap-start hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="relative h-[200px] overflow-hidden">
                   <img src="/meenvallam.jpg" alt="Meenvallam Waterfall" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -1439,7 +1439,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/80 group snap-start hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="relative h-[200px] overflow-hidden">
                   <img src="/kanjirapuzha.jpg" alt="Kanjirapuzha Dam" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -1471,7 +1471,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/80 group snap-start hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="relative h-[200px] overflow-hidden">
                   <img src="/pamperian.jpg" alt="Pamperian Para Temple" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -1503,7 +1503,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/80 group snap-start hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="relative h-[200px] overflow-hidden">
                   <img src="/dhoni.jpg" alt="Dhoni Hills" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -1535,7 +1535,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 }}
-                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#1a2b22] group snap-start"
+                className="flex-shrink-0 w-[280px] md:w-[320px] rounded-3xl overflow-hidden border border-slate-200 dark:border-green-800/50 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/80 group snap-start hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="relative h-[200px] overflow-hidden">
                   <img src="/palakkad-fort.jpg" alt="Palakkad Fort" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -1570,7 +1570,7 @@ export default function Home() {
         {/* EVENT CALENDAR — ഇവന്റ് കലണ്ടർ */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12 mb-12">
-          <div className="bg-gradient-to-br from-rose-50/50 to-orange-50/50 dark:from-[#1f0d11] dark:to-[#170908] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-rose-900/5 w-full">
+          <div className="bg-gradient-to-br from-rose-50/50 to-orange-50/50 dark:from-[#1f0d11] dark:to-[#170908] rounded-3xl p-6 md:p-10 border border-white/20 backdrop-blur-xl dark:border-slate-800/50 shadow-xl shadow-rose-500/5 w-full">
             <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1758,7 +1758,7 @@ export default function Home() {
         {/* PHOTO GALLERY — ഫോട്ടോ ഗാലറി */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12 mb-8">
-          <div className="bg-gradient-to-br from-sky-50/50 to-blue-50/50 dark:from-[#0a1420] dark:to-[#080e18] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-blue-900/5 w-full">
+          <div className="bg-gradient-to-br from-sky-50/50 to-blue-50/50 dark:from-[#0a1420] dark:to-[#080e18] rounded-3xl p-6 md:p-10 border border-white/20 backdrop-blur-xl dark:border-slate-800/50 shadow-xl shadow-blue-500/5 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1812,7 +1812,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05, duration: 0.4 }}
-                  className="break-inside-avoid rounded-2xl overflow-hidden border border-slate-200 dark:border-green-800/50 bg-white dark:bg-[#1a2b22] group cursor-pointer hover:shadow-xl transition-all duration-300"
+                  className="break-inside-avoid rounded-2xl overflow-hidden border border-slate-200 dark:border-green-800/50 bg-white dark:bg-slate-800/80 group cursor-pointer hover:shadow-xl transition-all duration-300"
                 >
                   <div className={`relative ${photo.aspect} overflow-hidden bg-slate-100 dark:bg-slate-800`}>
                     {/* Replace with real images — placeholder shows gradient */}
@@ -1855,7 +1855,7 @@ export default function Home() {
         {/* TESTIMONIALS — ജനങ്ങളുടെ അഭിപ്രായങ്ങൾ */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mt-12 mb-8">
-          <div className="bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-[#1a1308] dark:to-[#181006] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-amber-900/5 w-full">
+          <div className="bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-[#1a1308] dark:to-[#181006] rounded-3xl p-6 md:p-10 border border-white/20 backdrop-blur-xl dark:border-slate-800/50 shadow-xl shadow-amber-500/5 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2164,7 +2164,7 @@ export default function Home() {
                   else if (service.type === 'ambulance') { icon = '🚑'; colorClass = 'bg-red-500 text-white'; labelClass = 'text-red-900 dark:text-red-200'; }
                   else if (service.type === 'kseb') { icon = '⚡'; colorClass = 'bg-amber-400 text-amber-900'; labelClass = 'text-amber-900 dark:text-amber-200'; }
                   return (
-                    <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-3 bg-white dark:bg-[#1a2b22] rounded-2xl border border-red-50 dark:border-red-900/40 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
+                    <a key={service.id} href={`tel:${service.phone}`} className="flex flex-col items-center justify-center p-3 bg-white dark:bg-slate-800/80 rounded-2xl border border-red-50 dark:border-red-900/40 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group text-center">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg mb-2 ${colorClass} group-hover:scale-110 transition-transform`}>
                         {icon}
                       </div>
@@ -2248,7 +2248,7 @@ export default function Home() {
         {/* Main FAB Button */}
         <motion.button
           onClick={() => { setIsFabOpen(!isFabOpen); if (isEmergencyExpanded) setIsEmergencyExpanded(false); if (isWeatherExpanded) setIsWeatherExpanded(false); }}
-          className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-light text-white shadow-xl shadow-primary/30 flex items-center justify-center hover:shadow-2xl hover:scale-105 transition-all border-2 border-white/20 relative z-[61]"
+          className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-light text-white shadow-xl shadow-primary/30 flex items-center justify-center hover:shadow-2xl hover:scale-105 transition-all border border-white/20 backdrop-blur-xl relative z-[61]"
           animate={{ rotate: isFabOpen ? 45 : 0 }}
           transition={{ duration: 0.2 }}
         >
@@ -2261,15 +2261,15 @@ export default function Home() {
           <HomeIcon className="w-5 h-5" />
           <span className="text-[10px] font-bold">{t('navHome')}</span>
         </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+        <button className="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors">
           <Briefcase className="w-5 h-5" />
           <span className="text-[10px] font-bold">{t('navMarket')}</span>
         </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+        <button className="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors">
           <Grid className="w-5 h-5" />
           <span className="text-[10px] font-bold">{t('navServices')}</span>
         </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+        <button className="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors">
           <UserCircle className="w-5 h-5" />
           <span className="text-[10px] font-bold">{t('navProfile')}</span>
         </button>

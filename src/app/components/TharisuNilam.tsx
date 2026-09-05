@@ -123,7 +123,7 @@ export function TharisuNilamRegister() {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4 }}
-      className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-amber-200 dark:border-amber-800/50 shadow-sm overflow-hidden"
+      className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/30 shadow-lg shadow-emerald-500/5 overflow-hidden"
     >
       <div className="bg-gradient-to-r from-amber-500 to-yellow-500 p-4 flex items-center gap-3">
         <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -175,7 +175,7 @@ export function TharisuNilamRegister() {
                     value={form.name}
                     onChange={(e) => updateField('name', e.target.value)}
                     placeholder="ഉടമയുടെ പേര് (Owner Name) *"
-                    className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.name ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium transition-colors`}
+                    className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.name ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                   />
                   <FieldError message={errors.name} />
                 </div>
@@ -185,7 +185,7 @@ export function TharisuNilamRegister() {
                     value={form.location}
                     onChange={(e) => updateField('location', e.target.value)}
                     placeholder="സ്ഥലം (Location)"
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium"
+                    className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium"
                   />
                   <div>
                     <input
@@ -193,7 +193,7 @@ export function TharisuNilamRegister() {
                       value={form.area}
                       onChange={(e) => updateField('area', e.target.value)}
                       placeholder="വിസ്തീർണ്ണം (Area) *"
-                      className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.area ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium transition-colors`}
+                      className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.area ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                     />
                     <FieldError message={errors.area} />
                   </div>
@@ -202,7 +202,7 @@ export function TharisuNilamRegister() {
                   <select
                     value={form.panchayat}
                     onChange={(e) => updateField('panchayat', e.target.value)}
-                    className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.panchayat ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium transition-colors`}
+                    className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.panchayat ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                   >
                     <option value="">പഞ്ചായത്ത് തിരഞ്ഞെടുക്കുക (Select Panchayat) *</option>
                     {panchayats.map(p => (
@@ -217,7 +217,7 @@ export function TharisuNilamRegister() {
                     value={form.phone}
                     onChange={(e) => updateField('phone', e.target.value.replace(/\D/g, '').slice(0, 10))}
                     placeholder="ഫോൺ നമ്പർ (Phone) *"
-                    className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.phone ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium transition-colors`}
+                    className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.phone ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                   />
                   <FieldError message={errors.phone} />
                 </div>
@@ -226,13 +226,13 @@ export function TharisuNilamRegister() {
                   value={form.details}
                   onChange={(e) => updateField('details', e.target.value)}
                   placeholder="അധിക വിവരങ്ങൾ (Soil type, water availability etc.)"
-                  className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-medium resize-none"
+                  className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium resize-none"
                 />
               </div>
               <button
                 onClick={handleSubmit}
                 disabled={status === 'submitting'}
-                className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-amber-500/20 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-amber-500/20 flex items-center justify-center gap-2"
               >
                 {status === 'submitting' ? (
                   <>
@@ -290,7 +290,7 @@ export function TharisuNilamSeeker() {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0.1 }}
-      className="bg-white dark:bg-[#1a2b22] rounded-2xl border border-green-200 dark:border-green-800/50 shadow-sm overflow-hidden"
+      className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/30 shadow-lg shadow-emerald-500/5 overflow-hidden"
     >
       <div className="bg-gradient-to-r from-green-600 to-emerald-500 p-4 flex items-center gap-3">
         <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -342,7 +342,7 @@ export function TharisuNilamSeeker() {
                     value={form.name}
                     onChange={(e) => updateField('name', e.target.value)}
                     placeholder="പേര് (Your Name) *"
-                    className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.name ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium transition-colors`}
+                    className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.name ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                   />
                   <FieldError message={errors.name} />
                 </div>
@@ -351,7 +351,7 @@ export function TharisuNilamSeeker() {
                     <select
                       value={form.panchayat}
                       onChange={(e) => updateField('panchayat', e.target.value)}
-                      className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.panchayat ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium transition-colors`}
+                      className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.panchayat ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                     >
                       <option value="">പഞ്ചായത്ത് *</option>
                       {panchayats.map(p => (
@@ -365,13 +365,13 @@ export function TharisuNilamSeeker() {
                     value={form.area}
                     onChange={(e) => updateField('area', e.target.value)}
                     placeholder="ആവശ്യമുള്ള വിസ്തീർണ്ണം (Area)"
-                    className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium"
+                    className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium"
                   />
                 </div>
                 <select
                   value={form.farmingType}
                   onChange={(e) => updateField('farmingType', e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium"
+                  className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium"
                 >
                   <option value="">കൃഷി തരം (Farming Type)</option>
                   {farmingTypes.map(ft => (
@@ -384,7 +384,7 @@ export function TharisuNilamSeeker() {
                     value={form.phone}
                     onChange={(e) => updateField('phone', e.target.value.replace(/\D/g, '').slice(0, 10))}
                     placeholder="ഫോൺ നമ്പർ (Phone) *"
-                    className={`w-full bg-slate-50 dark:bg-[#0f1a14] border ${errors.phone ? 'border-red-400 dark:border-red-500' : 'border-slate-200 dark:border-green-900/50'} rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium transition-colors`}
+                    className={`w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border ${errors.phone ? 'border-red-400 dark:border-red-500' : 'border-emerald-200/30 dark:border-slate-600/30'} rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium transition-colors`}
                   />
                   <FieldError message={errors.phone} />
                 </div>
@@ -393,13 +393,13 @@ export function TharisuNilamSeeker() {
                   value={form.details}
                   onChange={(e) => updateField('details', e.target.value)}
                   placeholder="അധിക വിവരങ്ങൾ (Experience, preferences etc.)"
-                  className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-lg py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500/50 font-medium resize-none"
+                  className="w-full bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm border border-emerald-200/30 dark:border-slate-600/30 rounded-xl py-2.5 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 font-medium resize-none"
                 />
               </div>
               <button
                 onClick={handleSubmit}
                 disabled={status === 'submitting'}
-                className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-green-500/20 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-green-500/20 flex items-center justify-center gap-2"
               >
                 {status === 'submitting' ? (
                   <>

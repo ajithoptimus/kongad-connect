@@ -116,7 +116,7 @@ export default function SchemeFinder() {
 
   return (
     <div className="w-full max-w-[1850px] mx-auto px-4 md:px-8 2xl:px-12 mb-10 mt-12">
-      <div className="bg-gradient-to-br from-violet-50/60 to-purple-50/60 dark:from-[#0f0a1c] dark:to-[#170a1c] rounded-[2.5rem] p-6 md:p-10 border-4 border-white/60 dark:border-slate-800/50 shadow-xl shadow-violet-900/5 w-full">
+      <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 border border-slate-200/50 dark:border-slate-700/30 shadow-lg shadow-emerald-500/5 w-full">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -137,7 +137,7 @@ export default function SchemeFinder() {
         </div>
 
         {/* Filters & Search Area */}
-        <div className="bg-white dark:bg-[#1a2b22] p-4 rounded-3xl border border-slate-200 dark:border-green-800/50 shadow-sm flex flex-col lg:flex-row gap-4 mb-8">
+        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-4 rounded-3xl border border-slate-200/50 dark:border-slate-700/30 shadow-sm flex flex-col lg:flex-row gap-4 mb-8">
           
           {/* Search Bar */}
           <div className="relative flex-1">
@@ -147,7 +147,7 @@ export default function SchemeFinder() {
               placeholder="Search schemes... / പദ്ധതികൾ തിരയുക..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-[#0f1a14] border border-slate-200 dark:border-green-900/50 rounded-2xl py-3 pl-12 pr-4 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium"
+              className="w-full bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-600/30 rounded-2xl py-3 pl-12 pr-4 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium backdrop-blur-sm"
             />
           </div>
 
@@ -160,7 +160,7 @@ export default function SchemeFinder() {
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl whitespace-nowrap transition-all duration-300 font-bold text-sm border ${
                   activeCategory === cat.id
                     ? 'bg-primary text-white border-primary shadow-md shadow-primary/20'
-                    : 'bg-slate-50 dark:bg-[#0f1a14] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-green-900/50 hover:bg-slate-100 dark:hover:bg-[#1a2b22]'
+                    : 'bg-white/50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 border-slate-200/50 dark:border-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50 backdrop-blur-sm'
                 }`}
               >
                 {cat.icon}
@@ -181,7 +181,7 @@ export default function SchemeFinder() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
                 key={scheme.id}
-                className="bg-white dark:bg-[#1a2b22] rounded-3xl border border-slate-200 dark:border-green-800/50 p-6 flex flex-col hover:shadow-xl transition-all duration-300 group"
+                className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl border border-slate-200/50 dark:border-slate-700/30 p-6 flex flex-col hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group shadow-sm"
               >
                 <div className="flex items-start gap-4 mb-5">
                   <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${scheme.color} flex items-center justify-center text-white shrink-0 shadow-md`}>
@@ -198,7 +198,7 @@ export default function SchemeFinder() {
                   <p className="text-[11px] text-slate-400 dark:text-slate-500">{scheme.descriptionEn}</p>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-[#0f1a14] rounded-2xl p-4 mt-auto">
+                <div className="bg-slate-50/80 dark:bg-slate-900/50 backdrop-blur-sm rounded-2xl p-4 mt-auto border border-slate-200/30 dark:border-slate-700/30">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase">Benefit / തുക</span>
                     <span className="text-sm font-black text-slate-900 dark:text-slate-100">{scheme.amount}</span>
@@ -218,8 +218,8 @@ export default function SchemeFinder() {
           </AnimatePresence>
 
           {filteredSchemes.length === 0 && (
-            <div className="col-span-full py-12 text-center bg-white dark:bg-[#1a2b22] rounded-3xl border border-slate-200 dark:border-green-800/50">
-              <div className="w-16 h-16 bg-slate-100 dark:bg-[#0f1a14] rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+            <div className="col-span-full py-12 text-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl border border-slate-200/50 dark:border-slate-700/30">
+              <div className="w-16 h-16 bg-slate-100/80 dark:bg-slate-900/50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
                 <Search className="w-8 h-8" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">പദ്ധതികൾ ഒന്നും കണ്ടെത്തിയില്ല</h3>

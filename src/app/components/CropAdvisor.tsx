@@ -63,10 +63,10 @@ export function CropAdvisor() {
   const isFormValid = Object.values(formData).every(val => val !== '');
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white dark:bg-[#1a2b22] rounded-2xl border border-gray-200 dark:border-green-800/50 shadow-xl overflow-hidden p-6">
-      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100 dark:border-green-900/30">
+    <div className="w-full max-w-3xl mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/30 shadow-lg shadow-emerald-500/5 overflow-hidden p-6">
+      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-200/50 dark:border-slate-700/30">
         <Leaf className="w-6 h-6 text-primary" />
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">AI Crop Advisor</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">AI Crop Advisor</h2>
       </div>
 
       <AnimatePresence mode="wait">
@@ -74,8 +74,8 @@ export function CropAdvisor() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">പഞ്ചായത്ത് (Panchayat)</label>
-                <select className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-green-800/50 bg-white dark:bg-[#0f1914] text-gray-900 dark:text-white" onChange={e => handleSelect('panchayat', e.target.value)} value={formData.panchayat}>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">പഞ്ചായത്ത് (Panchayat)</label>
+                <select className="w-full p-2.5 rounded-xl border border-emerald-200/30 dark:border-slate-600/30 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-slate-900 dark:text-slate-200" onChange={e => handleSelect('panchayat', e.target.value)} value={formData.panchayat}>
                   <option value="">Select Panchayat</option>
                   <option value="Kongad">Kongad</option>
                   <option value="Keralassery">Keralassery</option>
@@ -89,8 +89,8 @@ export function CropAdvisor() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Season</label>
-                <select className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-green-800/50 bg-white dark:bg-[#0f1914] text-gray-900 dark:text-white" onChange={e => handleSelect('season', e.target.value)} value={formData.season}>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Season</label>
+                <select className="w-full p-2.5 rounded-xl border border-emerald-200/30 dark:border-slate-600/30 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-slate-900 dark:text-slate-200" onChange={e => handleSelect('season', e.target.value)} value={formData.season}>
                   <option value="">Select Season</option>
                   <option value="Virippu">Virippu (Kharif)</option>
                   <option value="Mundakan">Mundakan (Rabi)</option>
@@ -98,8 +98,8 @@ export function CropAdvisor() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Soil Type</label>
-                <select className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-green-800/50 bg-white dark:bg-[#0f1914] text-gray-900 dark:text-white" onChange={e => handleSelect('soil', e.target.value)} value={formData.soil}>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Soil Type</label>
+                <select className="w-full p-2.5 rounded-xl border border-emerald-200/30 dark:border-slate-600/30 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-slate-900 dark:text-slate-200" onChange={e => handleSelect('soil', e.target.value)} value={formData.soil}>
                   <option value="">Select Soil</option>
                   <option value="Laterite">Laterite</option>
                   <option value="Alluvial">Alluvial</option>
@@ -107,8 +107,8 @@ export function CropAdvisor() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Water Availability</label>
-                <select className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-green-800/50 bg-white dark:bg-[#0f1914] text-gray-900 dark:text-white" onChange={e => handleSelect('water', e.target.value)} value={formData.water}>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Water Availability</label>
+                <select className="w-full p-2.5 rounded-xl border border-emerald-200/30 dark:border-slate-600/30 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-slate-900 dark:text-slate-200" onChange={e => handleSelect('water', e.target.value)} value={formData.water}>
                   <option value="">Select Water</option>
                   <option value="Irrigated">Irrigated</option>
                   <option value="Rainfed">Rainfed</option>
@@ -116,14 +116,14 @@ export function CropAdvisor() {
                 </select>
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Land Area (Cents/Ha)</label>
-                <input type="text" placeholder="e.g., 50 Cents" className="w-full p-2.5 rounded-lg border border-gray-300 dark:border-green-800/50 bg-white dark:bg-[#0f1914] text-gray-900 dark:text-white" onChange={e => handleSelect('area', e.target.value)} value={formData.area} />
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Land Area (Cents/Ha)</label>
+                <input type="text" placeholder="e.g., 50 Cents" className="w-full p-2.5 rounded-xl border border-emerald-200/30 dark:border-slate-600/30 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-slate-900 dark:text-slate-200" onChange={e => handleSelect('area', e.target.value)} value={formData.area} />
               </div>
             </div>
             <button
               onClick={analyze}
               disabled={!isFormValid}
-              className="mt-6 w-full py-3 bg-primary hover:bg-green-700 disabled:opacity-50 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+              className="mt-6 w-full py-3 bg-primary hover:bg-primary-dark disabled:opacity-50 text-white rounded-xl font-medium hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
             >
               <Sparkles className="w-5 h-5" /> Get AI Recommendations
             </button>
@@ -133,34 +133,34 @@ export function CropAdvisor() {
         {isAnalyzing && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="py-12 flex flex-col items-center justify-center space-y-4">
             <Loader2 className="w-10 h-10 text-primary animate-spin" />
-            <p className="text-gray-700 dark:text-gray-300 font-medium">🧠 AI Analyzing soil & climate data...</p>
+            <p className="text-slate-700 dark:text-slate-300 font-medium">🧠 AI Analyzing soil & climate data...</p>
           </motion.div>
         )}
 
         {showResults && !isAnalyzing && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
             {results.map((crop, idx) => (
-              <motion.div key={crop.id} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.2 }} className={`p-5 rounded-xl border ${crop.premium ? 'border-accent bg-[#fffdf0] dark:bg-[#2a2410]' : 'border-gray-200 dark:border-green-800/50 bg-gray-50/50 dark:bg-[#233a2e]'}`}>
+              <motion.div key={crop.id} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.2 }} className={`p-5 rounded-2xl border ${crop.premium ? 'border-accent/30 bg-[#fffdf0]/80 dark:bg-[#2a2410]/50' : 'border-slate-200/50 dark:border-slate-700/30 bg-white/80 dark:bg-slate-800/80'} backdrop-blur-sm shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all`}>
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{crop.name}</h3>
-                    {crop.premium && <span className="inline-flex items-center gap-1 text-xs font-bold text-accent mt-1 bg-yellow-100 dark:bg-yellow-900/30 px-2 py-0.5 rounded-full">💎 Premium Heritage Crop</span>}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{crop.name}</h3>
+                    {crop.premium && <span className="inline-flex items-center gap-1 text-xs font-bold text-accent mt-1 bg-yellow-100/50 dark:bg-yellow-900/30 px-2 py-0.5 rounded-full border border-yellow-200/50 dark:border-yellow-700/30">💎 Premium Heritage Crop</span>}
                   </div>
-                  <span className={`text-xs font-bold px-2 py-1 rounded-full ${crop.difficulty === 'Easy' ? 'bg-green-100 text-green-800' : crop.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>
+                  <span className={`text-xs font-bold px-2 py-1 rounded-full ${crop.difficulty === 'Easy' ? 'bg-emerald-100/50 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200 border border-emerald-200/50 dark:border-emerald-700/30' : crop.difficulty === 'Medium' ? 'bg-yellow-100/50 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200 border border-yellow-200/50 dark:border-yellow-700/30' : 'bg-rose-100/50 text-rose-800 dark:bg-rose-900/30 dark:text-rose-200 border border-rose-200/50 dark:border-rose-700/30'}`}>
                     {crop.difficulty} Care
                   </span>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300"><Ruler className="w-4 h-4 text-primary" /> <span>Yield: <span className="font-semibold">{crop.yield}</span></span></div>
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300"><DollarSign className="w-4 h-4 text-primary" /> <span>Revenue: <span className="font-semibold text-green-600 dark:text-green-400">{crop.revenue}</span></span></div>
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300"><MapPin className="w-4 h-4 text-primary" /> <span>Price: {crop.price}</span></div>
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300"><Droplets className="w-4 h-4 text-blue-500" /> <span>Water: {crop.water}</span></div>
+                  <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300"><Ruler className="w-4 h-4 text-primary" /> <span>Yield: <span className="font-semibold">{crop.yield}</span></span></div>
+                  <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300"><DollarSign className="w-4 h-4 text-primary" /> <span>Revenue: <span className="font-semibold text-emerald-600 dark:text-emerald-400">{crop.revenue}</span></span></div>
+                  <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300"><MapPin className="w-4 h-4 text-primary" /> <span>Price: {crop.price}</span></div>
+                  <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300"><Droplets className="w-4 h-4 text-blue-500" /> <span>Water: {crop.water}</span></div>
                 </div>
 
-                <div className="bg-white/50 dark:bg-black/20 p-3 rounded-lg text-sm">
-                  <span className="font-semibold text-gray-900 dark:text-gray-100 mb-1 block">Best Practices:</span>
-                  <ul className="list-disc pl-4 space-y-1 text-gray-600 dark:text-gray-400">
+                <div className="bg-white/50 dark:bg-slate-900/40 p-3 rounded-xl border border-slate-100/50 dark:border-slate-700/30 text-sm">
+                  <span className="font-semibold text-slate-900 dark:text-slate-100 mb-1 block">Best Practices:</span>
+                  <ul className="list-disc pl-4 space-y-1 text-slate-600 dark:text-slate-400">
                     {crop.tips.map((tip, i) => <li key={i}>{tip}</li>)}
                   </ul>
                 </div>
@@ -174,7 +174,7 @@ export function CropAdvisor() {
         )}
       </AnimatePresence>
 
-      <div className="mt-6 pt-4 border-t border-gray-100 dark:border-green-900/30 text-center text-[11px] text-gray-400 dark:text-gray-500">
+      <div className="mt-6 pt-4 border-t border-slate-200/50 dark:border-slate-700/30 text-center text-[11px] text-slate-500 dark:text-slate-400">
         This recommendation is generated by Synthara Vision AI based on your location, season, and soil profile.
       </div>
     </div>
