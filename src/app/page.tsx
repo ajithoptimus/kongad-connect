@@ -1018,7 +1018,7 @@ export default function Home() {
                             return (
                               <div className="mt-1">
                                 <p className="font-bold text-[#0A5C36] text-sm mb-1">{result.name}</p>
-                                <a href={result.phone} className="w-full flex items-center justify-center gap-2 bg-[#F3F7F4] text-[#0A5C36] font-bold p-3 rounded-lg hover:bg-[#E2EBE5] border border-[#0A5C36]/20 transition-colors mt-3">
+                                <a href={result.phone} className="w-full flex items-center justify-center gap-2 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 font-bold p-3 rounded-xl hover:bg-emerald-100/60 dark:hover:bg-emerald-900/30 border border-emerald-200/30 dark:border-emerald-800/30 backdrop-blur-sm transition-all mt-3">
                                   📞 വിളിക്കുക (Call)
                                 </a>
                               </div>
@@ -1355,7 +1355,7 @@ export default function Home() {
                   </div>
                   <a 
                     href={selectedEdu} 
-                    className="w-full flex items-center justify-center gap-2 bg-[#F3F7F4] text-[#0A5C36] font-bold p-3 rounded-lg hover:bg-[#E2EBE5] border border-[#0A5C36]/20 transition-colors"
+                    className="w-full flex items-center justify-center gap-2 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-200 font-bold p-3 rounded-xl hover:bg-emerald-100/60 dark:hover:bg-emerald-900/30 border border-emerald-200/30 dark:border-emerald-800/30 backdrop-blur-sm transition-all"
                   >
                     📞 ബന്ധപ്പെടുക (Contact)
                   </a>
